@@ -15,7 +15,8 @@ hero:
       text: "旧版插件 SDK"
       link: /plugin-sdk/
   image:
-    src: /logo.png
+    light: /icons/neon-n-light-transparent.svg
+    dark: /icons/neon-n-dark-transparent.svg
     alt: NexaCL
 features:
   - title: "NTP/1"

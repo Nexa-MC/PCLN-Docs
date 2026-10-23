@@ -161,7 +161,7 @@ const vitepressConfig: UserConfig = {
   description: "NexaCL 使用、NTP/1 主题包与 Sidecar 开发文档",
   lastUpdated: true,
   head: [
-    ['link', { rel: 'icon', href: '/logo.png' }],
+    ['link', { rel: 'icon', href: '/icons/nexacl-32.png' }],
   ],
   lang: 'zh-CN',
   cleanUrls: true,
@@ -172,7 +172,7 @@ const vitepressConfig: UserConfig = {
   },
 
   themeConfig: {
-    logo: '/logo.png',
+    logo: { light: '/icons/neon-n-light-transparent.svg', dark: '/icons/neon-n-dark-transparent.svg' },
     outline: {
       level: [2, 3],
       label: '本页目录',
