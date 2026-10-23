@@ -1,0 +1,62 @@
+{
+  "format": "NTP/1",
+  "id": "example.twilight",
+  "version": "1.0.0",
+  "name": {
+    "zh-CN": "暮色示例",
+    "en-US": "Twilight example"
+  },
+  "styleApi": 1,
+  "nss": "NSS/1",
+  "styles": [
+    "styles/main.nss"
+  ],
+  "requiredCapabilities": [
+    "styles.basic",
+    "tokens",
+    "options",
+    "selectors",
+    "conditions"
+  ],
+  "optionalCapabilities": [],
+  "optionsVersion": 1,
+  "options": [
+    {
+      "id": "accent",
+      "kind": "Color",
+      "default": "#689fff",
+      "label": {
+        "zh-CN": "强调色",
+        "en-US": "Accent"
+      }
+    },
+    {
+      "id": "title-size",
+      "kind": "Range",
+      "control": "Slider",
+      "default": 26,
+      "min": 20,
+      "max": 32,
+      "step": 1,
+      "label": {
+        "zh-CN": "标题字号",
+        "en-US": "Title size"
+      }
+    },
+    {
+      "id": "rounded",
+      "kind": "Boolean",
+      "control": "Switch",
+      "default": true,
+      "label": {
+        "zh-CN": "圆角按钮",
+        "en-US": "Rounded buttons"
+      }
+    }
+  ],
+  "appearance": {
+    "accentColor": "#315b92",
+    "splashMotion": "fade",
+    "resources": {}
+  }
+}

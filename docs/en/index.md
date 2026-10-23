@@ -1,35 +1,30 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
-
 hero:
-  name: "PCL N Docs"
-  text: "Documentation for PCL N and its plugin ecosystem"
-  tagline: Build, test, publish, and use PCL N plugins
+  name: "NexaCL Docs"
+  text: "From theme creation to independent extensions"
+  tagline: "For Firefly Alpha 12, with legacy PCL N SDK references"
   actions:
     - theme: brand
-      text: Plugin SDK Guide
-      link: /plugin-sdk/
+      text: "Create a theme pack"
+      link: /en/theme-packs/
     - theme: alt
-      text: Project List
-      link: /en/projects
+      text: "Write a Sidecar"
+      link: /en/sidecar/
+    - theme: alt
+      text: "Legacy Plugin SDK"
+      link: /en/plugin-sdk/
   image:
     src: /logo.png
-    alt: PCL-Community
-
+    alt: NexaCL
 features:
-  - title: Plugin Development
-    icon: 🧩
-    details: Learn the SDK contracts, lifecycle, services, permissions, packaging, and publishing workflow.
-    link: /plugin-sdk/
-    linkText: Read the SDK guide
-  - title: Fast Search
-    icon: 🚀
-    details: Find APIs, examples, troubleshooting steps, and compatibility notes with local search.
-  - title: Open Source
-    icon: ✍️
-    details: Maintained alongside the PCL N and Plugin SDK repositories.
-    link: https://github.com/MuXue1230-owo/PCL-N
-    linkText: View PCL N on GitHub
+  - title: "NTP/1"
+    details: "Learn manifests, NSS, switches and sliders, resources and publishing."
+    link: /en/theme-packs/quick-start
+  - title: "Sidecar"
+    details: "Start with a runnable local IPC example, then registration, binary APIs, UI and distribution."
+    link: /en/sidecar/quick-start
+  - title: "Legacy documentation"
+    details: "Legacy Plugin SDK and PXML guides remain available; .pnp and .nsc are separate formats."
+    link: /en/plugin-sdk/
 ---
-

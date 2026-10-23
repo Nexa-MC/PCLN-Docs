@@ -2,3 +2,7 @@ node_modules
 dist
 .vitepress/dist
 .vitepress/cache
+examples/**/bin/
+examples/**/obj/
+out/
+*.ntp

@@ -1,6 +1,10 @@
-# PCL N Docs
+# NexaCL Docs
 
-PCL N 用户与插件开发文档。
+NexaCL 使用、NTP/1 主题包与 Sidecar 编写文档；保留旧版 PCL N 插件 SDK 及 PXML 参考。
+
+- [主题包教程](docs/zhHans/theme-packs/index.md) / [English](docs/en/theme-packs/index.md)
+- [Sidecar 教程](docs/zhHans/sidecar/index.md) / [English](docs/en/sidecar/index.md)
+- [可运行示例](examples/README.md)，以 `Nexa-MC/NexaCL` 的 `v2.0.0.alpha.12` 为依据。
 
 | 环境 | 地址 |
 |------|------|

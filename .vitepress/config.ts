@@ -2,6 +2,16 @@ import { defineConfig, UserConfig } from 'vitepress'
 import { withI18n } from 'vitepress-i18n';
 import { VitePressI18nOptions } from 'vitepress-i18n/types';
 
+const themePages = ['index', 'quick-start', 'manifest-and-options', 'styles-and-resources', 'testing-and-publishing'];
+const sidecarPages = ['index', 'quick-start', 'protocol-and-lifecycle', 'host-api', 'ui-and-extensions', 'testing-and-publishing'];
+function authorSidebar(kind: 'theme-packs' | 'sidecar', english = false) {
+  const themes = kind === 'theme-packs';
+  const labels = themes
+    ? (english ? ['Overview', 'Your first theme', 'Manifest and controls', 'Styles and resources', 'Testing and publishing'] : ['主题包概览', '制作第一个主题', '清单与设置控件', '样式与资源', '测试与发布'])
+    : (english ? ['Overview', 'Build your first Sidecar', 'Protocol and lifecycle', 'Data and Host API', 'UI and extensions', 'Testing and distribution'] : ['Sidecar 概览', '构建第一个 Sidecar', '协议与生命周期', '数据与 Host API', 'UI 与扩展', '测试与分发']);
+  return [{ text: themes ? 'NTP/1' : 'Sidecar · Alpha 12', items: (themes ? themePages : sidecarPages).map((page, i) => ({ text: labels[i], link: `${english ? '/en' : ''}/${kind}/${page === 'index' ? '' : page}` })) }];
+}
+
 const pluginSdkSidebar = [
   {
     text: '入门',
@@ -147,8 +157,8 @@ const englishPxmlCompilerSidebar = [
 const vitepressConfig: UserConfig = {
   srcDir: "docs",
   
-  title: "PCL N Docs",
-  description: "PCL N 用户与插件开发文档",
+  title: "NexaCL Docs",
+  description: "NexaCL 使用、NTP/1 主题包与 Sidecar 开发文档",
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/logo.png' }],
@@ -168,6 +178,10 @@ const vitepressConfig: UserConfig = {
       label: '本页目录',
     },
     sidebar: {
+      '/theme-packs/': authorSidebar('theme-packs'),
+      '/sidecar/': authorSidebar('sidecar'),
+      '/en/theme-packs/': authorSidebar('theme-packs', true),
+      '/en/sidecar/': authorSidebar('sidecar', true),
       '/plugin-sdk/': pluginSdkSidebar,
       '/en/plugin-sdk/': englishPluginSdkSidebar,
       '/pxml-compiler/': pxmlCompilerSidebar,
@@ -186,7 +200,7 @@ const vitepressConfig: UserConfig = {
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/MuXue1230-owo/PCL-N' }
+      { icon: 'github', link: 'https://github.com/Nexa-MC/NexaCL' }
     ],
 
     footer: {
@@ -194,7 +208,7 @@ const vitepressConfig: UserConfig = {
       copyright: 'Copyright © 2026 <a href="https://github.com/MuXue1230-owo">PCL N contributors</a>'
     },
     editLink: {
-      pattern: 'https://github.com/MuXue1230-owo/PCLN-Docs/edit/main/docs/:path',
+      pattern: 'https://github.com/Nexa-MC/PCLN-Docs/edit/main/docs/:path',
     },
   },
 }
@@ -206,6 +220,8 @@ const i18nConfig: VitePressI18nOptions = {
   themeConfig: {
     en: {
       nav: [
+        { text: 'Theme packs', link: '/en/theme-packs/' },
+        { text: 'Sidecar', link: '/en/sidecar/' },
         {
           text: 'Home',
           link: '/'
@@ -226,12 +242,14 @@ const i18nConfig: VitePressI18nOptions = {
     },
     zhHans: {
       nav: [
+        { text: '主题包开发', link: '/theme-packs/' },
+        { text: 'Sidecar 编写', link: '/sidecar/' },
         {
           text: '主页',
           link: '/'
         },
         {
-          text: '插件开发',
+          text: '旧版插件 SDK',
           link: '/plugin-sdk/'
         },
         {
@@ -244,7 +262,7 @@ const i18nConfig: VitePressI18nOptions = {
         },
         {
           text: '开发者工作台',
-          link: 'https://pcln.top/#/home'
+          link: 'https://pcln.top/docs'
         },
         {
           text: '项目列表',
