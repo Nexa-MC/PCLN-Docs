@@ -1,0 +1,8 @@
+<nxml-dynamic>
+  <StackPanel Key="{data key}" Class="result-row" Spacing="6">
+    <Text Content="Item: {data title}" Localize="false" />
+    <TextInput Key="Draft" Label="Note" Placeholder="{data placeholder}"
+               MaximumLength="120" />
+    <Button Label="{data action}" Content="{data action}" Command="example.note.set" />
+  </StackPanel>
+</nxml-dynamic>

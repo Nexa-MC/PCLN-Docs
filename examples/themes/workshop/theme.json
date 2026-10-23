@@ -1,0 +1,217 @@
+{
+  "format": "NTP/1",
+  "id": "example.workshop",
+  "version": "1.0.0",
+  "name": {
+    "zh-CN": "作者工作坊",
+    "en-US": "Author workshop"
+  },
+  "styleApi": 1,
+  "nss": "NSS/1",
+  "styles": [
+    "styles/main.nss"
+  ],
+  "requiredCapabilities": [
+    "styles.basic",
+    "tokens",
+    "options",
+    "selectors",
+    "conditions",
+    "images",
+    "svg",
+    "fonts",
+    "opacity",
+    "media",
+    "startup-appearance"
+  ],
+  "optionalCapabilities": [
+    {
+      "name": "window-acrylic",
+      "fallback": "solid"
+    }
+  ],
+  "optionsVersion": 1,
+  "options": [
+    {
+      "id": "rounded",
+      "kind": "Boolean",
+      "default": true,
+      "label": {
+        "zh-CN": "圆角按钮",
+        "en-US": "Rounded buttons"
+      },
+      "control": "Switch",
+      "group": "style"
+    },
+    {
+      "id": "title-size",
+      "kind": "Number",
+      "default": 26,
+      "label": {
+        "zh-CN": "标题字号",
+        "en-US": "Title size"
+      },
+      "min": 20,
+      "max": 32,
+      "step": 1,
+      "control": "Slider",
+      "group": "style"
+    },
+    {
+      "id": "opacity",
+      "kind": "Range",
+      "default": 25,
+      "label": {
+        "zh-CN": "背景不透明度",
+        "en-US": "Background opacity"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "control": "Slider",
+      "group": "background"
+    },
+    {
+      "id": "font-family",
+      "kind": "Text",
+      "default": "sans-serif",
+      "label": {
+        "zh-CN": "标题字体族",
+        "en-US": "Title font family"
+      },
+      "control": "Input",
+      "group": "style"
+    },
+    {
+      "id": "accent",
+      "kind": "Color",
+      "default": "#68a5ff",
+      "label": {
+        "zh-CN": "标题强调色",
+        "en-US": "Title accent"
+      },
+      "control": "Input",
+      "group": "style"
+    },
+    {
+      "id": "density",
+      "kind": "Select",
+      "default": "comfortable",
+      "label": {
+        "zh-CN": "按钮密度",
+        "en-US": "Button density"
+      },
+      "control": "Segmented",
+      "group": "style",
+      "choices": [
+        {
+          "value": "comfortable",
+          "label": {
+            "zh-CN": "舒适",
+            "en-US": "Comfortable"
+          }
+        },
+        {
+          "value": "compact",
+          "label": {
+            "zh-CN": "紧凑",
+            "en-US": "Compact"
+          }
+        }
+      ]
+    },
+    {
+      "id": "background-path",
+      "kind": "File",
+      "default": "",
+      "label": {
+        "zh-CN": "外部背景",
+        "en-US": "External background"
+      },
+      "resourceKind": "Image",
+      "group": "background"
+    },
+    {
+      "id": "music.enabled",
+      "kind": "Boolean",
+      "default": false,
+      "label": {
+        "zh-CN": "启用音乐",
+        "en-US": "Enable music"
+      },
+      "control": "Switch",
+      "group": "media"
+    },
+    {
+      "id": "music.path",
+      "kind": "Files",
+      "default": [],
+      "label": {
+        "zh-CN": "音乐列表",
+        "en-US": "Playlist"
+      },
+      "resourceKind": "Audio",
+      "group": "media",
+      "visibleWhen": "option(music.enabled)"
+    },
+    {
+      "id": "media-directory",
+      "kind": "Directory",
+      "default": "",
+      "label": {
+        "zh-CN": "音乐目录",
+        "en-US": "Music directory"
+      },
+      "resourceKind": "Audio",
+      "group": "media",
+      "visibleWhen": "option(music.enabled)"
+    },
+    {
+      "id": "music.volume",
+      "kind": "Range",
+      "default": 20,
+      "label": {
+        "zh-CN": "音量",
+        "en-US": "Volume"
+      },
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "control": "Slider",
+      "group": "media",
+      "visibleWhen": "option(music.enabled)"
+    },
+    {
+      "id": "music.autoplay",
+      "kind": "Boolean",
+      "default": false,
+      "label": {
+        "zh-CN": "自动播放",
+        "en-US": "Autoplay"
+      },
+      "control": "CheckBox",
+      "group": "media",
+      "visibleWhen": "option(music.enabled) && option(music.volume) != 0"
+    }
+  ],
+  "appearance": {
+    "accentColor": "#68a5ff",
+    "windowMaterial": "solid",
+    "splashMotion": "breathe",
+    "resources": {
+      "background": {
+        "expression": "asset(assets/background.svg)",
+        "kind": "Image",
+        "required": false,
+        "fallback": "none"
+      }
+    },
+    "properties": {
+      "background-fit": "cover",
+      "background-opacity": "option(opacity)",
+      "music.enabled": "option(music.enabled)",
+      "music.volume": "option(music.volume)",
+      "music.autoplay": "option(music.autoplay)"
+    }
+  }
+}

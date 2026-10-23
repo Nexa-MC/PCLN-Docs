@@ -2,14 +2,64 @@ import { defineConfig, UserConfig } from 'vitepress'
 import { withI18n } from 'vitepress-i18n';
 import { VitePressI18nOptions } from 'vitepress-i18n/types';
 
-const themePages = ['index', 'quick-start', 'manifest-and-options', 'styles-and-resources', 'testing-and-publishing'];
-const sidecarPages = ['index', 'quick-start', 'protocol-and-lifecycle', 'host-api', 'ui-and-extensions', 'testing-and-publishing'];
-function authorSidebar(kind: 'theme-packs' | 'sidecar', english = false) {
-  const themes = kind === 'theme-packs';
-  const labels = themes
-    ? (english ? ['Overview', 'Your first theme', 'Manifest and controls', 'Styles and resources', 'Testing and publishing'] : ['主题包概览', '制作第一个主题', '清单与设置控件', '样式与资源', '测试与发布'])
-    : (english ? ['Overview', 'Build your first Sidecar', 'Protocol and lifecycle', 'Data and Host API', 'UI and extensions', 'Testing and distribution'] : ['Sidecar 概览', '构建第一个 Sidecar', '协议与生命周期', '数据与 Host API', 'UI 与扩展', '测试与分发']);
-  return [{ text: themes ? 'NTP/1' : 'Sidecar · Alpha 12', items: (themes ? themePages : sidecarPages).map((page, i) => ({ text: labels[i], link: `${english ? '/en' : ''}/${kind}/${page === 'index' ? '' : page}` })) }];
+type AuthorArea = 'development' | 'theme-packs' | 'sidecar' | 'nxml';
+const authorPages: Record<AuthorArea, [string, string, string][]> = {
+  development: [
+    ['index', '第三方开发路线', 'Choose your development route'],
+    ['goal-first', '按目标完成一个功能', 'Develop toward an observable goal'],
+    ['xsr-architecture', 'XSR 架构与作者职责', 'XSR architecture and ownership'],
+    ['walkthrough', '综合案例：资源页便签', 'Worked design: resource notes'],
+  ],
+  'theme-packs': [
+    ['index', '主题包概览', 'Theme overview'],
+    ['quick-start', '第一个可调节主题', 'Your first adjustable theme'],
+    ['manifest-and-options', '清单与九种值类型', 'Manifest and nine value kinds'],
+    ['options-recipes', '控件与实时应用实战', 'Controls and live application'],
+    ['nss-language', 'NSS/1 完整语言', 'NSS/1 language'],
+    ['layout-and-motion', '布局、绘制与动效', 'Layout, paint and motion'],
+    ['styles-and-resources', '资源、授权与生命周期', 'Resources, authority and lifetime'],
+    ['appearance-and-capabilities', '外观字段与能力参考', 'Appearance and capabilities'],
+    ['testing-and-publishing', '测试、恢复与发布', 'Testing, recovery and publishing'],
+    ['cookbook-and-troubleshooting', '综合案例与排错', 'Cookbook and troubleshooting'],
+  ],
+  sidecar: [
+    ['index', '独立能力与学习路线', 'Capabilities and learning route'],
+    ['quick-start', '第一个 Sidecar', 'Your first Sidecar'],
+    ['protocol-and-lifecycle', '协议与完整生命周期', 'Protocol and complete lifecycle'],
+    ['commands-and-queries', '命令、查询与数据编码', 'Commands, queries and codecs'],
+    ['state-events-streams', '状态、事件和有背压的流', 'State, events and bounded streams'],
+    ['ui-and-extensions', '有限表单与图片', 'Finite forms and images'],
+    ['signals-and-patches', '信号与有限补丁', 'Signals and finite patches'],
+    ['host-api', '全部 Host API 与实例', 'Complete Host API and examples'],
+    ['packaging-and-discovery', '发现、签名与监督', 'Discovery, trust and supervision'],
+    ['testing-and-publishing', '验收、测试与发布', 'Acceptance, testing and distribution'],
+    ['cookbook-and-troubleshooting', '综合案例与排错', 'Cookbook and troubleshooting'],
+  ],
+  nxml: [
+    ['index', 'NXML 宿主界面路线', 'NXML Host authoring'],
+    ['syntax-and-components', '语法、组件与身份', 'Syntax, components and identity'],
+    ['layout-and-style', '布局、滚动与两套 NSS', 'Layout, scroll and NSS dialects'],
+    ['state-and-input', '状态、草稿与输入意图', 'State, drafts and intent'],
+    ['dynamic-and-reload', '动态片段与保留更新', 'Owned fragments and retained updates'],
+    ['overlays-and-accessibility', '弹层、锚点与无障碍', 'Overlays, anchors and accessibility'],
+    ['reference', '组件、属性与预算完整参考', 'Components, properties and budgets'],
+    ['complete-example', '综合实验与 NativeAOT', 'Complete lab and NativeAOT'],
+  ],
+};
+function authorSidebar(kind: AuthorArea, english = false) {
+  const labels: Record<AuthorArea, string> = english
+    ? { development: 'Goals and XSR', 'theme-packs': 'NTP/1 themes', sidecar: 'Sidecar', nxml: 'NXML Host UI' }
+    : { development: '目标与 XSR', 'theme-packs': 'NTP/1 主题', sidecar: 'Sidecar', nxml: 'NXML 宿主界面' };
+  const items = (area: AuthorArea) => authorPages[area].map(([path, zh, en]) => ({
+    text: english ? en : zh,
+    link: `${english ? '/en' : ''}/${area}/${path === 'index' ? '' : path}`,
+  }));
+  const sections = [{ text: labels.development, collapsed: kind !== 'development', items: items('development') }];
+  if (kind !== 'development') sections.push({ text: `${labels[kind]} · Alpha 12`, collapsed: false, items: items(kind) });
+  sections.push({ text: english ? 'Other authoring routes' : '其他开发路线', collapsed: false,
+    items: (Object.keys(authorPages) as AuthorArea[]).filter(area => area !== kind && area !== 'development')
+      .map(area => ({ text: labels[area], link: `${english ? '/en' : ''}/${area}/` })) });
+  return sections;
 }
 
 const pluginSdkSidebar = [
@@ -178,6 +228,10 @@ const vitepressConfig: UserConfig = {
       label: '本页目录',
     },
     sidebar: {
+      '/development/': authorSidebar('development'),
+      '/nxml/': authorSidebar('nxml'),
+      '/en/development/': authorSidebar('development', true),
+      '/en/nxml/': authorSidebar('nxml', true),
       '/theme-packs/': authorSidebar('theme-packs'),
       '/sidecar/': authorSidebar('sidecar'),
       '/en/theme-packs/': authorSidebar('theme-packs', true),
@@ -220,56 +274,32 @@ const i18nConfig: VitePressI18nOptions = {
   themeConfig: {
     en: {
       nav: [
-        { text: 'Theme packs', link: '/en/theme-packs/' },
+        { text: 'Developer guide', link: '/en/development/' },
+        { text: 'Themes', link: '/en/theme-packs/' },
         { text: 'Sidecar', link: '/en/sidecar/' },
-        {
-          text: 'Home',
-          link: '/'
-        },
-        {
-          text: 'PCL N Projects',
-          link: '/en/projects'
-        },
-        {
-          text: 'PXML',
-          link: '/en/pxml-compiler/'
-        },
-        {
-          text: 'Plugin Market',
-          link: 'https://pcln.top/'
-        },
+        { text: 'NXML', link: '/en/nxml/' },
+        { text: 'References', items: [
+          { text: 'Legacy Plugin SDK', link: '/en/plugin-sdk/' },
+          { text: 'Legacy PXML', link: '/en/pxml-compiler/' },
+          { text: 'Projects', link: '/en/projects' },
+        ] },
+        { text: 'NexaCL', link: 'https://pcln.top/docs' },
       ]
     },
     zhHans: {
       nav: [
-        { text: '主题包开发', link: '/theme-packs/' },
-        { text: 'Sidecar 编写', link: '/sidecar/' },
-        {
-          text: '主页',
-          link: '/'
-        },
-        {
-          text: '旧版插件 SDK',
-          link: '/plugin-sdk/'
-        },
-        {
-          text: 'PXML',
-          link: '/pxml-compiler/'
-        },
-        {
-          text: '插件商店',
-          link: 'https://pcln.top/'
-        },
-        {
-          text: '开发者工作台',
-          link: 'https://pcln.top/docs'
-        },
-        {
-          text: '项目列表',
-          link: '/projects'
-        },
+        { text: '开发指南', link: '/development/' },
+        { text: '主题包', link: '/theme-packs/' },
+        { text: 'Sidecar', link: '/sidecar/' },
+        { text: 'NXML', link: '/nxml/' },
+        { text: '参考文档', items: [
+          { text: '旧版插件 SDK', link: '/plugin-sdk/' },
+          { text: '旧版 PXML', link: '/pxml-compiler/' },
+          { text: '项目列表', link: '/projects' },
+        ] },
+        { text: 'NexaCL 主站', link: 'https://pcln.top/docs' },
       ]
-    }
+    },
   }
 };
 

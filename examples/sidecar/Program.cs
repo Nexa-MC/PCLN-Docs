@@ -1,6 +1,11 @@
 using Nexa.Sidecar.Protocol;
 using Nexa.Sidecar.Transport;
 
+if (args is ["--recipes"])
+{
+    ContractRecipes.Run();
+    return;
+}
 if (args is ["--self-test"])
 {
     await SmokeHost.RunAsync();

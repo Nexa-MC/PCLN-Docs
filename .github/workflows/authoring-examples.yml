@@ -1,0 +1,75 @@
+name: Verify authoring examples
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'examples/**'
+      - '.github/workflows/authoring-examples.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'examples/**'
+      - '.github/workflows/authoring-examples.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  examples:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: Nexa-MC/NexaCL
+          ref: v2.0.0.alpha.12
+          path: launcher
+          persist-credentials: false
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        with:
+          dotnet-version: 10.0.x
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Verify deterministic NTP packages
+        shell: python
+        run: |
+          import hashlib, pathlib, subprocess, tempfile, zipfile
+          for name in ('twilight', 'workshop'):
+              with tempfile.TemporaryDirectory() as temporary:
+                  outputs = [pathlib.Path(temporary)/f'{i}.ntp' for i in range(2)]
+                  for output in outputs:
+                      subprocess.run(['python', 'launcher/eng/themes/pack.py', f'examples/themes/{name}', '--output', str(output)], check=True)
+                  assert outputs[0].read_bytes() == outputs[1].read_bytes(), name
+                  with zipfile.ZipFile(outputs[0]) as archive:
+                      assert archive.namelist()[0] == 'mimetype'
+                      assert archive.read('mimetype').strip() == b'application/x-nexa-theme'
+                  print(name, hashlib.sha256(outputs[0].read_bytes()).hexdigest())
+      - name: Run protocol, real IPC and authoring checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_root="$GITHUB_WORKSPACE/launcher"
+          dotnet run --project examples/sidecar/Example.Sidecar.csproj -c Release -p:NexaCLSourceRoot="$source_root" -- --recipes
+          dotnet run --project examples/sidecar/Example.Sidecar.csproj -c Release -p:NexaCLSourceRoot="$source_root" -- --self-test
+          dotnet run --project examples/authoring-lab/Authoring.Lab.csproj -c Release -p:NexaCLSourceRoot="$source_root" -- "$GITHUB_WORKSPACE"
+      - name: Install NativeAOT toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang zlib1g-dev
+      - name: Publish and execute both NativeAOT examples
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_root="$GITHUB_WORKSPACE/launcher"
+          dotnet publish examples/sidecar/Example.Sidecar.csproj -c Release -r linux-x64 -p:PublishAot=true -p:NexaCLSourceRoot="$source_root" -o "$RUNNER_TEMP/sidecar"
+          "$RUNNER_TEMP/sidecar/Example.Sidecar" --recipes
+          "$RUNNER_TEMP/sidecar/Example.Sidecar" --self-test
+          dotnet publish examples/authoring-lab/Authoring.Lab.csproj -c Release -r linux-x64 -p:PublishAot=true -p:NexaCLSourceRoot="$source_root" -o "$RUNNER_TEMP/lab"
+          "$RUNNER_TEMP/lab/Authoring.Lab" "$GITHUB_WORKSPACE"

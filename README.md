@@ -1,10 +1,16 @@
 # NexaCL Docs
 
-NexaCL 使用、NTP/1 主题包与 Sidecar 编写文档；保留旧版 PCL N 插件 SDK 及 PXML 参考。
+按目标开发和 XSR 架构组织的 NexaCL 第三方作者教程。详解 NTP/1、NSS/1、Sidecar 和 NXML，保留旧版插件 SDK/PXML 参考；省略通用语言基础。
 
+- [开发方法与 XSR 架构](docs/zhHans/development/index.md) / [English](docs/en/development/index.md)
 - [主题包教程](docs/zhHans/theme-packs/index.md) / [English](docs/en/theme-packs/index.md)
 - [Sidecar 教程](docs/zhHans/sidecar/index.md) / [English](docs/en/sidecar/index.md)
+- [NXML 宿主界面教程](docs/zhHans/nxml/index.md) / [English](docs/en/nxml/index.md)
 - [可运行示例](examples/README.md)，以 `Nexa-MC/NexaCL` 的 `v2.0.0.alpha.12` 为依据。
+
+33 章 × 中英文，包含目标验收、职责与通信契约、完整字段/API、逐步实例、失败/取消/退役以及发布证据。NXML 是宿主内部界面语言，不是主题或 Sidecar 的任意页面注入接口；独立 Plugin SDK/执行器的外部合同不在此虚构。
+
+`authoring-examples.yml` 使用固定 A12 源码构建和执行示例、编译正文 NXML/NSS/JSON、验证主题打包及 NativeAOT。文档站仍使用原有 Cloudflare 自动部署流程。
 
 | 环境 | 地址 |
 |------|------|

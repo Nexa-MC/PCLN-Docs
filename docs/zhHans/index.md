@@ -2,30 +2,36 @@
 layout: home
 hero:
   name: "NexaCL Docs"
-  text: "从主题创作到独立扩展开发"
-  tagline: "对应 Firefly Alpha 12；保留旧版 PCL N SDK 参考"
+  text: "从目标出发，按 XSR 架构开发"
+  tagline: "Alpha 12 开发教程、完整参考与可运行实例；详解主题、Sidecar 和 NXML。"
   actions:
     - theme: brand
-      text: "制作主题包"
+      text: "从目标开始"
+      link: /development/
+    - theme: alt
+      text: "制作主题"
       link: /theme-packs/
     - theme: alt
       text: "编写 Sidecar"
       link: /sidecar/
     - theme: alt
-      text: "旧版插件 SDK"
-      link: /plugin-sdk/
+      text: "学习 NXML"
+      link: /nxml/
   image:
     light: /icons/neon-n-light-transparent.svg
     dark: /icons/neon-n-dark-transparent.svg
     alt: NexaCL
 features:
+  - title: "开发方法与 XSR"
+    details: "先明确用户目标与验收，再设计职责、契约、生命周期和验证。"
+    link: /development/
   - title: "NTP/1"
-    details: "学习主题清单、NSS 样式、开关与滑块、资源授权及打包发布。"
-    link: /theme-packs/quick-start
+    details: "从完整主题到 NSS、九种参数、资源授权、回退与发布。"
+    link: /theme-packs/
   - title: "Sidecar"
-    details: "从可运行的本地 IPC 示例出发，理解注册、二进制 API、UI 和分发。"
-    link: /sidecar/quick-start
-  - title: "旧版文档"
-    details: "旧版插件 SDK 与 PXML 文档继续保留；不要将 .pnp 与 .nsc 混用。"
-    link: /plugin-sdk/
+    details: "独立业务、二进制交换、本地状态、有限表单、补丁和发行。"
+    link: /sidecar/
+  - title: "NXML"
+    details: "专用语法、组件、状态与输入、保留列表、弹层和完整实验。"
+    link: /nxml/
 ---

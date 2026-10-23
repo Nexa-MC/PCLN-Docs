@@ -1,0 +1,3 @@
+<nxml-component>
+  <StackPanel Class="status-card" Spacing="12" Padding="16" />
+</nxml-component>

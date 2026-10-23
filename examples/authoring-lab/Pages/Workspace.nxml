@@ -1,0 +1,13 @@
+<nxml-page>
+  <Page xmlns="https://nexa.dev/nxml/2026" Key="Workspace">
+    <StackPanel Key="Body" Spacing="16" Padding="24">
+      <Text Key="TitleMain" Content="NexaCL authoring lab" Localize="false" />
+      <StatusCard Key="Summary">
+        <Text Key="Status" Content="{state example.status}" Localize="false" />
+        <Button Key="Refresh" Class="capsule" Label="Refresh" Content="Refresh"
+                Command="example.refresh" Enabled="{state example.enabled}" />
+      </StatusCard>
+      <Dynamic Key="Results" Orientation="Vertical" Spacing="8" />
+    </StackPanel>
+  </Page>
+</nxml-page>
