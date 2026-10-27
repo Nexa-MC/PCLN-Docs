@@ -6,17 +6,19 @@ Sidecar 是独立执行进程。Host 负责信任、会话、注册表、本地�
 
 只改外观用[主题包](../theme-packs/)。需要新行为或私有数据时，先读[目标与 XSR 设计](../development/)，再选择已开放目标。不要为了一个颜色或文字样式创建进程，也不要为了新增业务绕过 Host 的授权边界。
 
-| 想实现的结果 | A12 中的路线 |
+| 想实现的结果 | A14 中的路线 |
 | --- | --- |
 | 调用独立计算、返回一个结果 | 注册 Command / Query，声明参数和结果 codec |
 | 持续显示当前状态 | 注册 State，完整初始快照，再发 StateDelta |
 | 通知一次变化或连续输出 | Event 或有 credit 的 Stream |
+| 共享界面、独立页面与引导 | NXML schema 3，协商 Nxml / Pages |
+| 自动函数目标 | 读取目标构建目录，协商 AutomaticFunctions 与 NFP3 |
 | 资源页有限表单 | 授权 `ui.resources.extension-card.v1`，schema 2 节点 |
-| 搜索标签、搜索信号、展示字段补丁 | 精确开放目标与有限 ABI，不是任意页面注入 |
+| 搜索标签、搜索信号、展示字段补丁 | 旧显式目标与有限 ABI；新页面使用 schema 3 |
 
 ## 这套教程交付什么
 
-本文锁定 `v2.0.0.alpha.12` 的 Host 和可移植 Protocol/Transport 库。协议 version=1，但仍处于独立 SDK 冻结前的演进阶段；不要把源码示例当作已发布的 SDK 稳定包承诺。
+本文锁定 `v2.0.0.alpha.14` 的 Host 和可移植 Protocol/Transport 库。协议 version=1，但仍处于独立 SDK 冻结前的演进阶段；不要把源码示例当作已发布的 SDK 稳定包承诺。
 
 独立 `Nexa.Plugin.Sidecar` 执行器、插件 SDK 与包/UI-IR 冻结位于独立工程。这些页面教你当前可验证的协议接入、业务拆分和 Host 合作方式；不会编造未发布的 `[Plugin]`、NuGet 包、manifest 字段或安装按钮。
 
@@ -42,5 +44,8 @@ Sidecar 是独立执行进程。Host 负责信任、会话、注册表、本地�
 
 ## 实现依据
 
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+
+
+新增：[共享 NXML 与页面](nxml-pages)、[NFP3 自动函数](automatic-functions)、[平台与运行数据](../development/platform-and-runtime)。

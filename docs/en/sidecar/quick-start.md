@@ -4,10 +4,10 @@ Build an independent endpoint with real process bootstrap, authentication, regis
 
 ## 1. Pin inputs
 
-Install .NET 10. NativeAOT also needs the target OS toolchain. Use A12 source and current docs main:
+Install .NET 10. NativeAOT also needs the target OS toolchain. Use A14 source and current docs main:
 
 ```sh
-git clone --branch v2.0.0.alpha.12 --depth 1 https://github.com/Nexa-MC/NexaCL.git
+git clone --branch v2.0.0.alpha.14 --depth 1 https://github.com/Nexa-MC/NexaCL.git
 git clone https://github.com/Nexa-MC/PCLN-Docs.git
 ```
 
@@ -84,6 +84,6 @@ Continue with [lifecycle](./protocol-and-lifecycle) and the [note-extension desi
 
 ## Implementation references
 
-- [Nexa.Sidecar.Transport/SidecarBootstrap.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Transport/SidecarBootstrap.cs)
-- [Nexa.Sidecar.Protocol/SidecarHandshake.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarHandshake.cs)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
+- [Nexa.Sidecar.Transport/SidecarBootstrap.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Transport/SidecarBootstrap.cs)
+- [Nexa.Sidecar.Protocol/SidecarHandshake.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarHandshake.cs)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)

@@ -1,3 +1,5 @@
+> Compatibility reference: this section describes the separate legacy SDK/PXML, not NexaCL Alpha 14 Sidecar or shared NXML APIs. Start current work from [Goals and XSR](../development/).
+
 # Home
 
 > Applies to PCL N Plugin SDK 0.2.5.

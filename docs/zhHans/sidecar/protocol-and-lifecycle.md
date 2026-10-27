@@ -26,6 +26,9 @@ Host 在全批声明、哈希、引用、目标和完整快照通过前不发布
 | Streams | 2 | Stream 注册与 Open/Chunk/End/Credit |
 | Health | 4 | Ping/Pong |
 | Unregistration | 8 | Unregister/Unregistered |
+| Nxml | 16 | 共享 NXML schema 3 |
+| AutomaticFunctions | 32 | 编译期目录与 NFP3 |
+| Pages | 64 | 独立页面与引导页，还需 Nxml |
 
 WELCOME 确认 HELLO 与 peer 能力的交集；字段缺省是 None，不能假设“version=1 所以 All”。这些位彼此独立：Stream 不额外要求 BinaryPayloads；初始 typed State 也不依赖二进制命令位。UI Toggle 因 Boolean Command 需要 BinaryPayloads。
 
@@ -121,7 +124,14 @@ Host 可以降低预算，peer 不能自行加大。请求截止时间覆盖发�
 
 ## 实现依据
 
-- [Nexa.Sidecar.Protocol/SidecarProtocol.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarProtocol.cs)
-- [Nexa.Sidecar.Protocol/SidecarFrameCodec.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarFrameCodec.cs)
-- [Nexa.Sidecar.Protocol/SidecarRegistration.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarRegistration.cs)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
+- [Nexa.Sidecar.Protocol/SidecarProtocol.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarProtocol.cs)
+- [Nexa.Sidecar.Protocol/SidecarFrameCodec.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarFrameCodec.cs)
+- [Nexa.Sidecar.Protocol/SidecarRegistration.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarRegistration.cs)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+
+## 当前注册分块与压力停用
+
+大模块载荷由当前注册编码器按 60 KiB 切块，首块仍为字段 5，续块 ID 从 1024 连续增加。单 TLV 的 65535 字节限制没有放宽，不能把旧编码器的单字段限制当成整个 NXML 包上限。内容哈希覆盖重组后的完整载荷。
+
+严重内存压力可触发协作 DEACTIVATE：退役激活租约、UI 与交换，保留同一会话注册。恢复使用 ACTIVATE；不要把停用误当新会话或丢弃数字 ID 表。手动停止的包不会被此策略自动重启。详情见 [NXML 页面](nxml-pages)和 [NFP3](automatic-functions)。

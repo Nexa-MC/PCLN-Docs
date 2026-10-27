@@ -105,6 +105,6 @@ Use mouse, keyboard, and touch. Test long labels, zero volume, final legal numer
 
 ## Implementation references
 
-- [Nexa.Services.Themes.Contracts/ThemeOptionCondition.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Services.Themes.Contracts/ThemeOptionCondition.cs)
-- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-live-options.md)
-- [Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs)
+- [Nexa.Services.Themes.Contracts/ThemeOptionCondition.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes.Contracts/ThemeOptionCondition.cs)
+- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
+- [Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs)

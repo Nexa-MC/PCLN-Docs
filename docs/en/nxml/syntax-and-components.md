@@ -83,6 +83,6 @@ The directory needs every referenced component, not just StatusCard without Stac
 
 ## Implementation references
 
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)

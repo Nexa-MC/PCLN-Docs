@@ -1,3 +1,5 @@
+> Compatibility reference: this section describes the separate legacy SDK/PXML, not NexaCL Alpha 14 Sidecar or shared NXML APIs. Start current work from [Goals and XSR](../development/).
+
 # PXML
 
 This section brings together the PXML UI tutorials and the official compiler documentation.

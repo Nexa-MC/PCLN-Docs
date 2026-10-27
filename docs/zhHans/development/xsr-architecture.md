@@ -74,7 +74,12 @@ State 的值与可用性分开。保留旧值不代表它仍可信或可操作�
 
 ## 实现依据
 
-- [docs/xsr/architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/architecture.md)
-- [docs/xsr/service-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/service-model.md)
-- [docs/xsr/state-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/state-model.md)
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
+- [docs/xsr/architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/architecture.md)
+- [docs/xsr/service-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/service-model.md)
+- [docs/xsr/state-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/state-model.md)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+
+
+## Alpha 14: 共享 NXML 与新能力
+
+Sidecar NXML schema 3 与产品共享编译器、组件、样式和意图路由；schema 1/2 只作兼容路线。`Nxml=16`、`AutomaticFunctions=32`、`Pages=64` 分别协商，不能仅凭协议版本推断。界面编译在组合边界，渲染线程不解析源文档或做 IPC。开发路线见 [NXML 页面](../sidecar/nxml-pages)、[自动函数](../sidecar/automatic-functions)和[平台与运行数据](platform-and-runtime)。

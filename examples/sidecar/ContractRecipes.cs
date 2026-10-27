@@ -56,6 +56,25 @@ internal static class ContractRecipes
             && SidecarUiDocument.Decode(moduleCopy.Payload).Nodes.Count == 6, "hashed schema-2 module");
         Check(SidecarUiCaptionPatch.Decode(SidecarUiCaptionPatch.Encode("Search notes")) == "Search notes", "caption patch");
 
+        var sources = new Dictionary<string, string> {
+            ["main.nxml"] = "<nxml-page><Page Key=\"ExamplePage\"><StackPanel><TextInput Key=\"Draft\" Label=\"Note\" Height=\"36\" /><Button Key=\"Submit\" Label=\"Save\" Height=\"36\" Command=\"example.note.set\" ArgumentFrom=\"Draft\" /></StackPanel></Page></nxml-page>",
+            // Exercise real registration continuation fields, not only a tiny single-TLV bundle.
+            ["main.nss"] = "/*" + new string('x', 70000) + "*/"
+        };
+        var shared = new SidecarNxmlDocument("#ExamplePage", SidecarNxmlOperation.Page, "main.nxml", sources);
+        byte[] sharedPayload = SidecarNxmlDocument.Encode(shared);
+        var sharedRegistration = new SidecarRegistrationItem(SidecarRegistrationKind.UiModule,
+            "example.note.page", 0, 0, sharedPayload, SHA256.HashData(sharedPayload));
+        var sharedCopy = SidecarRegistration.DecodeItem(SidecarRegistration.EncodeItem(sharedRegistration));
+        var sharedDocument = SidecarNxmlDocument.Decode(sharedCopy.Payload!);
+        Check(sharedDocument.Operation == SidecarNxmlOperation.Page && sharedDocument.Files["main.nss"] == sources["main.nss"]
+            && sharedCopy.ContentHash!.SequenceEqual(SHA256.HashData(sharedCopy.Payload!)), "schema-3 page and registration chunks");
+        Check((uint)SidecarFeatures.Nxml == 16 && (uint)SidecarFeatures.AutomaticFunctions == 32
+            && (uint)SidecarFeatures.Pages == 64, "Alpha 14 negotiated feature bits");
+        Reject(() => new SidecarNxmlDocument("#ExamplePage", SidecarNxmlOperation.Page, "../main.nxml", sources), "nonportable source path");
+        Reject(() => new SidecarNxmlDocument("#ExamplePage", SidecarNxmlOperation.Page, "main.nxml",
+            new Dictionary<string, string> { ["main.nxml"] = new string('x', SidecarNxmlDocument.MaximumSourceBytes) }), "source budget");
+
         var signal = new SidecarHookSignal(Guid.NewGuid(), SidecarRegistrationKind.EventListen, 1, 1, "success");
         Check(SidecarHookSignal.Decode(signal.Encode()) == signal, "activation-owned signal");
         byte[] function = TitleSuffixProgram(" [example]");

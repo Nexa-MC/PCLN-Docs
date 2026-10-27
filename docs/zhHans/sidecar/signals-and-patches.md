@@ -98,7 +98,7 @@ CountIncrementProgram 的参数/结果均 I64：load result → load I64(1) → 
 | 9 | 无 | 同类型相等，返回 Bool |
 | 10 | 无 | Bool not |
 
-不包含跳转、循环、调用、IO 或对象创建。A12 Host 的两个具体站点不等于可以自己添加任意新站点；Host 编译期显式声明和组合授权才创建可用目标。
+不包含跳转、循环、调用、IO 或对象创建。本页 NFP1/NFP2 显式站点仍兼容；Alpha 14 自动目标使用编译目录与 NFP3，见[自动函数插桩](automatic-functions)。
 
 ## 有界执行与退役
 
@@ -109,7 +109,10 @@ CountIncrementProgram 的参数/结果均 I64：load result → load I64(1) → 
 
 ## 实现依据
 
-- [docs/xsr/sidecar-signals.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-signals.md)
-- [docs/xsr/sidecar-ui-patches.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-ui-patches.md)
-- [docs/xsr/function-patches.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/function-patches.md)
-- [Nexa.Desktop/DesktopSidecarSignals.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Desktop/DesktopSidecarSignals.cs)
+- [docs/xsr/sidecar-signals.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-signals.md)
+- [docs/xsr/sidecar-ui-patches.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-patches.md)
+- [docs/xsr/function-patches.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/function-patches.md)
+- [Nexa.Desktop/DesktopSidecarSignals.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Desktop/DesktopSidecarSignals.cs)
+
+
+Alpha 14 的自动函数目标不是本页两个显式站点的别名。完整新增路线见 [NFP3 与编译目录](automatic-functions)。

@@ -1,6 +1,6 @@
 # NXML 完整组件与属性参考
 
-本表按 A12 的外部组件与编译器整理。组件名不是 CLR 类型，Required 由组件定义指定。值类型通过有限编译器检查；并非任意属性都可以写在任意原语上。
+本表按 A14 的外部组件与编译器整理。组件名不是 CLR 类型，Required 由组件定义指定。值类型通过有限编译器检查；并非任意属性都可以写在任意原语上。
 
 ## 全部内置组件
 | Component | Recipe | Role | Children | Required |
@@ -64,6 +64,8 @@
 | Enabled / Clickable | bool 或 bool State，仅支持的可交互原语 |
 | Focusable | bool literal，非任意 State getter |
 | Command | 语义 ID literal/data，不是方法名或脚本 |
+| Argument | 固定／数据参数；与 ArgumentFrom 互斥 |
+| ArgumentFrom | 同文档 Key 的当前值；引用链最多 128，拒绝缺失和循环 |
 | Selected | CommandInput 的选中事实，literal/data |
 | Checked | CheckBox/Switch Role 的 CommandInput，literal/data |
 | SelectionRequired | Stack/Dynamic Stack 的组策略，bool |
@@ -122,7 +124,12 @@ NxmlParseException：语法、namespace、DTD、文本、binding 格式。NxmlCo
 
 ## 实现依据
 
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlNodeSchema.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlNodeSchema.cs)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlNodeSchema.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlNodeSchema.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs)
+
+
+## Sidecar 共享文档的补充规则
+
+`ArgumentFrom="Draft"` 从同文档内 Key=Draft 的输入读取当前值，避免为每个表单增加专用控制器；缺失引用、循环与过深引用会拒绝。`{data example.state}` 来自同会话标量镜像，始终按字面数据处理。它不同于 Host `{state ...}` 绑定。独立页面和动态片段生命周期见 [NXML schema 3](../sidecar/nxml-pages)。

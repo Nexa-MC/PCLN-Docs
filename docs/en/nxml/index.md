@@ -1,6 +1,6 @@
 # NXML Host UI tutorial
 
-Learn NexaCL's authoring language from first principles for XSR presentation, Host contributions, and controlled composition tests. **NTP cannot replace pages and Sidecar uses separate schema1/2. Learning NXML does not grant product-tree injection.**
+Learn NexaCL's authoring language from first principles for XSR presentation, Host contributions, and controlled composition tests. **NTP cannot replace pages. Sidecars negotiating Nxml/Pages can use shared NXML schema 3 for mounts, standalone pages and onboarding. See [Sidecar NXML](../sidecar/nxml-pages).**
 
 ## Goal and runtime model
 
@@ -39,6 +39,6 @@ Each chapter starts with an outcome and ownership. A working page includes corre
 
 ## Implementation references
 
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
-- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
+- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs)

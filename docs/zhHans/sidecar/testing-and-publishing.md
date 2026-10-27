@@ -15,7 +15,7 @@
 
 ## 本地可重复执行命令
 
-在文档仓库根，源码绝对路径指向 A12：
+在文档仓库根，源码绝对路径指向 A14：
 
 ```sh
 dotnet run --project examples/sidecar/Example.Sidecar.csproj -c Release -p:NexaCLSourceRoot=/absolute/path/to/NexaCL -- --recipes
@@ -61,7 +61,7 @@ out/lab/Authoring.Lab /absolute/path/to/PCLN-Docs
 
 ```text
 目标：用户可以提交并读取本扩展便签
-兼容：NexaCL v2.0.0.alpha.12；protocol1；所需功能位…
+兼容：NexaCL v2.0.0.alpha.14；protocol1；所需功能位…
 目标授权：ui.resources.extension-card.v1
 数据：输入/当前状态/错误规则；是否持久化
 发行：各 RID 原生文件与 detached signature
@@ -74,6 +74,6 @@ out/lab/Authoring.Lab /absolute/path/to/PCLN-Docs
 
 ## 实现依据
 
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
-- [docs/xsr/sidecar-protocol.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-protocol.md)
-- [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nsc-and-regional-policy.md)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+- [docs/xsr/sidecar-protocol.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-protocol.md)
+- [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nsc-and-regional-policy.md)

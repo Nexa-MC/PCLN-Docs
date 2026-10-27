@@ -34,10 +34,10 @@ Both use real `ThemePackageService` admission and the NSS compiler. Native image
 
 ## Compatibility
 
-This guide targets A12 style API 1. Theme versions are independent of `2.0.0.alpha.12`. Capability names are more stable than individual Host keys, but selectors still need validation against the target launcher. Missing required capabilities reject activation; optional capabilities require fallback.
+This guide targets A14 style API 1. Theme versions are independent of `2.0.0.alpha.14`. Capability names are more stable than individual Host keys, but selectors still need validation against the target launcher. Missing required capabilities reject activation; optional capabilities require fallback.
 
 
 ## Implementation references
 
-- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/ntp-v1.md)
-- [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-package-architecture.md)
+- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
+- [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-package-architecture.md)

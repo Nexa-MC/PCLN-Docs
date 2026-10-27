@@ -1,3 +1,5 @@
+> 兼容参考：本节属于旧版独立 SDK/PXML 文档，不是 NexaCL Alpha 14 的 Sidecar 或共享 NXML API。当前开发请从[目标与 XSR](../development/)进入。
+
 # PXML
 
 这里汇总 PXML UI 的教程与官方编译器文档。

@@ -90,6 +90,6 @@ Options are keyed by source identity and schema. Another package with the same t
 
 ## Implementation references
 
-- [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Services.Themes/ThemeManifestReader.cs)
-- [Nexa.Services.Themes.Contracts/ThemeContracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Services.Themes.Contracts/ThemeContracts.cs)
-- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-live-options.md)
+- [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
+- [Nexa.Services.Themes.Contracts/ThemeContracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes.Contracts/ThemeContracts.cs)
+- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)

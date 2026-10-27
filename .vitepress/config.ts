@@ -9,6 +9,7 @@ const authorPages: Record<AuthorArea, [string, string, string][]> = {
     ['goal-first', '按目标完成一个功能', 'Develop toward an observable goal'],
     ['xsr-architecture', 'XSR 架构与作者职责', 'XSR architecture and ownership'],
     ['walkthrough', '综合案例：资源页便签', 'Worked design: resource notes'],
+    ['platform-and-runtime', '平台能力与运行数据', 'Platform capabilities and runtime data'],
   ],
   'theme-packs': [
     ['index', '主题包概览', 'Theme overview'],
@@ -28,7 +29,9 @@ const authorPages: Record<AuthorArea, [string, string, string][]> = {
     ['protocol-and-lifecycle', '协议与完整生命周期', 'Protocol and complete lifecycle'],
     ['commands-and-queries', '命令、查询与数据编码', 'Commands, queries and codecs'],
     ['state-events-streams', '状态、事件和有背压的流', 'State, events and bounded streams'],
-    ['ui-and-extensions', '有限表单与图片', 'Finite forms and images'],
+    ['nxml-pages', '共享 NXML、页面与引导', 'Shared NXML, pages and onboarding'],
+    ['automatic-functions', 'NFP3 与自动函数目录', 'NFP3 and automatic function catalogs'],
+    ['ui-and-extensions', '旧 schema 1/2 兼容', 'Legacy schema 1/2 compatibility'],
     ['signals-and-patches', '信号与有限补丁', 'Signals and finite patches'],
     ['host-api', '全部 Host API 与实例', 'Complete Host API and examples'],
     ['packaging-and-discovery', '发现、签名与监督', 'Discovery, trust and supervision'],
@@ -55,7 +58,7 @@ function authorSidebar(kind: AuthorArea, english = false) {
     link: `${english ? '/en' : ''}/${area}/${path === 'index' ? '' : path}`,
   }));
   const sections = [{ text: labels.development, collapsed: kind !== 'development', items: items('development') }];
-  if (kind !== 'development') sections.push({ text: `${labels[kind]} · Alpha 12`, collapsed: false, items: items(kind) });
+  if (kind !== 'development') sections.push({ text: `${labels[kind]} · Alpha 14`, collapsed: false, items: items(kind) });
   sections.push({ text: english ? 'Other authoring routes' : '其他开发路线', collapsed: false,
     items: (Object.keys(authorPages) as AuthorArea[]).filter(area => area !== kind && area !== 'development')
       .map(area => ({ text: labels[area], link: `${english ? '/en' : ''}/${area}/` })) });

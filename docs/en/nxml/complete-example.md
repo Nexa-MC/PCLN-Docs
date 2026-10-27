@@ -17,7 +17,7 @@ examples/authoring-lab/
     └── Workspace.nss
 ```
 
-It also shares sidecar/ContractRecipes.cs. Use A12 source:
+It also shares sidecar/ContractRecipes.cs. Use A14 source:
 
 ```sh
 dotnet run --project examples/authoring-lab/Authoring.Lab.csproj -c Release -p:NexaCLSourceRoot=/absolute/path/to/NexaCL -- /absolute/path/to/PCLN-Docs
@@ -37,7 +37,7 @@ Compiler/Runtime own markup/retention; Themes validates manifest/source; XSR Run
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
   <Target Name="RequireNexaCLSource" BeforeTargets="PrepareForBuild" Condition="'$(NexaCLSourceRoot)' == ''">
-    <Error Text="Pass -p:NexaCLSourceRoot=/absolute/path/to/NexaCL (Alpha 12 source)." />
+    <Error Text="Pass -p:NexaCLSourceRoot=/absolute/path/to/NexaCL (Alpha 14 source)." />
   </Target>
   <ItemGroup>
     <ProjectReference Include="$(NexaCLSourceRoot)/Nexa.Xsr.Renderer.Nxml.Compiler/Nexa.Xsr.Renderer.Nxml.Compiler.csproj" />
@@ -243,5 +243,5 @@ Change the goal and owned state/command first, then one template/action. Keep lo
 
 ## Implementation references
 
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
-- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)

@@ -92,6 +92,6 @@ Renderer advances clocks without reparsing each frame. Unchanged declarations re
 
 ## Implementation references
 
-- [docs/xsr/nss-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nss-v1.md)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeProgram.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeProgram.cs)
-- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/ntp-v1.md)
+- [docs/xsr/nss-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nss-v1.md)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeProgram.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeProgram.cs)
+- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)

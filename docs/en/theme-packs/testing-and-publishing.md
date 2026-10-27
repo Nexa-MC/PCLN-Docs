@@ -65,6 +65,6 @@ Restore the previous theme or independent Host recovery entry. Safe mode bypasse
 
 ## Implementation references
 
-- [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/eng/themes/pack.py)
-- [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-package-architecture.md)
-- [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-resource-security.md)
+- [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/eng/themes/pack.py)
+- [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-package-architecture.md)
+- [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-resource-security.md)

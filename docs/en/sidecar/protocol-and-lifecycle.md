@@ -26,6 +26,9 @@ Host publishes no partial mirror before all declarations, hashes, references, ta
 | Streams | 2 | Stream registration/messages |
 | Health | 4 | Ping/Pong |
 | Unregistration | 8 | Explicit unregister exchange |
+| Nxml | 16 | Shared NXML schema 3 |
+| AutomaticFunctions | 32 | Build catalog and NFP3 |
+| Pages | 64 | Standalone/onboarding pages; also requires Nxml |
 
 WELCOME confirms the intersection; missing fields mean None. Bits are independent: Streams do not additionally require BinaryPayloads; typed State also works independently. Toggle needs BinaryPayloads for its Boolean Command.
 
@@ -115,7 +118,14 @@ Cancellation before IO admission preserves an unused connection. Interrupted fra
 
 ## Implementation references
 
-- [Nexa.Sidecar.Protocol/SidecarProtocol.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarProtocol.cs)
-- [Nexa.Sidecar.Protocol/SidecarFrameCodec.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarFrameCodec.cs)
-- [Nexa.Sidecar.Protocol/SidecarRegistration.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarRegistration.cs)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
+- [Nexa.Sidecar.Protocol/SidecarProtocol.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarProtocol.cs)
+- [Nexa.Sidecar.Protocol/SidecarFrameCodec.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarFrameCodec.cs)
+- [Nexa.Sidecar.Protocol/SidecarRegistration.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarRegistration.cs)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+
+## Current registration chunking and pressure deactivation
+
+The registration codec splits large module payloads into 60 KiB chunks: field 5 first, then consecutive IDs starting at 1024. The per-TLV 65535-byte bound remains; it is not the entire NXML bundle limit. Hash the fully reassembled payload.
+
+Critical memory pressure may cooperatively DEACTIVATE a session, retiring activation leases, UI and exchanges while preserving registration. Recovery uses ACTIVATE in the same session; retain its numeric mapping. Manually stopped packages are not restarted. See [NXML pages](nxml-pages) and [NFP3](automatic-functions).

@@ -8,7 +8,7 @@
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
   <Target Name="RequireNexaCLSource" BeforeTargets="PrepareForBuild" Condition="'$(NexaCLSourceRoot)' == ''">
-    <Error Text="Pass -p:NexaCLSourceRoot=/absolute/path/to/NexaCL (Alpha 12 source)." />
+    <Error Text="Pass -p:NexaCLSourceRoot=/absolute/path/to/NexaCL (Alpha 14 source)." />
   </Target>
   <ItemGroup>
     <ProjectReference Include="$(NexaCLSourceRoot)/Nexa.Xsr.Renderer.Nxml.Compiler/Nexa.Xsr.Renderer.Nxml.Compiler.csproj" />

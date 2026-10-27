@@ -17,7 +17,7 @@ examples/authoring-lab/
     └── Workspace.nss
 ```
 
-另外共享 examples/sidecar/ContractRecipes.cs。源码基线为 A12，文档目录可以位于其他路径。
+另外共享 examples/sidecar/ContractRecipes.cs。源码基线为 A14，文档目录可以位于其他路径。
 
 ```sh
 dotnet run --project examples/authoring-lab/Authoring.Lab.csproj -c Release -p:NexaCLSourceRoot=/absolute/path/to/NexaCL -- /absolute/path/to/PCLN-Docs
@@ -37,7 +37,7 @@ Compiler/Runtime 提供标记和保留加载，Themes 服务仅验证主题来�
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
   <Target Name="RequireNexaCLSource" BeforeTargets="PrepareForBuild" Condition="'$(NexaCLSourceRoot)' == ''">
-    <Error Text="Pass -p:NexaCLSourceRoot=/absolute/path/to/NexaCL (Alpha 12 source)." />
+    <Error Text="Pass -p:NexaCLSourceRoot=/absolute/path/to/NexaCL (Alpha 14 source)." />
   </Target>
   <ItemGroup>
     <ProjectReference Include="$(NexaCLSourceRoot)/Nexa.Xsr.Renderer.Nxml.Compiler/Nexa.Xsr.Renderer.Nxml.Compiler.csproj" />
@@ -243,5 +243,5 @@ out/lab/Authoring.Lab /absolute/path/to/PCLN-Docs
 
 ## 实现依据
 
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
-- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)

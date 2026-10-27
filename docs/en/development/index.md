@@ -1,6 +1,6 @@
 # Third-party development guide
 
-Use this guide to add appearance, interaction, or independently owned behavior to NexaCL. The implementation baseline is **Firefly Alpha 12, `v2.0.0.alpha.12`**. Examples refer to that tag; architectural roadmap items are not presented as available APIs.
+Use this guide to add appearance, interaction, or independently owned behavior to NexaCL. The implementation baseline is **Firefly Alpha 14, `v2.0.0.alpha.14`**. Examples refer to that tag; architectural roadmap items are not presented as available APIs.
 
 You should be able to read C#, JSON, XML, and shell commands. We skip general variables, loops, classes, and JSON syntax. **NTP, NSS, NXML, and Sidecar-specific syntax and semantics are taught explicitly.** Each route includes complete files, steps, expected outcomes, failure handling, and verification.
 
@@ -10,7 +10,7 @@ You should be able to read C#, JSON, XML, and shell commands. We skip general va
 | --- | --- | --- | --- |
 | Change colors, spacing, fonts, runtime icons, or motion | NTP/1 theme | NSS, generated option controls, packaged resources, authorized media | No commands, NXML replacement, or executable code |
 | Own new behavior/state and expose a finite resource-page form | Sidecar | Commands, queries, state, events, streams, admitted UI modules | Separate process, publisher trust, and explicit Host grants |
-| Learn or contribute Host pages, layout, bindings, or dynamic lists | NXML | Host components, owned fragments, state projection, input semantics | Host authoring language, not arbitrary theme/Sidecar injection |
+| Learn or contribute Host pages, layout, bindings, or dynamic lists | NXML | Host components, owned fragments, state projection, input semantics | Shared by Host and negotiated schema-3 Sidecars; not theme page injection |
 | Change an admitted caption or observe exposed search signals | Sidecar extensions | Caption patch, Event/Intent bindings, finite Function Patch | Exact Host targets and ABIs, not arbitrary method interception |
 | Develop a legacy `.pnp` plugin | Legacy SDK documentation | The corresponding legacy product contracts | Separate from `.nsc`, NXML, and NTP/1 |
 
@@ -41,6 +41,6 @@ A successful test, production installation, and authorization for an extension t
 
 ## Implementation references
 
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
-- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/ntp-v1.md)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)

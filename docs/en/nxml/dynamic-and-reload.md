@@ -75,6 +75,6 @@ The lab edits/selects a draft, reloads title/placeholder, checks reference/value
 
 ## Implementation references
 
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs)
-- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
-- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs)
+- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
+- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs)

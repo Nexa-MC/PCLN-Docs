@@ -1,6 +1,6 @@
 # NXML 宿主界面开发教程
 
-本路线详细讲 NexaCL 的专用标记语言，不要求你先了解它。适用于学习 XSR 呈现模型、参与 Host 页面开发或编写受控组合测试的作者。**NTP 不能携带替换页面，Sidecar 当前 UI 使用独立 schema 1/2；学习 NXML 不会自动获得注入 Host 的权限。**
+本路线详细讲 NexaCL 的专用标记语言，不要求你先了解它。适用于学习 XSR 呈现模型、参与 Host 页面开发或编写受控组合测试的作者。**NTP 不能携带替换页面；Sidecar 协商 Nxml/Pages 后可使用共享 NXML schema 3 挂载界面、独立页面和引导页。见[Sidecar NXML 实战](../sidecar/nxml-pages)。**
 
 ## 目标与运行模型
 
@@ -39,6 +39,6 @@ dotnet run --project examples/authoring-lab/Authoring.Lab.csproj -c Release -p:N
 
 ## 实现依据
 
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
-- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
+- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs)

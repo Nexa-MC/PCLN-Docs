@@ -6,7 +6,7 @@ The goal is to submit a note on the resource page, show the last valid value, in
 
 ```text
 Given an active session whose note is “Ready to test”
-When the user submits “Alpha 12 tested”
+When the user submits “Alpha 14 tested”
 Then the command succeeds, current-note state changes, and the card shows it
 
 Given navigation away or a replaced module exposure
@@ -91,6 +91,6 @@ The same design scales to a task panel: Command starts work, State owns progress
 
 ## Implementation references
 
-- [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-ui-modules.md)
-- [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
+- [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-modules.md)
+- [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)

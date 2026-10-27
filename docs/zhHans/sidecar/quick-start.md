@@ -4,10 +4,10 @@
 
 ## 1. 获取明确的版本
 
-安装 .NET 10 SDK；NativeAOT 另外需要当前平台的原生工具链。源码使用 A12 标签，文档仓库使用当前 main：
+安装 .NET 10 SDK；NativeAOT 另外需要当前平台的原生工具链。源码使用 A14 标签，文档仓库使用当前 main：
 
 ```sh
-git clone --branch v2.0.0.alpha.12 --depth 1 https://github.com/Nexa-MC/NexaCL.git
+git clone --branch v2.0.0.alpha.14 --depth 1 https://github.com/Nexa-MC/NexaCL.git
 git clone https://github.com/Nexa-MC/PCLN-Docs.git
 ```
 
@@ -84,6 +84,6 @@ out/sidecar/Example.Sidecar --recipes
 
 ## 实现依据
 
-- [Nexa.Sidecar.Transport/SidecarBootstrap.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Transport/SidecarBootstrap.cs)
-- [Nexa.Sidecar.Protocol/SidecarHandshake.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarHandshake.cs)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
+- [Nexa.Sidecar.Transport/SidecarBootstrap.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Transport/SidecarBootstrap.cs)
+- [Nexa.Sidecar.Protocol/SidecarHandshake.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarHandshake.cs)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)

@@ -83,6 +83,6 @@ Authoring Lab 写入未提交草稿并选中一段文本，更新同一行的 ti
 
 ## 实现依据
 
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs)
-- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
-- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs)
+- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
+- [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs)

@@ -74,7 +74,12 @@ Next, apply the rules to a [resource-page note extension](./walkthrough).
 
 ## Implementation references
 
-- [docs/xsr/architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/architecture.md)
-- [docs/xsr/service-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/service-model.md)
-- [docs/xsr/state-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/state-model.md)
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
+- [docs/xsr/architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/architecture.md)
+- [docs/xsr/service-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/service-model.md)
+- [docs/xsr/state-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/state-model.md)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+
+
+## Alpha 14: shared NXML and new capabilities
+
+Sidecar NXML schema 3 shares product compilation, components, styles and intent routing; schemas 1/2 are compatibility paths. Negotiate Nxml=16, AutomaticFunctions=32 and Pages=64 separately. Composition compiles source; rendering performs neither source parsing nor IPC. See [NXML pages](../sidecar/nxml-pages), [automatic functions](../sidecar/automatic-functions) and [platform/runtime](platform-and-runtime).

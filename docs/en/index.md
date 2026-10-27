@@ -3,7 +3,7 @@ layout: home
 hero:
   name: "NexaCL Docs"
   text: "Build toward a goal, with XSR"
-  tagline: "Detailed theme, Sidecar and NXML tutorials, references and executable examples for Alpha 12."
+  tagline: "Detailed theme, Sidecar and NXML tutorials, references and executable examples for Alpha 14."
   actions:
     - theme: brand
       text: "Start with your goal"

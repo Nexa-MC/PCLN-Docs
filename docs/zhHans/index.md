@@ -3,7 +3,7 @@ layout: home
 hero:
   name: "NexaCL Docs"
   text: "从目标出发，按 XSR 架构开发"
-  tagline: "Alpha 12 开发教程、完整参考与可运行实例；详解主题、Sidecar 和 NXML。"
+  tagline: "Alpha 14 开发教程、完整参考与可运行实例；详解主题、Sidecar 和 NXML。"
   actions:
     - theme: brand
       text: "从目标开始"

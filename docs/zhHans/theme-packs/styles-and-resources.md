@@ -77,6 +77,6 @@ Audio/Video 使用稳定、Host 所有的资源 lease，经已有媒体消费者
 
 ## 实现依据
 
-- [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-resource-security.md)
-- [Nexa.Services.Themes/ThemePackageService.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Services.Themes/ThemePackageService.Resources.cs)
-- [Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs)
+- [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-resource-security.md)
+- [Nexa.Services.Themes/ThemePackageService.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemePackageService.Resources.cs)
+- [Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs)

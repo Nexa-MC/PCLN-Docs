@@ -90,6 +90,6 @@ Range/数值 Slider 要求 `min < max`、正 step、step 不大于跨度、边�
 
 ## 实现依据
 
-- [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Services.Themes/ThemeManifestReader.cs)
-- [Nexa.Services.Themes.Contracts/ThemeContracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Services.Themes.Contracts/ThemeContracts.cs)
-- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-live-options.md)
+- [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
+- [Nexa.Services.Themes.Contracts/ThemeContracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes.Contracts/ThemeContracts.cs)
+- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)

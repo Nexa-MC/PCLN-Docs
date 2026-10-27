@@ -1,6 +1,6 @@
 # 第三方开发指南
 
-这套指南面向希望为 NexaCL 增加外观、交互或独立功能的作者。基线是 **Firefly Alpha 12，`v2.0.0.alpha.12`**；例子引用该标签的真实实现，不把架构路线图当成现成 API。
+这套指南面向希望为 NexaCL 增加外观、交互或独立功能的作者。基线是 **Firefly Alpha 14，`v2.0.0.alpha.14`**；例子引用该标签的真实实现，不把架构路线图当成现成 API。
 
 默认你能阅读 C#、JSON、XML 和命令行。本指南不讲变量、循环、类或 JSON 的通用语法；**NTP、NSS、NXML、Sidecar 的专用语法与行为从头解释**。每条路线都包含完整文件、操作步骤、预期结果、失败处理和验证方法。
 
@@ -10,7 +10,7 @@
 | --- | --- | --- | --- |
 | 调整颜色、间距、字体、窗口图标和动效 | NTP/1 主题 | NSS、参数控件、包内资源、用户授权媒体 | 不创建命令，不替换 NXML，不运行程序 |
 | 维护独立业务状态，并在资源页展示有限交互表单 | Sidecar | 注册命令/查询/状态/事件/流与获准的 UI 模块 | 代码在独立进程；先通过签名和 Host 授权 |
-| 学习或参与宿主页面、布局、绑定与动态列表的开发 | NXML | 宿主组件、局部动态片段、状态投影、交互语义 | 是宿主开发语言，不是 NTP 或 Sidecar 可随意注入的页面 |
+| 学习或参与宿主页面、布局、绑定与动态列表的开发 | NXML | 宿主组件、局部动态片段、状态投影、交互语义 | 宿主与协商 schema 3 的 Sidecar 共享；NTP 不包含页面 |
 | 给现有搜索提示改标题或观察已开放的资源搜索信号 | Sidecar 的有限扩展 | 标题补丁、Event/Intent、获准 Function Patch | 目标名与 ABI 由 Host 决定，不能任意选择宿主方法 |
 | 开发旧 `.pnp` 插件 | 旧 SDK 文档 | 对应旧产品线的契约 | 不与 `.nsc`、NXML 或 NTP/1 混用 |
 
@@ -41,6 +41,6 @@
 
 ## 实现依据
 
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
-- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/ntp-v1.md)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)

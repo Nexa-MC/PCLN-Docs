@@ -34,10 +34,10 @@
 
 ## 兼容性约定
 
-本文对应 A12 的 style API 1。主题版本是自己的版本，与 `2.0.0.alpha.12` 无关。公开能力名称比某个具体宿主 Key 更稳定，但选择器仍需针对目标启动器版本验证。未支持的必需能力阻止激活，可选能力必须声明 fallback。
+本文对应 A14 的 style API 1。主题版本是自己的版本，与 `2.0.0.alpha.14` 无关。公开能力名称比某个具体宿主 Key 更稳定，但选择器仍需针对目标启动器版本验证。未支持的必需能力阻止激活，可选能力必须声明 fallback。
 
 
 ## 实现依据
 
-- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/ntp-v1.md)
-- [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-package-architecture.md)
+- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
+- [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-package-architecture.md)

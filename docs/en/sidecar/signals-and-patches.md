@@ -101,7 +101,10 @@ Retirement/cancellation is checked between instructions and before commit. It pr
 
 ## Implementation references
 
-- [docs/xsr/sidecar-signals.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-signals.md)
-- [docs/xsr/sidecar-ui-patches.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-ui-patches.md)
-- [docs/xsr/function-patches.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/function-patches.md)
-- [Nexa.Desktop/DesktopSidecarSignals.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Desktop/DesktopSidecarSignals.cs)
+- [docs/xsr/sidecar-signals.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-signals.md)
+- [docs/xsr/sidecar-ui-patches.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-patches.md)
+- [docs/xsr/function-patches.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/function-patches.md)
+- [Nexa.Desktop/DesktopSidecarSignals.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Desktop/DesktopSidecarSignals.cs)
+
+
+Alpha 14 automatic targets are not limited to the two explicit sites used by these legacy recipes. See [NFP3 and compiled catalogs](automatic-functions).

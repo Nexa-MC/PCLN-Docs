@@ -1,6 +1,6 @@
-# Finite UI modules: forms, state, images, retirement
+# Legacy UI schemas 1/2: compatible forms and images
 
-Expose Sidecar-owned behavior while preserving Host navigation/search/download/trust. A12 grants `ui.resources.extension-card.v1`; modules are not NXML/PXML source, DOM, or arbitrary product trees.
+This page describes compatible schemas 1/2 and the legacy resource-card slot only. New work should use [shared NXML schema 3 and pages](nxml-pages); its compiler and targeting are not limited by this legacy control enum or slot.
 
 ## Admission flow
 
@@ -85,7 +85,7 @@ var resource = new SidecarRegistrationItem(SidecarRegistrationKind.Resource,
 // Re-encode/hash the resulting module.
 ```
 
-Ship real icon bytes. Host accepts hash-verified static PNG/WebP/JPEG, never URLs/paths. Decoder budget is 1 MiB/1024×1024, but an inline Bytes field is still ≤65535 bytes: **both limits apply**. Aggregate node pixels and distinct encoded bytes are separately ≤8 MiB. Shared references reuse the carrier; native decode stays in the backend.
+Ship real icon bytes. Host accepts hash-verified static PNG/WebP/JPEG, never URLs/paths. Decoder budget is 1 MiB/1024×1024, a single TLV field is still ≤65535 bytes, but current `SidecarRegistration` splits larger payloads into consecutive fields. Use the codec rather than an oversized single field. Aggregate node pixels and distinct encoded bytes are separately ≤8 MiB. Shared references reuse the carrier; native decode stays in the backend.
 
 ## Exposure/lifetime
 
@@ -100,6 +100,6 @@ Test drafts/IME, rejection, State changes, toggles, missing images, ancestor hid
 
 ## Implementation references
 
-- [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
-- [Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs)
-- [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-ui-modules.md)
+- [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
+- [Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs)
+- [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-modules.md)

@@ -15,7 +15,7 @@ Loopback is not OS IPC; console success is not a UI capture; one RID is not all 
 
 ## Repeatable local commands
 
-From docs root, with A12 source:
+From docs root, with A14 source:
 
 ```sh
 dotnet run --project examples/sidecar/Example.Sidecar.csproj -c Release -p:NexaCLSourceRoot=/absolute/path/to/NexaCL -- --recipes
@@ -59,7 +59,7 @@ Reduce failures to one contract/sequence. Compare a working sample's declaration
 
 ```text
 Goal: submit/read extension-owned notes
-Compatibility: A12/protocol1/required feature bits
+Compatibility: A14/protocol1/required feature bits
 Grant: ui.resources.extension-card.v1
 Data: inputs/current fact/errors/persistence
 Distribution: native RIDs/detached signatures
@@ -72,6 +72,6 @@ Claim only verified outcomes. Develop later capabilities as new bounded slices, 
 
 ## Implementation references
 
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
-- [docs/xsr/sidecar-protocol.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-protocol.md)
-- [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nsc-and-regional-policy.md)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+- [docs/xsr/sidecar-protocol.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-protocol.md)
+- [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nsc-and-regional-policy.md)

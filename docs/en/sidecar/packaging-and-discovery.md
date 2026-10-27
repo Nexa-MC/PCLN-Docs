@@ -1,6 +1,6 @@
 # Native packaging, discovery, trust, supervision
 
-Deliver a verified capability to its intended Host with explicit installation prerequisites. This describes A12 native .nsc, not the independent SDK package format.
+Deliver a verified capability to its intended Host with explicit installation prerequisites. This describes A14 native .nsc, not the independent SDK package format.
 
 ## Native .nsc
 
@@ -28,7 +28,7 @@ gpg --armor --detach-sign --local-user YOUR_AUTHORIZED_FINGERPRINT --output exam
 gpg --verify example.nsc.asc example.nsc
 ```
 
-Verification proves the key signed those bytes, not that production Host trusts it. **A12 pins its embedded release key. A self-created key does not grant installation.** Follow the maintainers' actual review/distribution process; no self-service trust onboarding is promised here.
+Verification proves the key signed those bytes, not that production Host trusts it. **A14 pins its embedded release key. A self-created key does not grant installation.** Follow the maintainers' actual review/distribution process; no self-service trust onboarding is promised here.
 
 Without production signing, use self-tests/recipes/controlled fixtures, never weaken production verification. Keep private keys out of source/arguments/logs/packages. Publisher trust does not grant every extension target.
 
@@ -55,6 +55,6 @@ For each RID provide image/signature/version/architecture/features/targets/licen
 
 ## Implementation references
 
-- [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nsc-and-regional-policy.md)
-- [Nexa.Sidecar.Transport/SidecarExecutable.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Transport/SidecarExecutable.cs)
-- [Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs)
+- [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nsc-and-regional-policy.md)
+- [Nexa.Sidecar.Transport/SidecarExecutable.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Transport/SidecarExecutable.cs)
+- [Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs)

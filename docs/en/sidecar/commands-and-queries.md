@@ -99,7 +99,7 @@ Repeated effects need operation IDs, deduplication, transactions, or explicit id
 
 ## Implementation references
 
-- [Nexa.Sidecar.Protocol/SidecarBinaryValue.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarBinaryValue.cs)
-- [Nexa.Sidecar.Protocol/SidecarDataMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarDataMessages.cs)
-- [Nexa.Sidecar.Protocol/SidecarControlMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarControlMessages.cs)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
+- [Nexa.Sidecar.Protocol/SidecarBinaryValue.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarBinaryValue.cs)
+- [Nexa.Sidecar.Protocol/SidecarDataMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarDataMessages.cs)
+- [Nexa.Sidecar.Protocol/SidecarControlMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarControlMessages.cs)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)

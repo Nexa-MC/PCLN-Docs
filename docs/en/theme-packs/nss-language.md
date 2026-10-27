@@ -97,6 +97,6 @@ Check syntax, IDs, typed bounds, resource admission, then selector identity/casc
 
 ## Implementation references
 
-- [docs/xsr/nss-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nss-v1.md)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeSelectors.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeSelectors.cs)
+- [docs/xsr/nss-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nss-v1.md)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeSelectors.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeSelectors.cs)

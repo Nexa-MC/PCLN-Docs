@@ -1,6 +1,6 @@
 # 原生文件、发现、签名与监督
 
-目标是把经过验证的独立能力交付给正确的 Host，并说明安装前提，而不是简单改一个扩展名让它“看起来像插件”。本页针对当前 A12 原生 .nsc 路线，不定义独立 Plugin SDK 的包格式。
+目标是把经过验证的独立能力交付给正确的 Host，并说明安装前提，而不是简单改一个扩展名让它“看起来像插件”。本页针对当前 A14 原生 .nsc 路线，不定义独立 Plugin SDK 的包格式。
 
 ## .nsc 到底是什么
 
@@ -61,6 +61,6 @@ Host 在启动前绑定随机当前用户 IPC；32 字节随机证明通过重�
 
 ## 实现依据
 
-- [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nsc-and-regional-policy.md)
-- [Nexa.Sidecar.Transport/SidecarExecutable.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Transport/SidecarExecutable.cs)
-- [Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs)
+- [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nsc-and-regional-policy.md)
+- [Nexa.Sidecar.Transport/SidecarExecutable.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Transport/SidecarExecutable.cs)
+- [Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs)

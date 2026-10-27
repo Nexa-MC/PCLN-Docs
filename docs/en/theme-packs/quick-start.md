@@ -4,10 +4,10 @@ Start with [goal-first development](../development/goal-first) and [XSR ownershi
 
 ## 1. Get the complete project
 
-Use Git, Python 3, and an A12 launcher. Clone the launcher for its production packager and the docs for samples; keep them as sibling directories.
+Use Git, Python 3, and an A14 launcher. Clone the launcher for its production packager and the docs for samples; keep them as sibling directories.
 
 ```sh
-git clone --branch v2.0.0.alpha.12 --depth 1 https://github.com/Nexa-MC/NexaCL.git
+git clone --branch v2.0.0.alpha.14 --depth 1 https://github.com/Nexa-MC/NexaCL.git
 git clone https://github.com/Nexa-MC/PCLN-Docs.git
 ```
 
@@ -138,6 +138,6 @@ Continue with the [manifest reference](./manifest-and-options) and [control work
 
 ## Implementation references
 
-- [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/eng/themes/pack.py)
-- [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Services.Themes/ThemeManifestReader.cs)
-- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-live-options.md)
+- [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/eng/themes/pack.py)
+- [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
+- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)

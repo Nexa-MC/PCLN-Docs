@@ -94,6 +94,6 @@ Completion 区分正常结束、远程拒绝、取消、超时和会话丢失。
 
 ## 实现依据
 
-- [Nexa.Sidecar.Protocol/SidecarDataMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarDataMessages.cs)
-- [Nexa.Sidecar.Protocol/SidecarStreamMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarStreamMessages.cs)
-- [Nexa.Xsr.Runtime/Sidecar/SidecarHostSession.Streams.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Runtime/Sidecar/SidecarHostSession.Streams.cs)
+- [Nexa.Sidecar.Protocol/SidecarDataMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarDataMessages.cs)
+- [Nexa.Sidecar.Protocol/SidecarStreamMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarStreamMessages.cs)
+- [Nexa.Xsr.Runtime/Sidecar/SidecarHostSession.Streams.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarHostSession.Streams.cs)

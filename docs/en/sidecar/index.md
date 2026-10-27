@@ -6,17 +6,19 @@ A Sidecar executes independently. Host owns trust, sessions, registries, mirrors
 
 Use [themes](../theme-packs/) for appearance. For new behavior/data, read [goal-first XSR design](../development/) and choose an exposed target. A color change does not need a process; new behavior does not authorize bypassing Host policy.
 
-| Outcome | A12 route |
+| Outcome | A14 route |
 | --- | --- |
 | Independent operation/result | Command/Query with argument/result codecs |
 | Continuously visible fact | State, complete snapshot, then deltas |
 | Occurrence/continuous output | Event or credit-based Stream |
+| Shared UI, standalone pages and onboarding | NXML schema 3 with Nxml / Pages |
+| Automatic function targets | Target-build catalog, AutomaticFunctions and NFP3 |
 | Finite resource-page form | Granted extension-card slot, schema 2 |
 | Caption/search signal/display patch | Exact finite target/ABI, not arbitrary injection |
 
 ## What this guide covers
 
-The baseline is `v2.0.0.alpha.12` Host and portable Protocol/Transport. Protocol version is 1, still evolving before the independent SDK freeze; source examples do not promise a published stable SDK package.
+The baseline is `v2.0.0.alpha.14` Host and portable Protocol/Transport. Protocol version is 1, still evolving before the independent SDK freeze; source examples do not promise a published stable SDK package.
 
 The independent executor, Plugin SDK, and package/UI-IR freeze belong to another project. We teach verified protocol integration, business ownership, and Host cooperation without inventing attributes, NuGet packages, manifest fields, or installation controls.
 
@@ -42,5 +44,8 @@ Codec success is not a target grant; local IPC is not production installation; L
 
 ## Implementation references
 
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/nxml-renderer.md)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+
+
+New: [shared NXML/pages](nxml-pages), [automatic NFP3 functions](automatic-functions), [platform/runtime](../development/platform-and-runtime).

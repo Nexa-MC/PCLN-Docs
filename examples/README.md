@@ -1,7 +1,7 @@
-# NexaCL Alpha 12 authoring examples
+# NexaCL Alpha 14 authoring examples
 
 These examples target the public source at
-[`Nexa-MC/NexaCL`, `v2.0.0.alpha.12`](https://github.com/Nexa-MC/NexaCL/tree/v2.0.0.alpha.12).
+[`Nexa-MC/NexaCL`, `v2.0.0.alpha.14`](https://github.com/Nexa-MC/NexaCL/tree/v2.0.0.alpha.14).
 They do not depend on an unpublished Plugin SDK package.
 
 ## Themes

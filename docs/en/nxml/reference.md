@@ -1,6 +1,6 @@
 # Complete NXML component/property reference
 
-This inventory follows A12 external components/compiler. Names are not CLR types. Required fields come from definitions, and property support depends on recipe.
+This inventory follows A14 external components/compiler. Names are not CLR types. Required fields come from definitions, and property support depends on recipe.
 
 ## Every built-in component
 | Component | Recipe | Role | Children | Required |
@@ -64,6 +64,8 @@ References cannot override metadata. Host IR numbers are not plugin ABI.
 | Enabled/Clickable | Bool literal/State on supported recipes |
 | Focusable | Literal Boolean |
 | Command | Semantic literal/data, no method/script |
+| Argument | Literal/data argument; mutually exclusive with ArgumentFrom |
+| ArgumentFrom | Current value at same-document Key; maximum128 references, no missing/cyclic links |
 | Selected | CommandInput literal/data |
 | Checked | CheckBox/Switch CommandInput literal/data |
 | SelectionRequired | Stack selection policy |
@@ -118,7 +120,12 @@ ParseException covers XML/namespace/DTD/text/binding grammar; CompileException c
 
 ## Implementation references
 
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlNodeSchema.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlNodeSchema.cs)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
-- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlNodeSchema.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlNodeSchema.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
+- [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs)
+
+
+## Shared Sidecar document additions
+
+`ArgumentFrom="Draft"` reads the current value from the local input keyed Draft; missing, cyclic or over-depth references reject. `{data example.state}` reads same-session scalar mirror data as literal values, distinct from Host `{state ...}` bindings. See [NXML schema 3](../sidecar/nxml-pages) for page and fragment lifetimes.

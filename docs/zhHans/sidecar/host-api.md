@@ -187,6 +187,6 @@ Connection 拥有 stream，公开 SendAsync、ReceiveAsync、Close、Dispose、S
 
 ## 实现依据
 
-- [Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.Contracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.Contracts.cs)
-- [Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.cs)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-host-api.md)
+- [Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.Contracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.Contracts.cs)
+- [Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.cs)
+- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)

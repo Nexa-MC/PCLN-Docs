@@ -1,6 +1,6 @@
-# 有限 UI 模块：表单、状态、图片与退役
+# 旧 UI schema 1/2：兼容表单与图片
 
-目标：将 Sidecar 私有能力展示为可交互表单，同时保持 Host 的导航、搜索、下载和信任决策。当前生产槽为 `ui.resources.extension-card.v1`；模块不是 NXML、PXML 字符串、浏览器 DOM 或任意宿主控件树。
+本文只描述仍兼容的 schema 1/2 和旧资源卡片槽；新开发优先阅读 [NXML schema 3 与页面](nxml-pages)。新接口共享宿主编译器，不受本页有限控件枚举和槽位约束。
 
 ## 从声明到显示的全部前提
 
@@ -89,7 +89,7 @@ var resource = new SidecarRegistrationItem(SidecarRegistrationKind.Resource,
 // module.RequiredResources 声明 "example.note.icon"，并重新计算完整模块内容/hash。
 ```
 
-此片段需要把 icon.png 作为真实构建资源分发。Host 接受有哈希的静态 PNG/WebP/JPEG，不按 URL 或路径读图片。图像准入上限为 1 MiB、1024×1024；**内联注册的单 Bytes 字段仍受 65535 字节上限，实际要同时满足较小限制**。不能从解码器上限推导出更大的线字段。
+此片段需要把 icon.png 作为真实构建资源分发。Host 接受有哈希的静态 PNG/WebP/JPEG，不按 URL 或路径读图片。图像准入上限为 1 MiB、1024×1024；单 TLV 字段仍最多 65535 字节，但当前 `SidecarRegistration` 会用连续字段分块编码大载荷；必须使用当前编码器，不能手写超长单字段。
 
 模块节点像素总预留 ≤8 MiB，独立编码图像总量 ≤8 MiB；相同引用共享准入载体。原生解码在后端，不在每一帧/每次状态更新中重新解析。
 
@@ -106,6 +106,6 @@ var resource = new SidecarRegistrationItem(SidecarRegistrationKind.Resource,
 
 ## 实现依据
 
-- [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
-- [Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs)
-- [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/sidecar-ui-modules.md)
+- [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
+- [Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs)
+- [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-modules.md)

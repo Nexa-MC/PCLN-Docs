@@ -4,10 +4,10 @@
 
 ## 1. 准备工程与完整目录
 
-准备 Git、Python 3，以及可以运行 A12 的启动器。检出源码用于使用官方打包器，检出文档仓库用于取得完整示例；两个目录不必互相嵌套。
+准备 Git、Python 3，以及可以运行 A14 的启动器。检出源码用于使用官方打包器，检出文档仓库用于取得完整示例；两个目录不必互相嵌套。
 
 ```sh
-git clone --branch v2.0.0.alpha.12 --depth 1 https://github.com/Nexa-MC/NexaCL.git
+git clone --branch v2.0.0.alpha.14 --depth 1 https://github.com/Nexa-MC/NexaCL.git
 git clone https://github.com/Nexa-MC/PCLN-Docs.git
 ```
 
@@ -143,6 +143,6 @@ dotnet run --project PCLN-Docs/examples/authoring-lab/Authoring.Lab.csproj -c Re
 
 ## 实现依据
 
-- [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/eng/themes/pack.py)
-- [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/Nexa.Services.Themes/ThemeManifestReader.cs)
-- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.12/docs/xsr/theme-live-options.md)
+- [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/eng/themes/pack.py)
+- [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
+- [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
