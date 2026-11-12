@@ -1,8 +1,9 @@
 # Host implementation snapshot
 
 Use this page to distinguish a declared SDK operation from an implemented launcher
-route. The recorded development Host maps **297/346** ABI 100 operations.
-Source revision: `195083d163f6569e8e6e9d4389a285e5e7749921`.
+route. The recorded development Host maps **308/346** ABI 100 operations.
+**38 operations remain unmapped.**
+Source revision: `c1a285287462eb8e0d9ab6c411bf042e61214edc`.
 
 NexaCL development main integration; no new launcher Alpha is implied.
 
@@ -25,6 +26,28 @@ Make a nonessential feature optional and explain why its UI is unavailable. Do n
 replace a failed operation with a successful empty result or a private implementation
 that bypasses Host ownership. Source mappings are recorded in
 `contracts/host-support.json`; update them only from implementation evidence.
+The ABI catalog contains no per-Host status. The retained C/C# descriptor field
+`HostBinding` has the neutral value `HostDefined` for compatibility; it is not
+a runtime support flag.
+
+## Gaps by capability group
+
+| Group | Mapped | Missing | Unmapped operations |
+| --- | --- | --- | --- |
+| Minecraft.Instances | 14 | 4 | `PrepareClone`, `CommitClone`, `PrepareDelete`, `CommitDelete` |
+| Minecraft.Install | 10 | 5 | `ListRecoveries`, `ResumeRecovery`, `DiscardRecovery`, `RegisterTemplate`, `RegisterLoaderProvider` |
+| Minecraft.Java | 11 | 3 | `ListDistributions`, `PrepareInstall`, `RegisterDistributionProvider` |
+| Minecraft.Launch | 11 | 3 | `RegisterContribution`, `RegisterPreflight`, `ExplainContribution` |
+| Minecraft.Content | 19 | 2 | `ClearTrash`, `RegisterFormatProvider` |
+| Minecraft.Worlds | 10 | 3 | `PlanDelete`, `PreviewRestore`, `Restore` |
+| Catalog | 15 | 2 | `RegisterCollection`, `RegisterTranslationProvider` |
+| Accounts | 15 | 2 | `SignOut`, `RegisterProvider` |
+| Settings | 11 | 3 | `RegisterSchema`, `RegisterPage`, `Migrate` |
+| Themes | 11 | 4 | `MigrateOptions`, `ListResources`, `ReadResource`, `ReleaseResource` |
+| Backups | 11 | 3 | `PreviewRestore`, `Restore`, `Import` |
+| Downloads | 8 | 2 | `RegisterSourceResolver`, `RegisterTransferProvider` |
+| Tasks | 9 | 1 | `Retry` |
+| Minecraft.Diagnostics | 3 | 1 | `RegisterRuleProvider` |
 
 ## Unmapped operations
 
@@ -59,20 +82,9 @@ that bypasses Host ownership. Source mappings are recorded in
 - `Themes.ListResources`
 - `Themes.ReadResource`
 - `Themes.ReleaseResource`
-- `Backups.List`
-- `Backups.Read`
-- `Backups.Statistics`
-- `Backups.PrepareCapture`
-- `Backups.Capture`
 - `Backups.PreviewRestore`
 - `Backups.Restore`
-- `Backups.VerifyOffline`
-- `Backups.Export`
 - `Backups.Import`
-- `Backups.PreviewPrune`
-- `Backups.Prune`
-- `Backups.ReadRetention`
-- `Backups.SetRetention`
 - `Downloads.RegisterSourceResolver`
 - `Downloads.RegisterTransferProvider`
 - `Tasks.Retry`
@@ -82,4 +94,4 @@ that bypasses Host ownership. Source mappings are recorded in
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/host-support.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/host-support.md) · Apache-2.0.

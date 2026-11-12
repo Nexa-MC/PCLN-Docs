@@ -147,7 +147,7 @@ NX_EXPORT("nexa_resume") nx_u64 nexa_resume(nx_u32 address, nx_u32 size)
                 options.idempotency_key = "initialize-message";
                 step = 4;
                 nx_Storage_CompareExchange(&reply, write, &options);
-            } else { step = 0; nx_handler_error(&reply, nx_reply_error(message)); }
+            } else { step = 0; nx_complete_error(&reply, nx_reply_error(message)); }
         } else if (step == 1) {
             nx_StorageNamespace value;
             nx_require(nx_Storage_OpenNamespace_result(message, &value));
@@ -198,4 +198,4 @@ NX_EXPORT("nexa_resume") nx_u64 nexa_resume(nx_u32 address, nx_u32 size)
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/tutorials/state-and-storage.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/tutorials/state-and-storage.md) · Apache-2.0.

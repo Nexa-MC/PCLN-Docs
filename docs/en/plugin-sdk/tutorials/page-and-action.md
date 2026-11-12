@@ -87,7 +87,7 @@ NX_EXPORT("nexa_resume") nx_u64 nexa_resume(nx_u32 address,nx_u32 size) {
  nx_require(address==(nx_u32)(__UINTPTR_TYPE__)input && size<=sizeof input);
  nx_value message=nx_decode(input,size); nx_writer reply={output,0,sizeof output},args={arguments,0,sizeof arguments}; nx_call_options options={0};
  if(nx_is_string(nx_field(message,"kind"),"reply")) {
-  if(!nx_reply_success(message)) {step=0;nx_handler_error(&reply,nx_reply_error(message));}
+  if(!nx_reply_success(message)) {step=0;nx_complete_error(&reply,nx_reply_error(message));}
   else if(step==1) {
    nx_FileRef file;nx_require(nx_Files_OpenPackageFile_result(message,&file));
    nx_UIPage page=nx_UIPage_write(&args,nx_literal("example.desktop:home"),file,nx_schema_Empty(&args),nx_QualifiedIdArray_write(&args,0,0));
@@ -110,4 +110,4 @@ NX_EXPORT("nexa_resume") nx_u64 nexa_resume(nx_u32 address,nx_u32 size) {
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/tutorials/page-and-action.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/tutorials/page-and-action.md) · Apache-2.0.

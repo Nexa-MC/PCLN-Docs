@@ -240,6 +240,10 @@ Fields follow the retained facade contract. A raw integer handle remains owner-s
 Fields follow the retained facade contract. A raw integer handle remains owner-scoped; a string schema ID must match its digest. Do not substitute a current DTO merely because it contains similar fields.
 
 
+## Reserved versus occupied IDs
+
+Resources/1 is the retained cleanup operation listed above. Events/3 is reserved and excluded from the 22 callable legacy operations. A gap is not authority to assign a new operation: published IDs must retain their meaning.
+
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/api/legacy.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/legacy.md) · Apache-2.0.

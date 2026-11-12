@@ -3,7 +3,7 @@
 从一个可以安装、打开页面并响应按钮的插件开始，再逐步加入数据、后台任务和业务能力。
 插件运行在 PluginSidecar 中，通过明确的宿主契约访问 NexaCL；账户、实例、文件授权和界面确认由宿主管理。
 
-本版文档对应 **SDK 0.2.0-alpha.10、Bootstrap V1、ABI 100**。三个版本号分别表示分发包、加载接口和协商后的 ABI，不能互相替换。SDK 声明了 346 个操作，记录的宿主源码快照接入了 297 个；具体 Alpha 是否支持某项能力，应以实际协商结果为准。
+本版文档对应 **SDK 0.2.0-alpha.12、Bootstrap V1、ABI 100**。三个版本号分别表示分发包、加载接口和协商后的 ABI，不能互相替换。SDK 声明了 346 个操作，记录的宿主源码快照接入了 308 个；具体 Alpha 是否支持某项能力，应以实际协商结果为准。
 
 ## 跟着教程完成一个插件
 
@@ -32,4 +32,4 @@
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/zh-CN/index.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/index.md) · Apache-2.0.

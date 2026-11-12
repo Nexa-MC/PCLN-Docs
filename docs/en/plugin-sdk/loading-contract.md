@@ -12,7 +12,7 @@ use the generated API and Host support pages for current operation availability.
 
 In managed Bootstrap, `GetABIContext(100, options)` returns a draft. Build required
 and optional capability requests, then call Make through the negotiator. Only the
-Host-confirmed final context is used for loading callbacks. `GetExpermentABI`
+Host-confirmed final context is used for loading callbacks. `GetExperimentABI`
 retains its historical spelling. ABI requests must be positive multiples of 100;
 an unsupported version does not silently fall back.
 
@@ -119,6 +119,13 @@ public sealed class Plugin : IPluginBootstrapV1
 ```
 <!-- /example -->
 
+
+The Bootstrap V1 interface retains the historical `GetExpermentABI` slot for
+binary compatibility. It is marked `[Obsolete]` with a warning, not an error.
+New C# callers should use `GetExperimentABI` from `Nexa.Plugin.Bootstrap.V1`;
+the extension forwards the same experiment ID and invocation options to that
+slot. Existing Host implementations do not need an additional interface method.
+
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/loading-contract.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/loading-contract.md) · Apache-2.0.

@@ -176,6 +176,10 @@ The next resume receives the reply. Check `nx_reply_success` before
 and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
 
 
+## Why numbering starts at 2
+
+Slot 1 is occupied by the retained Bootstrap-era `RegisterCleanup` in `contracts/abi100-legacy.json`. It is included in the 22 legacy operations, not a twenty-third burned slot. The current typed cleanup operation has ID 2 and must not be renumbered. The additional reserved slot is Events/3; it remains unavailable.
+
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/api/resources.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/resources.md) · Apache-2.0.

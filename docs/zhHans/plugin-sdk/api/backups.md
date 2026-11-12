@@ -2,19 +2,19 @@
 
 # Backups
 
-The catalog reserves explicit backup capture, verification, restoration and retention contracts. The recorded Desktop Host does not map this group yet.
+Inspect and maintain the selected instance’s durable backup history. The recorded Host maps 11 of 14 operations through the Setup owner, using a separate content-addressed store for each instance. Global backup history is not exposed.
 
 Contract: `nexa.backups/100`. [API index](index.md).
 
 ## Typical sequence
 
-Treat this capability as unavailable in that Host. Do not offer controls that imply a successful backup or silently return empty backup history from a failed call.
+Obtain an instance ID from Minecraft.Instances.List, then call Backups.List. Keep the returned page revision for prune and retention updates. Capture and prune require a single-use plan and Host confirmation. Observe the returned operation through Tasks until it reaches a terminal state, then refresh the history.
 
 ## Behavior and limits
 
-Implementations must define target scope, plan confirmation, integrity and retention semantics before enabling these operations. Existing world backup features do not establish support for this separate API group.
+Capture currently accepts only a null Target and empty Include/Exclude arrays. Retention supports 1–1,024 copies and 1–3,650 days, with MaximumBytes=0; it governs explicit prune previews, not automatic scheduling. Export writes a thin JSON manifest without file contents. PreviewRestore, Restore and Import remain unavailable: their original request models do not express the required new-directory or instance target safely.
 
-The recorded Host maps 0 of 14 operations in this group.
+The recorded Host maps 11 of 14 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
@@ -34,9 +34,9 @@ the actual installed Host.
 | Permission | `nexa.backups.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Id is an admitted instance ID. The page contains that instance’s complete bounded history (at most 1,024 snapshots), no continuation cursor, and a scope revision covering manifests and retention. Use this page revision for BackupPrune.ExpectedRevision and BackupRetention.ExpectedRevision. Backup IDs belong to this plugin load; refresh them after reload.
 
 **Request fields**
 
@@ -73,9 +73,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Id is a backup ID returned by List, not an instance ID. A pruned backup returns NOT_FOUND; a fabricated or foreign-load ID returns HANDLE_INVALID. Size is the logical sum of referenced file sizes, not physical CAS storage.
 
 **Request fields**
 
@@ -112,9 +112,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Id is an instance ID. Count is its snapshot count; Bytes sums logical sizes across snapshots and therefore counts shared content more than once. This does not report the launcher-wide store or reclaimed disk space.
 
 **Request fields**
 
@@ -151,9 +151,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Instance must be current. Set Target=null and Include/Exclude to empty arrays; other valid selections return CAPABILITY_UNAVAILABLE. The plan binds the instance and library revision, expires after ten minutes and requires Host confirmation. Only the instance directory is captured; shared assets, shared libraries, Java and account data are outside this snapshot. Capture bounds are 8,192 files, 512 MiB per file and 8 GiB in total; sources overlapping the backup store or containing unsupported links are rejected by the owner.
 
 **Request fields**
 
@@ -193,9 +193,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Consume the plan from PrepareCapture once, with its exact revision. Host confirmation and instance revision are checked before execution. The owner rejects non-idle capture and changing source files. A completed task has result schema Empty; refresh List to obtain backup IDs. An OperationRef only acknowledges admission, not successful capture.
 
 **Request fields**
 
@@ -235,6 +235,8 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
 | Host status | **Not mapped in recorded snapshot** |
+
+Unmapped in this Host. BackupRestore.Destination identifies an existing instance, while the storage owner requires a new destination directory. The adapter does not reinterpret that ID as a filesystem path or silently replace an instance. A compatible explicit-target extension is still needed.
 
 The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
 
@@ -277,6 +279,8 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Idempotency | RequiredKey |
 | Host status | **Not mapped in recorded snapshot** |
 
+Unmapped in this Host; no restore plan is currently issued. Passing a capture or prune plan does not authorize a restore.
+
 The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
 
 **Request fields**
@@ -316,9 +320,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Id is a listed backup ID. The owner verifies the referenced immutable objects and their hashes. Valid=false means missing or corrupt bytes; Issues lists up to 256 affected relative paths. A thin manifest alone can be listed but is not evidence of offline readiness. This checks snapshot bytes, not whether the game can launch offline with its Java, shared assets and libraries.
 
 **Request fields**
 
@@ -355,9 +359,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Backup must be a listed backup ID and File a load-owned writable file grant. The Host confirms the destination, writes a staged thin JSON manifest and commits without overwriting an existing file. The completed task returns FileRef. No file contents are embedded: label this as a thin manifest, not a portable full backup, and explain that another store still needs every referenced object.
 
 **Request fields**
 
@@ -397,6 +401,8 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Idempotency | RequiredKey |
 | Host status | **Not mapped in recorded snapshot** |
 
+Unmapped in this Host. BackupTransfer has no destination instance for importing a new snapshot. The adapter does not guess the active instance or import into global storage. A compatible scoped-import request is still needed.
+
 The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
 
 **Request fields**
@@ -435,9 +441,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Use the scope revision from List. Retention.MaximumBytes must be zero; unsupported byte limits return CAPABILITY_UNAVAILABLE. The plan summarizes the number of manifests to remove and bytes to reclaim. The newest snapshot is always retained. Changing the history after preview invalidates the plan.
 
 **Request fields**
 
@@ -476,9 +482,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Consume the plan from PreviewPrune once. Confirmation, scope revision, idle state and the owner’s fresh prune revision must all still pass. Deletion affects only this instance’s store. The completed task returns Empty; refresh List and Statistics. A rejected or stale plan never authorizes deletion of a different scope.
 
 **Request fields**
 
@@ -517,9 +523,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Id is an instance ID. Returns the stored count/day policy with MaximumBytes=0. Defaults are 32 copies and 90 days. Read List as well to obtain the revision required by SetRetention. Reading this policy does not indicate that automatic scoped cleanup is enabled.
 
 **Request fields**
 
@@ -556,9 +562,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Use the exact revision returned by List, not a BackupSummary revision. The Host confirms the change and the owner compares the scope revision while holding its storage lease. Concurrent policy or history changes fail with CONFLICT rather than overwriting another update. Returns the committed policy; query List again before the next change.
 
 **Request fields**
 
@@ -589,4 +595,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/zh-CN/api/backups.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/backups.md) · Apache-2.0.

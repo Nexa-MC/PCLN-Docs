@@ -171,10 +171,38 @@ from the current SDK source checkout; this tutorial example was added after the
 original alpha.10 bundle and is not present in that immutable older archive.
 
 The current C source examples preserve a failed Host reply in the callback failure envelope
-using `nx_handler_error`. Despite the helper name, this success/error envelope is
+using `nx_complete_error`. This is a source-compatible alias of `nx_handler_error`; the success/error envelope is
 also accepted for lifecycle completion. The Host retains authoritative identity and
 correlation; plugin-supplied fields do not override them.
 
+
+## Canonical maps and optional fields
+
+`nx_decode` validates map keys in strictly increasing **UTF-16 ordinal** order,
+matching the Host encoder. Duplicate or out-of-order keys are malformed. C writers
+must emit keys in that order; `nx_map` and `nx_key` do not sort them. The decoder
+visits each value once and charges nested values to the same 16,384-node budget.
+Its key-validation cost is linear in the encoded key bytes. `nx_field` remains a
+linear lookup; cache fields if you repeatedly inspect a large map.
+
+A missing field and an explicit ABI null are different values:
+
+```c
+nx_value value = nx_field(reply, "optionalField");
+if (nx_is_missing(value)) {
+    /* No such field: enforce the model's required/optional-field rule. */
+} else if (nx_is_null(value)) {
+    /* The field exists and contains an encoded null. */
+} else {
+    /* Decode the expected type. */
+}
+```
+
+Missing is the sentinel `{0, 0}` and cannot be encoded with `nx_raw`. Null has a
+one-byte payload with tag zero. Neither should be dereferenced before checking
+presence. Use the generated model reader when a schema is available; it rejects
+missing required fields instead of silently treating them as null.
+
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/wasm-sdk.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/wasm-sdk.md) · Apache-2.0.

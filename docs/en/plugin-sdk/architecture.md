@@ -33,7 +33,7 @@ per-call permission, phase, ownership and revision checks.
 
 ## Separate the version axes
 
-`0.2.0-alpha.10` is the authoring package version, `1` is Bootstrap V1, and `100` is
+`0.2.0-alpha.12` is the authoring package version, `1` is Bootstrap V1, and `100` is
 the stable ABI selected for this SDK. Capability minimum versions in the manifest
 are another contract field; do not replace every `1` with `100`.
 
@@ -63,6 +63,21 @@ published SDK does not itself prove every consumer has migrated.
 Start with [loading](loading-contract.md), then use the [support snapshot](host-support.md)
 to choose the application capabilities your plugin can actually depend on.
 
+## Canonical guest maps and support metadata
+
+Host binary maps are encoded in .NET ordinal (UTF-16 code-unit) order. The guest
+validates strictly increasing adjacent keys in one scan, rejecting duplicates and
+out-of-order maps without rescanning earlier values. Supplementary Unicode scalar
+ordering must match UTF-16, not UTF-8 byte order. Raw guest map writers must emit
+this canonical order too. Missing fields remain distinct from encoded Null.
+
+The ABI catalog defines contracts independently of a particular Host. Its legacy
+HostBinding metadata member remains for source/binary compatibility but carries
+HostDefined; per-Host implementation status belongs only to host-support.json.
+Resources slot 1 is the retained legacy cleanup call; Events slot 3 is reserved.
+Correctly spelled negotiation is an extension over the retained historical method,
+so existing Bootstrap implementations do not gain a new required interface member.
+
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/architecture.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/architecture.md) · Apache-2.0.

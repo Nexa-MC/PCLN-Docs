@@ -44,7 +44,7 @@ paths. See [models](models.md), [errors](../errors.md), and [Host support](../ho
 | [Accounts](accounts.md) | `nexa.accounts/100` | 15 / 17 |
 | [Settings](settings.md) | `nexa.settings/100` | 11 / 14 |
 | [Themes](themes.md) | `nexa.themes/100` | 11 / 15 |
-| [Backups](backups.md) | `nexa.backups/100` | 0 / 14 |
+| [Backups](backups.md) | `nexa.backups/100` | 11 / 14 |
 | [Downloads](downloads.md) | `nexa.downloads/100` | 8 / 10 |
 | [Tasks](tasks.md) | `nexa.tasks/100` | 9 / 10 |
 | [Storage](storage.md) | `nexa.storage/100` | 8 / 8 |
@@ -57,4 +57,4 @@ For existing Nexa preview integrations, see [the 22 retained bindings](legacy.md
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/api/index.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/index.md) · Apache-2.0.

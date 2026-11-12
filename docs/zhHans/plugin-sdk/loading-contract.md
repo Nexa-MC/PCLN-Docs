@@ -4,7 +4,7 @@
 
 ## 协商与上下文
 
-托管 Bootstrap 的 `GetABIContext(100, options)` 返回草稿。声明必需及可选能力后，通过协商器完成 Make，得到宿主确认的最终上下文。`GetExpermentABI` 保留历史拼写；不受支持的 ABI 不会自动降级。
+托管 Bootstrap 的 `GetABIContext(100, options)` 返回草稿。声明必需及可选能力后，通过协商器完成 Make，得到宿主确认的最终上下文。新代码使用 `GetExperimentABI` 扩展方法。原接口的 `GetExpermentABI` 保留历史拼写并标记 `[Obsolete]` 警告；别名转发到同一个 Bootstrap V1 槽位，不要求宿主新增接口实现。不受支持的 ABI 不会自动降级。
 
 `GetAbility`、`GetExperiment` 只访问已经确认的契约，不会再次协商或授予权限。可选能力缺失时，应禁用对应功能；核心能力缺失时，不应伪装成成功加载。
 
@@ -35,4 +35,4 @@ Wasm 通过 `nexa_resume` 接收回调。一次 Host 调用会让出执行，结
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/zh-CN/loading-contract.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/loading-contract.md) · Apache-2.0.

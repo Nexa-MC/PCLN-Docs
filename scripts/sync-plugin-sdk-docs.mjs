@@ -7,6 +7,9 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sdk = path.resolve(process.env.NEXA_PLUGIN_SDK_SOURCE || path.join(root, '..', 'NexaCL-Plugin-SDK'));
 const verify = process.argv.includes('--verify');
 const sha = execFileSync('git', ['-C', sdk, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+const project = await readFile(path.join(sdk, 'src/Nexa.Plugin.Sdk.Abi100/Nexa.Plugin.Sdk.Abi100.csproj'), 'utf8');
+const version = project.match(/<Version>([^<]+)<\/Version>/)?.[1];
+if (!version || !/^\d+\.\d+\.\d+(?:-[\w.]+)?$/.test(version)) throw new Error('SDK package version is missing or invalid.');
 const legacy = {
   'Getting-Started': 'quickstart', 'Tutorial-First-Plugin': 'quickstart',
   'Learning-Path': '', 'Architecture-and-Boundaries': 'architecture',
@@ -70,7 +73,11 @@ for (const [locale, source] of [['en', path.join(sdk, 'docs')], ['zhHans', path.
   }
   console.log(`${verify ? 'Verified' : 'Synced'} ${expected.size} SDK pages: ${locale}`);
 }
-if (!verify) await writeFile(path.join(root, 'sdk-docs-source.json'), JSON.stringify({
+const metadataPath = path.join(root, 'sdk-docs-source.json');
+const metadata = JSON.stringify({
   repository: 'Nexa-MC/NexaCL-Plugin-SDK', commit: sha,
-  version: '0.2.0-alpha.10', command: 'pnpm docs:sync',
-}, null, 2) + '\n');
+  version, command: 'pnpm docs:sync',
+}, null, 2) + '\n';
+if (verify) {
+  if (await readFile(metadataPath, 'utf8') !== metadata) throw new Error('SDK source metadata is stale.');
+} else await writeFile(metadataPath, metadata);

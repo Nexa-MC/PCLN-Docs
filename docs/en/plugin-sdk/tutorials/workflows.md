@@ -132,7 +132,7 @@ NX_EXPORT("nexa_resume") nx_u64 nexa_resume(nx_u32 address, nx_u32 size)
     if (nx_is_string(nx_field(message, "kind"), "reply")) {
         if (!nx_reply_success(message)) {
             next_registration = 0; awaiting_start = 0;
-            nx_handler_error(&reply, nx_reply_error(message));
+            nx_complete_error(&reply, nx_reply_error(message));
         } else if (awaiting_start) {
             nx_OperationRef operation;
             nx_require(nx_Workflows_Start_result(message, &operation));
@@ -172,4 +172,4 @@ NX_EXPORT("nexa_resume") nx_u64 nexa_resume(nx_u32 address, nx_u32 size)
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/tutorials/workflows.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/tutorials/workflows.md) · Apache-2.0.
