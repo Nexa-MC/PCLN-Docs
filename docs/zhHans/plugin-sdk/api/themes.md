@@ -14,7 +14,7 @@ Prepare the selected theme, preview the returned plan if desired, then commit it
 
 A failed candidate should not erase the last valid appearance. Resource and migration routes remain unmapped where listed; Theme.ReleaseResource must not be used as a generic blob-release mechanism.
 
-The recorded Host maps 11 of 15 operations in this group.
+The recorded Host maps 15 of 15 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
@@ -451,9 +451,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.themes.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Validate and persist the supplied typed option values against the current theme manifest’s options schema and version. The operation uses the same owner revision and renderer-effect path as SaveOptions; it does not translate legacy configuration key names. Unknown or incompatible options are rejected and missing options retain compatible existing values/defaults. A successful Tasks result contains current ThemeOptions.
 
 **Request fields**
 
@@ -491,9 +491,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.themes.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Copy resources explicitly declared as asset(...) in the current theme appearance. User-granted external files are not delegated to plugins. The owner verifies the source revision, containment and resource format, with limits of 128 resources, 16 MiB per item and 32 MiB total. Returned ThemeResource values and blobs belong to the calling load.
 
 **Request fields**
 
@@ -530,9 +530,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.themes.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Resolve an exact ThemeResource returned by ListResources to its owned BlobRef. A forged resource, another caller’s blob or a released resource is rejected. The returned bytes are an immutable copy, independent of a later theme reload.
 
 **Request fields**
 
@@ -571,9 +571,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.themes.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Release an owned theme blob and zero its retained bytes. Release is explicit and single-use; reads after release fail. Plugin retirement also releases retained application blobs.
 
 **Request fields**
 
@@ -605,4 +605,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/themes.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/themes.md) · Apache-2.0.

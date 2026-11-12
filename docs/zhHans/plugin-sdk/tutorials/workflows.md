@@ -28,4 +28,4 @@ OUTCOME_UNKNOWN 表示结果不确定，不能当作可安全自动重试的失�
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/tutorials/workflows.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/tutorials/workflows.md) · Apache-2.0.

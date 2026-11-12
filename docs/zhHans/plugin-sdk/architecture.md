@@ -20,7 +20,7 @@ NXML 不提供另一条绕过确认的执行路径。工作流和其他消费者
 
 ## 区分版本
 
-`0.2.0-alpha.12` 是 SDK 包版本，`1` 是 Bootstrap 版本，`100` 是 ABI 版本。清单中能力的最小版本又是独立字段，不要把所有 `1` 都改成 `100`。
+`0.2.0-alpha.13` 是 SDK 包版本，`1` 是 Bootstrap 版本，`100` 是 ABI 版本。清单中能力的最小版本又是独立字段，不要把所有 `1` 都改成 `100`。
 
 独立 SDK 保留了 alpha.9 的现有 Bootstrap 签名、ABI 操作和 schema 指纹。旧 PCL.N.Plugin.* 注入插件需要移植；保留 Git 历史不意味着旧二进制兼容。
 
@@ -32,4 +32,4 @@ NXML 不提供另一条绕过确认的执行路径。工作流和其他消费者
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/architecture.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/architecture.md) · Apache-2.0.

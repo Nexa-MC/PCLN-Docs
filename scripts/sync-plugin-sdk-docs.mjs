@@ -45,6 +45,19 @@ for (const [locale, source] of [['en', path.join(sdk, 'docs')], ['zhHans', path.
   const expected = new Map();
   for (const name of await walk(source)) {
     let content = await readFile(path.join(source, name), 'utf8');
+    // Repository-relative links between SDK translations need site locale roots:
+    // docs/zh-CN/ becomes /plugin-sdk/, while docs/ becomes /en/plugin-sdk/.
+    content = content.replace(/\]\(([^)\s]+)\)/g, (match, href) => {
+      if (/^(?:[a-z]+:|\/|#)/i.test(href)) return match;
+      const [target, ...fragment] = href.split('#');
+      const resolved = path.resolve(path.dirname(path.join(source, name)), target);
+      const relative = path.relative(path.join(sdk, 'docs'), resolved).split(path.sep).join('/');
+      if (relative.startsWith('../') || path.isAbsolute(relative)) return match;
+      const chinese = relative.startsWith('zh-CN/');
+      if (chinese === (locale === 'zhHans')) return match;
+      const route = chinese ? '/plugin-sdk/' + relative.slice('zh-CN/'.length) : '/en/plugin-sdk/' + relative;
+      return '](' + route + (fragment.length ? '#' + fragment.join('#') : '') + ')';
+    });
     const sourcePath = `${locale === 'en' ? 'docs' : 'docs/zh-CN'}/${name.split(path.sep).join('/')}`;
     // Historical proposals contain raw template syntax; publish them as literal source.
     if (name.startsWith('specifications/')) content = '# Historical design proposal\n\nThis is design history, not the current implementation reference.\n\n````text\n' + content + '\n````\n';

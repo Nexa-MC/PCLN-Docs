@@ -14,7 +14,7 @@ Read the instance’s requirements before resolving selection. Use ListManagedDi
 
 The older single-file distribution catalog and preparation route are not mapped in this snapshot. A selected runtime still needs platform, architecture and version compatibility.
 
-The recorded Host maps 11 of 14 operations in this group.
+The recorded Host maps 14 of 14 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
@@ -305,9 +305,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.java.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Aggregate published distribution providers and filter for the current OS and architecture. There may be at most eight providers and 128 entries per provider; provider replies must have no continuation cursor. The caller’s page is applied to the combined revisioned result. An empty result means no matching registered offer.
 
 **Request fields**
 
@@ -345,9 +345,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.java.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Prepare a ZIP installation in a registered root’s `runtime/plugin-<sha256>` directory. Require Java major 8–99, matching host OS/architecture, an archive of 1–512 MiB, 1–8 HTTPS sources and a SHA-256 digest. Download.Target is replaced with a temporary Host-owned file grant. The review includes source, digest and the fact that Java will execute for probing. The owner rejects unsafe entries, caps extraction at 8,192 entries and 2 GiB total, probes exactly one bin/java executable, checks version/architecture and registers it with registry CAS. An unsuccessful registry CAS can leave a verified directory for explicit registration.
 
 **Request fields**
 
@@ -461,9 +461,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.java.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Register kind nexa:java/distributions with method ListDistributions: PageRequest → `Page<JavaDistribution>`. The current Host accepts verified ZIP distributions. Each entry identifies this provider and supplies OS, architecture, version, exact archive size and SHA-256. Multi-file Mojang offers continue to use ListManagedDistributions and PrepareManagedInstall.
 
 **Request fields**
 
@@ -582,4 +582,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/minecraft-java.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/minecraft-java.md) · Apache-2.0.

@@ -27,6 +27,7 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 - [Minecraft.Processes.ListSessions](../minecraft-processes.md#listsessions)
 - [Catalog.ListProviders](../catalog.md#listproviders)
 - [Catalog.ListFavorites](../catalog.md#listfavorites)
+- [Catalog.ListCollections](../catalog.md#listcollections)
 - [Accounts.List](../accounts.md#list)
 - [Settings.ListProfiles](../settings.md#listprofiles)
 - [Themes.List](../themes.md#list)
@@ -36,4 +37,4 @@ For nested uses, follow the model links from the owning request or result. A suc
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/models/pagerequest.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/models/pagerequest.md) · Apache-2.0.

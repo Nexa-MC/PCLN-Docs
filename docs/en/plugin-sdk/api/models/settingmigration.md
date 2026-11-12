@@ -8,8 +8,8 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 | --- | --- | --- |
 | `Id` | `QualifiedId` | Identity in this model’s domain. Use the identity issued or declared for this object, not a display name or filesystem path. |
 | `Target` | [`ScopedTarget`](../models/scopedtarget.md) | Structured ScopedTarget value; follow its linked field contract. |
-| `FromVersion` | `ulong` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
-| `ToVersion` | `ulong` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
+| `FromVersion` | `ulong` | Exact stored setting version to transform. A mismatch rejects migration before committing. |
+| `ToVersion` | `ulong` | Currently registered positive setting version. Migrations must move forward. |
 | `Handler` | `ulong` | Callback identifier registered by this plugin. A handler alone is not a public action or provider registration. |
 
 ## Used directly by
@@ -20,4 +20,4 @@ For nested uses, follow the model links from the owning request or result. A suc
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/models/settingmigration.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/models/settingmigration.md) · Apache-2.0.

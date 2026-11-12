@@ -34,29 +34,29 @@ paths. See [models](models.md), [errors](../errors.md), and [Host support](../ho
 | [Plugins](plugins.md) | `nexa.interplugin/100` | 8 / 8 |
 | [Diagnostics](diagnostics.md) | `nexa.diagnostics/100` | 4 / 4 |
 | [Resources](resources.md) | `nexa.resources/100` | 4 / 4 |
-| [Minecraft.Instances](minecraft-instances.md) | `nexa.minecraft.instances/100` | 14 / 18 |
-| [Minecraft.Install](minecraft-install.md) | `nexa.minecraft.install/100` | 10 / 15 |
-| [Minecraft.Java](minecraft-java.md) | `nexa.minecraft.java/100` | 11 / 14 |
-| [Minecraft.Launch](minecraft-launch.md) | `nexa.minecraft.launch/100` | 11 / 14 |
+| [Minecraft.Instances](minecraft-instances.md) | `nexa.minecraft.instances/100` | 18 / 18 |
+| [Minecraft.Install](minecraft-install.md) | `nexa.minecraft.install/100` | 15 / 15 |
+| [Minecraft.Java](minecraft-java.md) | `nexa.minecraft.java/100` | 14 / 14 |
+| [Minecraft.Launch](minecraft-launch.md) | `nexa.minecraft.launch/100` | 14 / 14 |
 | [Minecraft.Processes](minecraft-processes.md) | `nexa.minecraft.processes/100` | 9 / 9 |
-| [Minecraft.Content](minecraft-content.md) | `nexa.minecraft.content/100` | 19 / 21 |
-| [Minecraft.Worlds](minecraft-worlds.md) | `nexa.minecraft.worlds/100` | 10 / 13 |
+| [Minecraft.Content](minecraft-content.md) | `nexa.minecraft.content/100` | 23 / 23 |
+| [Minecraft.Worlds](minecraft-worlds.md) | `nexa.minecraft.worlds/100` | 16 / 16 |
 | [Minecraft.Servers](minecraft-servers.md) | `nexa.minecraft.servers/100` | 5 / 5 |
-| [Catalog](catalog.md) | `nexa.catalog/100` | 15 / 17 |
-| [Accounts](accounts.md) | `nexa.accounts/100` | 15 / 17 |
-| [Settings](settings.md) | `nexa.settings/100` | 11 / 14 |
-| [Themes](themes.md) | `nexa.themes/100` | 11 / 15 |
-| [Backups](backups.md) | `nexa.backups/100` | 11 / 14 |
-| [Downloads](downloads.md) | `nexa.downloads/100` | 8 / 10 |
-| [Tasks](tasks.md) | `nexa.tasks/100` | 9 / 10 |
+| [Catalog](catalog.md) | `nexa.catalog/100` | 20 / 20 |
+| [Accounts](accounts.md) | `nexa.accounts/100` | 17 / 17 |
+| [Settings](settings.md) | `nexa.settings/100` | 15 / 15 |
+| [Themes](themes.md) | `nexa.themes/100` | 15 / 15 |
+| [Backups](backups.md) | `nexa.backups/100` | 16 / 16 |
+| [Downloads](downloads.md) | `nexa.downloads/100` | 10 / 10 |
+| [Tasks](tasks.md) | `nexa.tasks/100` | 10 / 10 |
 | [Storage](storage.md) | `nexa.storage/100` | 8 / 8 |
 | [Files](files.md) | `nexa.files/100` | 11 / 11 |
 | [Network](network.md) | `nexa.network/100` | 8 / 8 |
 | [Platform](platform.md) | `nexa.platform/100` | 10 / 10 |
-| [Minecraft.Diagnostics](minecraft-diagnostics.md) | `nexa.minecraft.diagnostics/100` | 3 / 4 |
+| [Minecraft.Diagnostics](minecraft-diagnostics.md) | `nexa.minecraft.diagnostics/100` | 5 / 5 |
 
 For existing Nexa preview integrations, see [the 22 retained bindings](legacy.md). These are separate from the retired PCL injection SDK.
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/index.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/index.md) · Apache-2.0.

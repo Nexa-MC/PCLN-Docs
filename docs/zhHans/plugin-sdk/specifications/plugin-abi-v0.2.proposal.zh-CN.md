@@ -870,4 +870,4 @@ ABI 100 建议以“可完成的作者场景”验收，不能只以接口数量
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/specifications/plugin-abi-v0.2.proposal.zh-CN.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/specifications/plugin-abi-v0.2.proposal.zh-CN.md) · Apache-2.0.

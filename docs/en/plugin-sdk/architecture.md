@@ -33,11 +33,11 @@ per-call permission, phase, ownership and revision checks.
 
 ## Separate the version axes
 
-`0.2.0-alpha.12` is the authoring package version, `1` is Bootstrap V1, and `100` is
+`0.2.0-alpha.13` is the authoring package version, `1` is Bootstrap V1, and `100` is
 the stable ABI selected for this SDK. Capability minimum versions in the manifest
 are another contract field; do not replace every `1` with `100`.
 
-The independent SDK preserves the Bootstrap signatures, 346 current operations,
+The independent SDK preserves the Bootstrap signatures and all 346 original operations,
 model fields and fingerprints extracted from PluginSidecar alpha.9. The 22 retained
 Nexa preview dispatch slots are a separate compatibility catalog. Neither makes
 historical PCL.N.Plugin.* injection plugins compatible with this runtime.
@@ -78,6 +78,14 @@ Resources slot 1 is the retained legacy cleanup call; Events slot 3 is reserved.
 Correctly spelled negotiation is an extension over the retained historical method,
 so existing Bootstrap implementations do not gain a new required interface member.
 
+## Completing the original 346-operation catalog
+
+Additive restore-destination, scoped-import and trash-preview operations make the
+original request shapes actionable without reinterpreting paths as authority.
+Provider callback method tables are part of the SDK reference and are exercised
+through their real host consumers. Existing models and numeric IDs are frozen;
+new capability methods do not replace or silently renumber the original catalog.
+
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/architecture.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/architecture.md) · Apache-2.0.

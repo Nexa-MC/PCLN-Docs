@@ -14,7 +14,7 @@ Begin sign-in, present its challenge through the supported user flow, then conti
 
 Public reads do not authorize token extraction. Sign-out and custom account providers remain unmapped where listed. A cancelled challenge is not a successful sign-in.
 
-The recorded Host maps 15 of 17 operations in this group.
+The recorded Host maps 17 of 17 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
@@ -338,9 +338,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.accounts.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Ask the Host to clear persisted access, refresh and provider credentials from the selected account record while retaining public profile metadata. The account owner checks roster CAS, advances credential generations, retires verified launch identities and clears selection if needed. Re-read Accounts.List afterward because account handles include the roster revision. This is local sign-out, not remote token revocation.
 
 **Request fields**
 
@@ -642,9 +642,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.accounts.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Register kind nexa:accounts/authentication with ResolveSignIn: SignInRequest → AccountProviderConfiguration. The supported protocols are yggdrasil and nide8 with an HTTPS auth server. BeginSignIn resolves this configuration and uses the existing Host onboarding flow. Credentials and tokens remain with that owner; callbacks cannot replace the resolved server during ContinueSignIn. Arbitrary OAuth implementations are outside this provider table.
 
 **Request fields**
 
@@ -685,4 +685,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/accounts.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/accounts.md) · Apache-2.0.

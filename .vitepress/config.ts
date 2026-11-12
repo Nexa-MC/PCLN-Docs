@@ -86,6 +86,7 @@ const pluginSections: [string, string, [string, string, string][]][] = [
     ['how-to/read-instances', '读取实例列表', 'Read instances'],
     ['how-to/mutations', '预览与执行修改', 'Prepare mutations'],
     ['how-to/files', '访问文件与资源', 'Access files and assets'],
+    ['how-to/extend-business-features', '扩展业务能力', 'Extend business features'],
     ['business-providers', '实现业务 Provider', 'Implement providers'],
     ['errors', '排查错误', 'Troubleshoot errors'],
     ['migration', '迁移旧插件', 'Migrate old plugins'],

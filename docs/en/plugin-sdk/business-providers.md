@@ -1,6 +1,6 @@
 # Business provider callbacks
 
-The alpha.9 contract, retained by standalone SDK `0.2.0-alpha.12`, adds `BusinessProviderCall` without changing existing
+The provider envelope introduced in alpha.9 and retained by SDK `0.2.0-alpha.13` defines `BusinessProviderCall` without changing existing
 operation IDs, `ProviderDescriptor`, or model fingerprints. A Host must explicitly
 implement each provider family. Registering a descriptor does not create a generic
 permission to intercept arbitrary launcher operations.
@@ -90,6 +90,20 @@ The [support snapshot](host-support.md) records the full source revision. Availa
 of these seven reads does not imply custom favorites, installation, mixed-provider
 search or other provider families are implemented.
 
+## Additional business families
+
+The completed Host integration adds explicit consumers for diagnostics, content
+inspection, project translation, account sign-in configuration, loader catalogs,
+Java ZIP distributions, source resolution and chunked transfers. Their exact
+method tables and end-to-end flows are in
+[Extend launcher features](how-to/extend-business-features.md).
+
+These families use the same BusinessProviderCall envelope and admission rules as
+the catalog family. The declared input/output schemas, domain checks and limits
+differ. The API reference describes those differences at each registration and
+consumer method. In particular, an authentication configuration provider never
+receives credentials, and a transfer provider never receives the output path.
+
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/business-providers.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/business-providers.md) · Apache-2.0.

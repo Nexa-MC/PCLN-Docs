@@ -12,7 +12,7 @@ List compatible game/loader versions, update and validate the draft, resolve its
 
 An accepted execution request does not prove all files installed. Recovery and custom loader/template registration remain unavailable where marked; do not fabricate recovery records.
 
-The recorded Host maps 10 of 15 operations in this group.
+The recorded Host maps 15 of 15 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
@@ -420,9 +420,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.install.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+List authenticated pending new-install, modification and modpack journals under registered game roots. Completed, rolled-back and dismissed journals are omitted. Handles bind the caller, root, journal and revision. RecoveryRecord.Operation is an opaque native-task correlation ID, not a Tasks.Read handle. At most 64 roots, 4,096 journal directories and 256 pending records are admitted.
 
 **Request fields**
 
@@ -460,9 +460,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.install.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Confirm and resume the exact listed journal using the owner’s existing authenticated recovery pipeline. Rollback-requested journals continue rollback. Re-list after a revision conflict. The returned Tasks operation tracks this resume attempt and returns Empty on completion; it is distinct from RecoveryRecord.Operation.
 
 **Request fields**
 
@@ -499,9 +499,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.install.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Confirm dismissal of the listed journal. Existing and staged files are retained; dismissal removes the pending recovery offer. The owner rejects unfinished rollback and stale records. This operation does not delete an installed instance.
 
 **Request fields**
 
@@ -538,9 +538,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.install.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Stage an owned template during Initialize. Workflow must name a workflow owned by the same load with InstallTemplateInvocation input and Empty output. The template declares a game version, supported built-in loaders and desired content. Instances.PrepareCreate consumes its ID; the workflow performs the installation through authorized Host APIs. Registration alone installs nothing. See the installation guide for workflow responsibilities.
 
 **Request fields**
 
@@ -581,9 +581,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.install.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Register kind nexa:install/loader-catalog with method ListVersions: LoaderVersionRequest → `Page<LoaderVersion>`. Consumers pass the provider ID as Loader in ListLoaderVersions. Returned items must use a supported built-in loader family and the requested game version. The Host wraps pagination and feeds the selections to its existing installer; this does not authorize an arbitrary executable installer.
 
 **Request fields**
 
@@ -624,4 +624,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/minecraft-install.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/minecraft-install.md) · Apache-2.0.

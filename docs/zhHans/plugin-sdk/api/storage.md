@@ -322,8 +322,8 @@ The current migration boundary accepts at most 256 entries and invokes an owned 
 | Field | Type | Meaning |
 | --- | --- | --- |
 | `Namespace` | [`StorageNamespace`](models/storagenamespace.md) | Private storage namespace identity or handle. It remains subject to current-load ownership. |
-| `FromVersion` | `ulong` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
-| `ToVersion` | `ulong` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
+| `FromVersion` | `ulong` | Exact stored setting version to transform. A mismatch rejects migration before committing. |
+| `ToVersion` | `ulong` | Currently registered positive setting version. Migrations must move forward. |
 | `Action` | `QualifiedId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
 
 **Successful result**
@@ -347,4 +347,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/storage.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/storage.md) · Apache-2.0.

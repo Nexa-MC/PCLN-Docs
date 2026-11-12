@@ -46,6 +46,7 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 - [Minecraft.Worlds.ApplyDataPackPlan](../minecraft-worlds.md#applydatapackplan)
 - [Minecraft.Worlds.Backup](../minecraft-worlds.md#backup)
 - [Minecraft.Worlds.Restore](../minecraft-worlds.md#restore)
+- [Minecraft.Worlds.Delete](../minecraft-worlds.md#delete)
 - [Minecraft.Servers.Join](../minecraft-servers.md#join)
 - [Catalog.ExecutePlan](../catalog.md#executeplan)
 - [Accounts.Refresh](../accounts.md#refresh)
@@ -62,6 +63,7 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 - [Backups.Export](../backups.md#export)
 - [Backups.Import](../backups.md#import)
 - [Backups.Prune](../backups.md#prune)
+- [Backups.ImportInto](../backups.md#importinto)
 - [Downloads.Start](../downloads.md#start)
 - [Downloads.Pause](../downloads.md#pause)
 - [Downloads.Resume](../downloads.md#resume)
@@ -78,4 +80,4 @@ For nested uses, follow the model links from the owning request or result. A suc
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/models/operationref.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/models/operationref.md) · Apache-2.0.

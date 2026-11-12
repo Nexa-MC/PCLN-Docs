@@ -53,6 +53,7 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 - [Settings.RegisterSchema](../settings.md#registerschema)
 - [Settings.RegisterPage](../settings.md#registerpage)
 - [Settings.BeginTemporaryOverlay](../settings.md#begintemporaryoverlay)
+- [Settings.RegisterVersionedSchema](../settings.md#registerversionedschema)
 - [Themes.Preview](../themes.md#preview)
 - [Downloads.RegisterSourceResolver](../downloads.md#registersourceresolver)
 - [Downloads.RegisterTransferProvider](../downloads.md#registertransferprovider)
@@ -62,4 +63,4 @@ For nested uses, follow the model links from the owning request or result. A suc
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/models/registrationref.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/models/registrationref.md) · Apache-2.0.

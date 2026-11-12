@@ -12,14 +12,14 @@ Obtain an instance ID from Minecraft.Instances.List, then call Backups.List. Kee
 
 Capture currently accepts only a null Target and empty Include/Exclude arrays. Retention supports 1–1,024 copies and 1–3,650 days, with MaximumBytes=0; it governs explicit prune previews, not automatic scheduling. Export writes a thin JSON manifest without file contents. PreviewRestore, Restore and Import remain unavailable: their original request models do not express the required new-directory or instance target safely.
 
-The recorded Host maps 11 of 14 operations in this group.
+The recorded Host maps 16 of 16 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
 
 ## Operations
 
-[List](#list) · [Read](#read) · [Statistics](#statistics) · [PrepareCapture](#preparecapture) · [Capture](#capture) · [PreviewRestore](#previewrestore) · [Restore](#restore) · [VerifyOffline](#verifyoffline) · [Export](#export) · [Import](#import) · [PreviewPrune](#previewprune) · [Prune](#prune) · [ReadRetention](#readretention) · [SetRetention](#setretention)
+[List](#list) · [Read](#read) · [Statistics](#statistics) · [PrepareCapture](#preparecapture) · [Capture](#capture) · [PreviewRestore](#previewrestore) · [Restore](#restore) · [VerifyOffline](#verifyoffline) · [Export](#export) · [Import](#import) · [PreviewPrune](#previewprune) · [Prune](#prune) · [ReadRetention](#readretention) · [SetRetention](#setretention) · [PrepareRestoreDestination](#preparerestoredestination) · [ImportInto](#importinto)
 
 ### List
 
@@ -232,11 +232,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-Unmapped in this Host. BackupRestore.Destination identifies an existing instance, while the storage owner requires a new destination directory. The adapter does not reinterpret that ID as a filesystem path or silently replace an instance. A compatible explicit-target extension is still needed.
-
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Bind an existing backup, its ExpectedRevision and a new destination admitted by PrepareRestoreDestination into a single-use restore plan. The Host preserves the source instance and never merges into an existing destination.
 
 **Request fields**
 
@@ -275,11 +273,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-Unmapped in this Host; no restore plan is currently issued. Passing a capture or prune plan does not authorize a restore.
-
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Confirm and execute a restore plan through the owning instance backup store. The destination grant is re-resolved under the file mutation gate; missing/corrupt objects, changed revisions or an existing destination fail. Empty is returned only after restore completes.
 
 **Request fields**
 
@@ -397,11 +393,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.backups.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-Unmapped in this Host. BackupTransfer has no destination instance for importing a new snapshot. The adapter does not guess the active instance or import into global storage. A compatible scoped-import request is still needed.
-
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Import a thin manifest into the instance scope identified by the non-null Backup anchor. Backup must be a backup already listed by this caller. For an empty scope, use ImportInto. The manifest carries metadata and hashes, not content objects; successful import is not proof of offline readiness. VerifyOffline checks that separately.
 
 **Request fields**
 
@@ -590,7 +584,88 @@ The next resume receives the reply. Check `nx_reply_success` before
 `nx_Backups_SetRetention_result`. See the [complete continuation example](../tutorials/page-and-action.md)
 and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
 
+### PrepareRestoreDestination
+
+[`FileRef`](models/fileref.md) → `EntityId`
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `15` |
+| Kind | Query |
+| Permission | `nexa.backups.read` |
+| Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
+| Idempotency | ReadOnly |
+| Host status | Mapped in recorded snapshot |
+
+Admit an owned writable FileRef whose destination does not exist. Return a load-local destination EntityId for PreviewRestore. A raw path or an existing instance ID cannot replace this handle.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Token` | `Guid` | Opaque Host-issued handle token. Keep it with its owner and resource type. |
+| `LoadInstanceId` | `Guid` | Identity of the admitted load that owns this handle; it is not portable to a replacement load. |
+| `Scope` | `string` | Explicit target scope. The Host checks that the caller is authorized for it. |
+
+**Successful result**
+
+Decode the exact output model after Success. Preserve its identities, revision and schema metadata for subsequent domain operations.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. A read-only classification does not bypass budgets or guarantee a failed request can be retried indefinitely. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Backups_PrepareRestoreDestination(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Backups_PrepareRestoreDestination_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
+### ImportInto
+
+[`BackupImportRequest`](models/backupimportrequest.md) → [`OperationRef`](models/operationref.md)
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `16` |
+| Kind | Operation |
+| Permission | `nexa.backups.write` |
+| Legal phases | Active |
+| Idempotency | RequiredKey |
+| Host status | Mapped in recorded snapshot |
+
+Import a thin backup manifest from an owned readable FileRef into an explicitly admitted instance scope. This additive request works when that scope has no existing backup. The Host confirms import and uses the owner’s validated immutable manifest importer; duplicates and malformed records fail.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Instance` | `EntityId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
+| `File` | [`FileRef`](models/fileref.md) | Structured FileRef value; follow its linked field contract. |
+
+**Successful result**
+
+Work has been admitted. Read or watch the owned operation through Tasks to establish its terminal result; admission is not completion.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. Supply a key for the intended effect and retain that key and inputs while resolving an uncertain reply. Do not retry with changed inputs under the same key. Re-read after revision conflicts; cancellation does not prove rollback. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Backups_ImportInto(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Backups_ImportInto_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/backups.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/backups.md) · Apache-2.0.

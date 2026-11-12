@@ -14,14 +14,14 @@ Build the relevant install/enable/disable/remove/update plan, inspect the previe
 
 Rollback is a reviewed domain operation, not arbitrary file reversal. Import/export supports an explicit format allowlist. Trash clearing and custom format providers remain unavailable where marked.
 
-The recorded Host maps 19 of 21 operations in this group.
+The recorded Host maps 23 of 23 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
 
 ## Operations
 
-[List](#list) · [Inspect](#inspect) · [Watch](#watch) · [ReadDependencyGraph](#readdependencygraph) · [PlanInstall](#planinstall) · [PlanEnable](#planenable) · [PlanDisable](#plandisable) · [PlanRemove](#planremove) · [PlanUpdate](#planupdate) · [Preview](#preview) · [Execute](#execute) · [ListTransactions](#listtransactions) · [Rollback](#rollback) · [ReadIntegrity](#readintegrity) · [Verify](#verify) · [ListTrash](#listtrash) · [RestoreTrash](#restoretrash) · [ClearTrash](#cleartrash) · [Import](#import) · [Export](#export) · [RegisterFormatProvider](#registerformatprovider)
+[List](#list) · [Inspect](#inspect) · [Watch](#watch) · [ReadDependencyGraph](#readdependencygraph) · [PlanInstall](#planinstall) · [PlanEnable](#planenable) · [PlanDisable](#plandisable) · [PlanRemove](#planremove) · [PlanUpdate](#planupdate) · [Preview](#preview) · [Execute](#execute) · [ListTransactions](#listtransactions) · [Rollback](#rollback) · [ReadIntegrity](#readintegrity) · [Verify](#verify) · [ListTrash](#listtrash) · [RestoreTrash](#restoretrash) · [ClearTrash](#cleartrash) · [Import](#import) · [Export](#export) · [RegisterFormatProvider](#registerformatprovider) · [PreviewClearTrash](#previewcleartrash) · [InspectWithProvider](#inspectwithprovider)
 
 ### List
 
@@ -689,9 +689,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.content.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Consume the plan returned by PreviewClearTrash after Host confirmation. This permanently removes the recognized trash entries included in the plan. It does not accept an instance ID in place of a plan, and it cannot clear newly added trash without another preview.
 
 **Request fields**
 
@@ -810,9 +810,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.content.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Register kind nexa:content/format with Inspect: ContentInspectionInput → ContentInspection. InspectWithProvider reads an explicitly granted file and passes only its name and at most 64 KiB of bytes. The callback receives no filesystem path. Its properties and issues are bounded and schema-checked; this API does not restore the removed built-in NBT viewer.
 
 **Request fields**
 
@@ -850,7 +850,86 @@ The next resume receives the reply. Check `nx_reply_success` before
 `nx_Minecraft_Content_RegisterFormatProvider_result`. See the [complete continuation example](../tutorials/page-and-action.md)
 and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
 
+### PreviewClearTrash
+
+[`EntityRequest`](models/entityrequest.md) → [`MutationPlan`](models/mutationplan.md)
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `22` |
+| Kind | Query |
+| Permission | `nexa.minecraft.content.read` |
+| Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
+| Idempotency | ReadOnly |
+| Host status | Mapped in recorded snapshot |
+
+Prepare a plan bound to the admitted instance and exact recognized trash IDs. The owner rejects a changed set, a running game, linked entries, more than 1,000 trash directories, more than 32,768 tree entries or depth above 64 before deleting any selected record.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Id` | `EntityId` | Identity in this model’s domain. Use the identity issued or declared for this object, not a display name or filesystem path. |
+
+**Successful result**
+
+Retain the exact plan ID and revision, review its bound inputs and confirmation requirement, then use the corresponding commit operation.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. A read-only classification does not bypass budgets or guarantee a failed request can be retried indefinitely. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Minecraft_Content_PreviewClearTrash(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Minecraft_Content_PreviewClearTrash_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
+### InspectWithProvider
+
+[`ContentInspectionRequest`](models/contentinspectionrequest.md) → [`ContentInspection`](models/contentinspection.md)
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `23` |
+| Kind | Query |
+| Permission | `nexa.minecraft.content.read` |
+| Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
+| Idempotency | ReadOnly |
+| Host status | Mapped in recorded snapshot |
+
+Use a published format provider to inspect a caller-owned user-file grant. Directories and files over 64 KiB are rejected. The Host compares file revisions before and after the callback, permits at most 256 distinct named properties and 128 issues, and returns the typed result. Package-file access uses the separate verified-package API.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Provider` | `QualifiedId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
+| `File` | [`FileRef`](models/fileref.md) | Structured FileRef value; follow its linked field contract. |
+
+**Successful result**
+
+Decode the exact output model after Success. Preserve its identities, revision and schema metadata for subsequent domain operations.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. A read-only classification does not bypass budgets or guarantee a failed request can be retried indefinitely. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Minecraft_Content_InspectWithProvider(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Minecraft_Content_InspectWithProvider_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/minecraft-content.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/minecraft-content.md) · Apache-2.0.

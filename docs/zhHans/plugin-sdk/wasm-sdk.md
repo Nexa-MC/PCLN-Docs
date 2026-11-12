@@ -86,7 +86,7 @@ schema policy or a future validated dynamic schema implementation.
 
 ## Complete typed bindings
 
-Include `nexa/abi100.h` to use the generated C API. It contains 346 current
+Include `nexa/abi100.h` to use the generated C API. It contains 358 current
 operations plus 22 compatibility operations under `nx_Legacy_*`. Each model has
 `nx_Type_read`, named field accessors and `nx_Type_write`; arrays have typed
 `_count`, `_at`, `_write`, and nullable wrappers have `_has_value`, `_value`,
@@ -207,4 +207,4 @@ missing required fields instead of silently treating them as null.
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/wasm-sdk.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/wasm-sdk.md) · Apache-2.0.

@@ -24,6 +24,7 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 - [Minecraft.Content.ClearTrash](../minecraft-content.md#cleartrash)
 - [Minecraft.Worlds.ApplyDataPackPlan](../minecraft-worlds.md#applydatapackplan)
 - [Minecraft.Worlds.Restore](../minecraft-worlds.md#restore)
+- [Minecraft.Worlds.Delete](../minecraft-worlds.md#delete)
 - [Catalog.ExecutePlan](../catalog.md#executeplan)
 - [Settings.Apply](../settings.md#apply)
 - [Themes.Preview](../themes.md#preview)
@@ -39,4 +40,4 @@ For nested uses, follow the model links from the owning request or result. A suc
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/models/planrequest.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/models/planrequest.md) · Apache-2.0.

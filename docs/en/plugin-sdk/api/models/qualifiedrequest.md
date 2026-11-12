@@ -26,9 +26,10 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 - [State.Describe](../state.md#describe)
 - [UI.DescribeViewContract](../ui.md#describeviewcontract)
 - [Catalog.DescribeProvider](../catalog.md#describeprovider)
+- [Catalog.ReadCollection](../catalog.md#readcollection)
 
 For nested uses, follow the model links from the owning request or result. A successful decode establishes shape, not permission or business success.
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/models/qualifiedrequest.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/models/qualifiedrequest.md) · Apache-2.0.

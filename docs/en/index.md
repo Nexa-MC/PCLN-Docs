@@ -23,7 +23,7 @@ hero:
     alt: NexaCL
 features:
   - title: "Plugin SDK · ABI 100"
-    details: "Executable tutorials, lifecycle, permissions, 346 operation contracts and explicit Host support."
+    details: "Executable tutorials, lifecycle, permissions, 358 operation contracts and explicit Host support."
     link: /en/plugin-sdk/
   - title: "Goals and XSR"
     details: "Define outcomes, ownership, contracts and evidence."

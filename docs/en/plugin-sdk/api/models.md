@@ -388,8 +388,24 @@ every operation or provider family accepts it. See the operation's behavior note
 | [StorageMigrationInput](models/storagemigrationinput.md) | 4 |
 | [StorageMigrationOutput](models/storagemigrationoutput.md) | 1 |
 | [BusinessProviderCall](models/businessprovidercall.md) | 6 |
+| [BackupImportRequest](models/backupimportrequest.md) | 2 |
+| [WorldRestoreDestination](models/worldrestoredestination.md) | 3 |
+| [VersionedSettingSchema](models/versionedsettingschema.md) | 2 |
+| [StoredPluginSetting](models/storedpluginsetting.md) | 2 |
+| [SettingMigrationInput](models/settingmigrationinput.md) | 3 |
+| [ProviderInstanceQuery](models/providerinstancequery.md) | 2 |
+| [CatalogTranslationRequest](models/catalogtranslationrequest.md) | 3 |
+| [CatalogTranslationInput](models/catalogtranslationinput.md) | 2 |
+| [CatalogTranslation](models/catalogtranslation.md) | 2 |
+| [ContentInspectionRequest](models/contentinspectionrequest.md) | 2 |
+| [ContentInspectionInput](models/contentinspectioninput.md) | 2 |
+| [ContentInspection](models/contentinspection.md) | 3 |
+| [AccountProviderConfiguration](models/accountproviderconfiguration.md) | 2 |
+| [InstallTemplateInvocation](models/installtemplateinvocation.md) | 2 |
+| [DownloadChunkRequest](models/downloadchunkrequest.md) | 3 |
+| [DownloadChunk](models/downloadchunk.md) | 3 |
 
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/models.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/models.md) · Apache-2.0.

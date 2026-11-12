@@ -8,7 +8,7 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 | --- | --- | --- |
 | `Instance` | `EntityId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
 | `ExpectedRevision` | `Revision` | Revision observed before this change. Preserve it exactly; a mismatch requires re-reading and reconciling the target. |
-| `RetainUserData` | `bool` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
+| `RetainUserData` | `bool` | For instance deletion, true moves the version directory into .recycle; false permanently deletes that directory. Shared root files remain. |
 
 ## Used directly by
 
@@ -18,4 +18,4 @@ For nested uses, follow the model links from the owning request or result. A suc
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/models/instancedeleterequest.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/models/instancedeleterequest.md) · Apache-2.0.

@@ -23,7 +23,7 @@ hero:
     alt: NexaCL
 features:
   - title: "插件 SDK · ABI 100"
-    details: "可执行教程、生命周期、权限、346 项操作契约及明确的宿主支持范围。"
+    details: "可执行教程、生命周期、权限、358 项操作契约及明确的宿主支持范围。"
     link: /plugin-sdk/
   - title: "开发方法与 XSR"
     details: "先明确用户目标与验收，再设计职责、契约、生命周期和验证。"

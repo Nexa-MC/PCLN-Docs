@@ -14,7 +14,7 @@ List within the requested inventory scope, read details by returned identity, an
 
 Several clone/delete routes remain unmapped in the recorded Host. Do not emulate them by deleting files through unrelated APIs. Read errors must remain distinct from an empty inventory.
 
-The recorded Host maps 14 of 18 operations in this group.
+The recorded Host maps 18 of 18 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
@@ -454,9 +454,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.instances.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Prepare a new isolated instance in a registered destination root. Source and destination handles belong to the caller; ExpectedRevision is the source library revision. Existing destinations, reserved names, links and running games are rejected. The owner copies version files, local game data and cross-root runtime dependencies without overwriting shared files. The copy budget is 100,000 entries, depth 64, 2 GiB per file and 8 GiB total. The manifest is renamed and published last. A failed cross-root clone can leave verified shared cache files; it does not replace the source.
 
 **Request fields**
 
@@ -496,9 +496,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.instances.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Consume a clone plan once. The Host asks for confirmation, rechecks the source revision and destination, acquires recovery leases in canonical root order, copies and publishes the new instance, then refreshes discovery. A completed operation returns Empty. A successful admission is not proof that the clone finished.
 
 **Request fields**
 
@@ -537,9 +537,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.instances.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Prepare deletion of an admitted instance at ExpectedRevision. RetainUserData=true moves its version directory into the root’s .recycle directory. False permanently removes that directory after moving it out of the active library. Shared root data and runtime caches remain. The review text distinguishes these outcomes. Running sessions block deletion.
 
 **Request fields**
 
@@ -547,7 +547,7 @@ The recorded Host cannot provide this operation. Keep it optional or require a H
 | --- | --- | --- |
 | `Instance` | `EntityId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
 | `ExpectedRevision` | `Revision` | Revision observed before this change. Preserve it exactly; a mismatch requires re-reading and reconciling the target. |
-| `RetainUserData` | `bool` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
+| `RetainUserData` | `bool` | For instance deletion, true moves the version directory into .recycle; false permanently deletes that directory. Shared root files remain. |
 
 **Successful result**
 
@@ -578,9 +578,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.instances.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Consume a deletion plan after Host confirmation and an owner-side revision check. Deleting the version directory never follows child symbolic links into another directory. Empty is returned only after the owner finishes; stale or consumed plans require a new preview.
 
 **Request fields**
 
@@ -722,4 +722,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/minecraft-instances.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/minecraft-instances.md) · Apache-2.0.

@@ -12,7 +12,7 @@ For plugin-owned work, CreateOwned, Report progress, then Complete or Fail exact
 
 Dismiss terminal records when no longer needed. Retry is not mapped in the current Desktop snapshot; a generic retry button must not replay unknown effects with fresh keys.
 
-The recorded Host maps 9 of 10 operations in this group.
+The recorded Host maps 10 of 10 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
@@ -342,11 +342,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.tasks.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Desktop Host does not map this operation. Display no automatic retry affordance based solely on its presence in the SDK.
-
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Retry an owned failed/cancelled task where the owner defines replay semantics. Plugin-created tasks reset to Pending under the same ID and a new revision; the plugin must perform and report the work again. Failed workflows use the workflow journal and its recovery rules. Running/completed tasks, foreign tasks and unknown outcomes are rejected. Arbitrary Host file/network/game operations are not implicitly replayed; prepare a new domain plan instead.
 
 **Request fields**
 
@@ -412,4 +410,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/tasks.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/tasks.md) · Apache-2.0.

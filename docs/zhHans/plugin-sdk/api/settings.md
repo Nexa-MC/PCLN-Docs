@@ -14,14 +14,14 @@ Use GetEffective when the UI needs the value and its origin. Preview a change an
 
 A temporary overlay is not a durable profile write. Schema/page registration and migration routes remain unmapped where listed; direct modification of launcher configuration files is not a supported substitute.
 
-The recorded Host maps 11 of 14 operations in this group.
+The recorded Host maps 15 of 15 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
 
 ## Operations
 
-[RegisterSchema](#registerschema) · [RegisterPage](#registerpage) · [Get](#get) · [GetEffective](#geteffective) · [Watch](#watch) · [PreviewChange](#previewchange) · [Apply](#apply) · [Reset](#reset) · [Migrate](#migrate) · [ListProfiles](#listprofiles) · [SaveProfile](#saveprofile) · [SelectProfile](#selectprofile) · [BeginTemporaryOverlay](#begintemporaryoverlay) · [EndTemporaryOverlay](#endtemporaryoverlay)
+[RegisterSchema](#registerschema) · [RegisterPage](#registerpage) · [Get](#get) · [GetEffective](#geteffective) · [Watch](#watch) · [PreviewChange](#previewchange) · [Apply](#apply) · [Reset](#reset) · [Migrate](#migrate) · [ListProfiles](#listprofiles) · [SaveProfile](#saveprofile) · [SelectProfile](#selectprofile) · [BeginTemporaryOverlay](#begintemporaryoverlay) · [EndTemporaryOverlay](#endtemporaryoverlay) · [RegisterVersionedSchema](#registerversionedschema)
 
 ### RegisterSchema
 
@@ -34,9 +34,9 @@ the actual installed Host.
 | Permission | `nexa.settings.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Stage a plugin-owned setting schema at version 1. Supported scopes are global and instance. ValueSchema and Default must validate against a known ABI schema. The Host stores values in a private durable namespace using canonical instance identity, revision CAS and explicit defaults. Use RegisterVersionedSchema before introducing a migration.
 
 **Request fields**
 
@@ -76,9 +76,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.settings.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Register a verified NXML package page through the same rendering path as UI.RegisterPage. EntryFile must be an owned package-file handle. The page appears only after atomic activation and is removed on retirement. Registering a schema does not automatically generate controls.
 
 **Request fields**
 
@@ -349,9 +349,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.settings.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Confirm a forward migration from the exact persisted FromVersion to the registered ToVersion. Handler receives SettingMigrationInput and returns a value matching the current setting schema. The callback is query-only and cannot mutate Host state. The Host rechecks schema identity and storage revision before one atomic write; failure or rejection preserves the old value. Repeating a completed migration returns a stale-version error.
 
 **Request fields**
 
@@ -359,8 +359,8 @@ The recorded Host cannot provide this operation. Keep it optional or require a H
 | --- | --- | --- |
 | `Id` | `QualifiedId` | Identity in this model’s domain. Use the identity issued or declared for this object, not a display name or filesystem path. |
 | `Target` | [`ScopedTarget`](models/scopedtarget.md) | Structured ScopedTarget value; follow its linked field contract. |
-| `FromVersion` | `ulong` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
-| `ToVersion` | `ulong` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
+| `FromVersion` | `ulong` | Exact stored setting version to transform. A mismatch rejects migration before committing. |
+| `ToVersion` | `ulong` | Currently registered positive setting version. Migrations must move forward. |
 | `Handler` | `ulong` | Callback identifier registered by this plugin. A handler alone is not a public action or provider registration. |
 
 **Successful result**
@@ -571,7 +571,47 @@ The next resume receives the reply. Check `nx_reply_success` before
 `nx_Settings_EndTemporaryOverlay_result`. See the [complete continuation example](../tutorials/page-and-action.md)
 and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
 
+### RegisterVersionedSchema
+
+[`VersionedSettingSchema`](models/versionedsettingschema.md) → [`RegistrationRef`](models/registrationref.md)
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `15` |
+| Kind | Registration |
+| Permission | `nexa.settings.write` |
+| Legal phases | Initialize |
+| Idempotency | RequiredKey |
+| Host status | Mapped in recorded snapshot |
+
+Stage the current positive version of an owned SettingSchema. Registration does not transform persisted values. GetEffective rejects a stored value from another version until Migrate succeeds. The same plugin ID and setting ID retain their durable values across load replacement.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Schema` | [`SettingSchema`](models/settingschema.md) | Exact schema identity, version and fingerprint used to validate Value. |
+| `Version` | `ulong` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
+
+**Successful result**
+
+Retain the registration identity for the permitted update/release operation. Staged registrations become visible only at group activation.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. Supply a key for the intended effect and retain that key and inputs while resolving an uncertain reply. Do not retry with changed inputs under the same key. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Settings_RegisterVersionedSchema(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Settings_RegisterVersionedSchema_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/settings.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/settings.md) · Apache-2.0.

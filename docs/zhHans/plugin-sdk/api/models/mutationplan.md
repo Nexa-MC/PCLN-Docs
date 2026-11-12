@@ -24,6 +24,7 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 - [Minecraft.Instances.PrepareDelete](../minecraft-instances.md#preparedelete)
 - [Minecraft.Java.PrepareInstall](../minecraft-java.md#prepareinstall)
 - [Minecraft.Java.PrepareManagedInstall](../minecraft-java.md#preparemanagedinstall)
+- [Minecraft.Content.PreviewClearTrash](../minecraft-content.md#previewcleartrash)
 - [Minecraft.Worlds.PlanDelete](../minecraft-worlds.md#plandelete)
 - [Minecraft.Worlds.PlanSetDataPack](../minecraft-worlds.md#plansetdatapack)
 - [Minecraft.Worlds.PreviewRestore](../minecraft-worlds.md#previewrestore)
@@ -39,4 +40,4 @@ For nested uses, follow the model links from the owning request or result. A suc
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/models/mutationplan.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/models/mutationplan.md) · Apache-2.0.

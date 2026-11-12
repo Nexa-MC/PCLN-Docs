@@ -12,7 +12,7 @@ Read or select the intended instance profile, prepare the launch, validate the e
 
 A changed account, Java selection or instance state can invalidate the plan. Contribution/preflight registration routes remain unmapped where listed; arbitrary native command injection is not a fallback.
 
-The recorded Host maps 11 of 14 operations in this group.
+The recorded Host maps 14 of 14 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
@@ -376,9 +376,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.launch.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Stage a query-only callback during Initialize. Its input and output are LaunchProfile. Declare a nonempty subset of MemoryMiB, Width and Height; every other field must remain unchanged. Definitions are ordered by qualified ID, and the first accepted contribution owns each field. Required failures abort preparation; optional failures appear in ExplainContribution. Values affect this launch only and are validated by the owner’s settings schema.
 
 **Request fields**
 
@@ -418,9 +418,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.launch.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Stage a pure LaunchProfile → ValidationReport callback with an empty Fields array. The Host runs preflights after contributions during Prepare and again before execution. Required invalid/fatal reports block launch; optional failures are suppressed and reported. Definition retirement or revision changes invalidate prepared plans. Mutation reentrancy is denied.
 
 **Request fields**
 
@@ -536,9 +536,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.launch.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Read accepted extension IDs and suppressed issues for an owned launch plan/attempt ID. This report explains preparation; it does not assert that the game started. Use ReadAttempt for execution state.
 
 **Request fields**
 
@@ -567,4 +567,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/minecraft-launch.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/minecraft-launch.md) · Apache-2.0.

@@ -14,14 +14,14 @@ Choose an explicit provider, search with a bounded page, then resolve a selected
 
 Custom catalog providers currently support seven read queries. Mixed built-in/custom searches, custom installation and favorites are not implied by successful registration.
 
-The recorded Host maps 15 of 17 operations in this group.
+The recorded Host maps 20 of 20 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
 
 ## Operations
 
-[ListProviders](#listproviders) · [DescribeProvider](#describeprovider) · [RegisterProvider](#registerprovider) · [Search](#search) · [ReadProject](#readproject) · [ListVersions](#listversions) · [ReadVersion](#readversion) · [ReadChangelog](#readchangelog) · [ResolveFiles](#resolvefiles) · [ResolveDependencies](#resolvedependencies) · [ListFavorites](#listfavorites) · [SetFavorite](#setfavorite) · [PlanInstall](#planinstall) · [PlanUpdate](#planupdate) · [ExecutePlan](#executeplan) · [RegisterCollection](#registercollection) · [RegisterTranslationProvider](#registertranslationprovider)
+[ListProviders](#listproviders) · [DescribeProvider](#describeprovider) · [RegisterProvider](#registerprovider) · [Search](#search) · [ReadProject](#readproject) · [ListVersions](#listversions) · [ReadVersion](#readversion) · [ReadChangelog](#readchangelog) · [ResolveFiles](#resolvefiles) · [ResolveDependencies](#resolvedependencies) · [ListFavorites](#listfavorites) · [SetFavorite](#setfavorite) · [PlanInstall](#planinstall) · [PlanUpdate](#planupdate) · [ExecutePlan](#executeplan) · [RegisterCollection](#registercollection) · [RegisterTranslationProvider](#registertranslationprovider) · [ReadTranslatedProject](#readtranslatedproject) · [ListCollections](#listcollections) · [ReadCollection](#readcollection)
 
 ### ListProviders
 
@@ -625,9 +625,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.catalog.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Publish an owned collection of at most 256 distinct resource references and 64 distinct tags. The collection becomes visible atomically with its plugin. ListCollections and ReadCollection consume the registration; stopping its owner removes it.
 
 **Request fields**
 
@@ -666,9 +666,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.catalog.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Register kind nexa:catalog/translation with Translate: CatalogTranslationInput → CatalogTranslation. The input contains a validated project and requested locale; the output may change display name and summary only. It cannot change provider/project identity or download provenance.
 
 **Request fields**
 
@@ -706,7 +706,127 @@ The next resume receives the reply. Check `nx_reply_success` before
 `nx_Catalog_RegisterTranslationProvider_result`. See the [complete continuation example](../tutorials/page-and-action.md)
 and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
 
+### ReadTranslatedProject
+
+[`CatalogTranslationRequest`](models/catalogtranslationrequest.md) → [`CatalogProject`](models/catalogproject.md)
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `18` |
+| Kind | Query |
+| Permission | `nexa.catalog.read` |
+| Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
+| Idempotency | ReadOnly |
+| Host status | Mapped in recorded snapshot |
+
+Resolve the original project through its catalog provider, then invoke the selected translation provider. Locales are 2–64 ASCII letters/digits/hyphens. Names are 1–1,024 characters and summaries at most 65,536 characters. Failure remains a failure; the caller may explicitly choose to show the untranslated project.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Provider` | `QualifiedId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
+| `Resource` | [`ResourceRef`](models/resourceref.md) | Structured ResourceRef value; follow its linked field contract. |
+| `Locale` | `string` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
+
+**Successful result**
+
+Decode the exact output model after Success. Preserve its identities, revision and schema metadata for subsequent domain operations.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. A read-only classification does not bypass budgets or guarantee a failed request can be retried indefinitely. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Catalog_ReadTranslatedProject(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Catalog_ReadTranslatedProject_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
+### ListCollections
+
+[`PageRequest`](models/pagerequest.md) → `Page<ResourceCollection>` ([wrapper](models.md#containers), [item](models/resourcecollection.md))
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `19` |
+| Kind | Query |
+| Permission | `nexa.catalog.read` |
+| Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
+| Idempotency | ReadOnly |
+| Host status | Mapped in recorded snapshot |
+
+List active registered resource collections with revision-bound pagination. Staged registrations are not exposed. Collection membership is a resource reference, not proof that the resource is installed or downloadable.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Cursor` | `string?` | Opaque continuation or observation cursor. Reuse only in the issuing query/scope; absence and invalidity are different. Nullable; omission is distinct from an empty value. No implicit default is promised by this type. |
+| `Limit` | `long` | Requested bound on returned items. The Host may impose a smaller domain-specific limit. |
+
+**Successful result**
+
+Read Items and continue with NextCursor while preserving the original query. An absent cursor ends the sequence; an invalid cursor is an error.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. A read-only classification does not bypass budgets or guarantee a failed request can be retried indefinitely. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Catalog_ListCollections(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Catalog_ListCollections_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
+### ReadCollection
+
+[`QualifiedRequest`](models/qualifiedrequest.md) → [`ResourceCollection`](models/resourcecollection.md)
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `20` |
+| Kind | Query |
+| Permission | `nexa.catalog.read` |
+| Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
+| Idempotency | ReadOnly |
+| Host status | Mapped in recorded snapshot |
+
+Read an active collection by qualified ID. A stopped or absent provider returns NOT_FOUND; callers must not reuse a cached collection as current authority.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Id` | `QualifiedId` | Identity in this model’s domain. Use the identity issued or declared for this object, not a display name or filesystem path. |
+
+**Successful result**
+
+Decode the exact output model after Success. Preserve its identities, revision and schema metadata for subsequent domain operations.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. A read-only classification does not bypass budgets or guarantee a failed request can be retried indefinitely. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Catalog_ReadCollection(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Catalog_ReadCollection_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/catalog.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/catalog.md) · Apache-2.0.

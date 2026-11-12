@@ -14,7 +14,7 @@ Resolve the plan, start it, then read or watch progress. Verify the final conten
 
 A completed transport is not proof of a matching hash. Custom source-resolver and transfer-provider routes remain unmapped; do not infer them from built-in download support.
 
-The recorded Host maps 8 of 10 operations in this group.
+The recorded Host maps 10 of 10 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
@@ -338,9 +338,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.downloads.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Register kind nexa:downloads/source-resolver with Resolve: DownloadSource → DownloadSource. Resolve/Start invoke it for sources carrying this provider ID. The resolved source must be HTTP(S), contain no embedded credentials or fragment, and either use the Host transport or name a registered transfer provider. Resolver chaining is not recursive.
 
 **Request fields**
 
@@ -389,9 +389,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.downloads.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Register kind nexa:downloads/transfer with ReadChunk: DownloadChunkRequest → DownloadChunk. Provider downloads require one resolved source, exact length and SHA-256. The Host requests sequential chunks of at most 64 KiB, validates offset/length/end, writes staging and verifies the full digest before publishing. Pause/cancel retire the attempt; resume restarts from zero. The provider never receives the destination path.
 
 **Request fields**
 
@@ -432,4 +432,4 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/downloads.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/downloads.md) · Apache-2.0.

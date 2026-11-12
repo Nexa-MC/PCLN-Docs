@@ -14,14 +14,14 @@ Analyze the selected instance, review the returned findings, then prepare and co
 
 Custom rule providers remain unmapped. Preserve unresolved findings and failed repairs; do not report an instance healthy simply because a provider could not run.
 
-The recorded Host maps 3 of 4 operations in this group.
+The recorded Host maps 5 of 5 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
 
 ## Operations
 
-[Analyze](#analyze) · [RegisterRuleProvider](#registerruleprovider) · [PreviewRepair](#previewrepair) · [ExecuteRepair](#executerepair)
+[Analyze](#analyze) · [RegisterRuleProvider](#registerruleprovider) · [PreviewRepair](#previewrepair) · [ExecuteRepair](#executerepair) · [AnalyzeWithProvider](#analyzewithprovider)
 
 ### Analyze
 
@@ -71,9 +71,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.diagnostics.write` |
 | Legal phases | Initialize |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Register kind nexa:diagnostics/rules with Analyze: InstanceSummary → DiagnosticAnalysis. AnalyzeWithProvider is the explicit consumer. The callback receives public instance metadata only; it does not acquire log, file or repair authority.
 
 **Request fields**
 
@@ -189,7 +189,47 @@ The next resume receives the reply. Check `nx_reply_success` before
 `nx_Minecraft_Diagnostics_ExecuteRepair_result`. See the [complete continuation example](../tutorials/page-and-action.md)
 and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
 
+### AnalyzeWithProvider
+
+[`ProviderInstanceQuery`](models/providerinstancequery.md) → [`DiagnosticAnalysis`](models/diagnosticanalysis.md)
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `5` |
+| Kind | Query |
+| Permission | `nexa.minecraft.diagnostics.read` |
+| Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
+| Idempotency | ReadOnly |
+| Host status | Mapped in recorded snapshot |
+
+Invoke an active rule provider for an admitted instance and recheck its revision afterward. The result must name that instance and contain at most 128 reports and 128 issues. The Host namespaces report codes and overwrites correlation/operation IDs so a provider cannot impersonate Host diagnostics.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Provider` | `QualifiedId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
+| `Instance` | `EntityId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
+
+**Successful result**
+
+Decode the exact output model after Success. Preserve its identities, revision and schema metadata for subsequent domain operations.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. A read-only classification does not bypass budgets or guarantee a failed request can be retried indefinitely. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Minecraft_Diagnostics_AnalyzeWithProvider(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Minecraft_Diagnostics_AnalyzeWithProvider_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/minecraft-diagnostics.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/minecraft-diagnostics.md) · Apache-2.0.

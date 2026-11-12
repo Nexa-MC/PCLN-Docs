@@ -9,7 +9,7 @@ not transport opcodes. The current catalog uses its own non-overlapping IDs.
 The C bindings use the `nx_Legacy_*` prefix. Results in this compatibility catalog
 are generic AbiValue; use the matching legacy facade's decoder instead of assuming
 that a similarly named current method returns the same shape. The current Host
-mapping count does not add these slots to the 346-operation catalog.
+mapping count does not add these slots to the current-operation catalog.
 
 ## Lifecycle and authority
 
@@ -246,4 +246,4 @@ Resources/1 is the retained cleanup operation listed above. Events/3 is reserved
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/legacy.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/legacy.md) · Apache-2.0.

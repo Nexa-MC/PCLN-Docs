@@ -41,6 +41,7 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 - [Minecraft.Content.ReadIntegrity](../minecraft-content.md#readintegrity)
 - [Minecraft.Content.Verify](../minecraft-content.md#verify)
 - [Minecraft.Content.ListTrash](../minecraft-content.md#listtrash)
+- [Minecraft.Content.PreviewClearTrash](../minecraft-content.md#previewcleartrash)
 - [Minecraft.Worlds.List](../minecraft-worlds.md#list)
 - [Minecraft.Worlds.Read](../minecraft-worlds.md#read)
 - [Minecraft.Worlds.ReadMetadata](../minecraft-worlds.md#readmetadata)
@@ -48,6 +49,7 @@ This is the exact wire model. Non-nullable fields are required; field types do n
 - [Minecraft.Worlds.ListDataPacks](../minecraft-worlds.md#listdatapacks)
 - [Minecraft.Worlds.Backup](../minecraft-worlds.md#backup)
 - [Minecraft.Worlds.ReadHealth](../minecraft-worlds.md#readhealth)
+- [Minecraft.Worlds.ListBackups](../minecraft-worlds.md#listbackups)
 - [Minecraft.Servers.ReadStatus](../minecraft-servers.md#readstatus)
 - [Accounts.ReadPublic](../accounts.md#readpublic)
 - [Accounts.Select](../accounts.md#select)
@@ -79,4 +81,4 @@ For nested uses, follow the model links from the owning request or result. A suc
 
 ---
 
-Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/api/models/entityrequest.md) · Apache-2.0.
+Source: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/api/models/entityrequest.md) · Apache-2.0.

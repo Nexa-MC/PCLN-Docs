@@ -14,14 +14,14 @@ Read the world identity and health, then prepare data-pack changes or other plan
 
 Delete and restore routes are not fully mapped in this snapshot. Never substitute a live directory overwrite for an unavailable restore operation.
 
-The recorded Host maps 10 of 13 operations in this group.
+The recorded Host maps 16 of 16 operations in this group.
 A mapping is subject to permission, phase, scope, platform and business preconditions.
 [Host snapshot](../host-support.md) identifies the source revision; negotiate against
 the actual installed Host.
 
 ## Operations
 
-[List](#list) · [Read](#read) · [ReadMetadata](#readmetadata) · [Copy](#copy) · [Rename](#rename) · [PlanDelete](#plandelete) · [ListDataPacks](#listdatapacks) · [PlanSetDataPack](#plansetdatapack) · [ApplyDataPackPlan](#applydatapackplan) · [Backup](#backup) · [PreviewRestore](#previewrestore) · [Restore](#restore) · [ReadHealth](#readhealth)
+[List](#list) · [Read](#read) · [ReadMetadata](#readmetadata) · [Copy](#copy) · [Rename](#rename) · [PlanDelete](#plandelete) · [ListDataPacks](#listdatapacks) · [PlanSetDataPack](#plansetdatapack) · [ApplyDataPackPlan](#applydatapackplan) · [Backup](#backup) · [PreviewRestore](#previewrestore) · [Restore](#restore) · [ReadHealth](#readhealth) · [ListBackups](#listbackups) · [PrepareRestoreDestination](#preparerestoredestination) · [Delete](#delete)
 
 ### List
 
@@ -224,9 +224,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.worlds.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Prepare removal of one admitted world at its current revision. Delete consumes this plan and moves the world into the instance content trash. It does not immediately erase the world bytes.
 
 **Request fields**
 
@@ -416,9 +416,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.worlds.read` |
 | Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
 | Idempotency | ReadOnly |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Prepare restoration using a backup returned by Worlds.ListBackups and a destination returned by Worlds.PrepareRestoreDestination for that same world. ExpectedRevision belongs to the backup; the destination separately binds the original world revision. The owner restores into a new directory and preserves the original world.
 
 **Request fields**
 
@@ -457,9 +457,9 @@ and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone gu
 | Permission | `nexa.minecraft.worlds.write` |
 | Legal phases | Active |
 | Idempotency | RequiredKey |
-| Host status | **Not mapped in recorded snapshot** |
+| Host status | Mapped in recorded snapshot |
 
-The recorded Host cannot provide this operation. Keep it optional or require a Host that explicitly implements it; do not return synthetic success.
+Consume the world restore plan after confirmation. The owner verifies the snapshot, refuses existing or linked destinations, restores to staging, validates level.dat and publishes the new directory. Running games and stale world revisions block restoration.
 
 **Request fields**
 
@@ -524,7 +524,128 @@ The next resume receives the reply. Check `nx_reply_success` before
 `nx_Minecraft_Worlds_ReadHealth_result`. See the [complete continuation example](../tutorials/page-and-action.md)
 and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
 
+### ListBackups
+
+[`EntityRequest`](models/entityrequest.md) → `Page<BackupSummary>` ([wrapper](models.md#containers), [item](models/backupsummary.md))
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `14` |
+| Kind | Query |
+| Permission | `nexa.minecraft.worlds.read` |
+| Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
+| Idempotency | ReadOnly |
+| Host status | Mapped in recorded snapshot |
+
+List snapshots belonging to the admitted world. Returned backup IDs are caller-owned and specific to the world; they cannot be exchanged with general Backups IDs. A maximum of 256 snapshots is returned.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Id` | `EntityId` | Identity in this model’s domain. Use the identity issued or declared for this object, not a display name or filesystem path. |
+
+**Successful result**
+
+Read Items and continue with NextCursor while preserving the original query. An absent cursor ends the sequence; an invalid cursor is an error.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. A read-only classification does not bypass budgets or guarantee a failed request can be retried indefinitely. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Minecraft_Worlds_ListBackups(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Minecraft_Worlds_ListBackups_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
+### PrepareRestoreDestination
+
+[`WorldRestoreDestination`](models/worldrestoredestination.md) → `EntityId`
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `15` |
+| Kind | Query |
+| Permission | `nexa.minecraft.worlds.read` |
+| Legal phases | Initialize, PostInitialize, Checkup, Finalize, Active |
+| Idempotency | ReadOnly |
+| Host status | Mapped in recorded snapshot |
+
+Admit a new world name under the original instance’s saves directory, bound to the current world revision. The name must be a safe single path component and cannot begin with .nexa-. The destination must not exist. The returned EntityId is authority for PreviewRestore, not a path.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `World` | `EntityId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
+| `Name` | `string` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. |
+| `ExpectedRevision` | `Revision` | Revision observed before this change. Preserve it exactly; a mismatch requires re-reading and reconciling the target. |
+
+**Successful result**
+
+Decode the exact output model after Success. Preserve its identities, revision and schema metadata for subsequent domain operations.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. A read-only classification does not bypass budgets or guarantee a failed request can be retried indefinitely. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Minecraft_Worlds_PrepareRestoreDestination(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Minecraft_Worlds_PrepareRestoreDestination_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
+### Delete
+
+[`PlanRequest`](models/planrequest.md) → [`OperationRef`](models/operationref.md)
+
+| Property | Contract |
+| --- | --- |
+| Local SDK method ID | `16` |
+| Kind | Operation |
+| Permission | `nexa.minecraft.worlds.write` |
+| Legal phases | Active |
+| Idempotency | RequiredKey |
+| Host status | Mapped in recorded snapshot |
+
+Consume a PlanDelete result after Host confirmation. The world/content owner verifies the world identity, revision, source file facts and running-game state. RestoreTrash can recover the moved directory; ClearTrash is a separate permanent operation.
+
+**Request fields**
+
+| Field | Type | Meaning |
+| --- | --- | --- |
+| `Plan` | `EntityId` | Identity or revision in this model’s domain; preserve ownership and exact spelling. |
+| `ExpectedRevision` | `Revision` | Revision observed before this change. Preserve it exactly; a mismatch requires re-reading and reconciling the target. |
+| `ConfirmationToken` | `string?` | Domain value named by this field; additional accepted values and bounds are determined by the operation and Host policy. Nullable; omission is distinct from an empty value. No implicit default is promised by this type. |
+
+**Successful result**
+
+Work has been admitted. Read or watch the owned operation through Tasks to establish its terminal result; admission is not completion.
+
+**Failure and retry**
+
+Unavailable capability, denied permission, wrong phase, malformed schema or foreign ownership fails the call. Supply a key for the intended effect and retain that key and inputs while resolving an uncertain reply. Do not retry with changed inputs under the same key. Re-read after revision conflicts; cancellation does not prove rollback. Preserve structured errors; see [recovery guidance](../errors.md).
+
+**C binding** (call fragment; the caller supplies the encoded request and buffers):
+
+```c
+nx_Minecraft_Worlds_Delete(&reply, request, &options);
+```
+
+The next resume receives the reply. Check `nx_reply_success` before
+`nx_Minecraft_Worlds_Delete_result`. See the [complete continuation example](../tutorials/page-and-action.md)
+and [Wasm ownership rules](../wasm-sdk.md). This fragment is not a standalone guest.
+
 
 ---
 
-来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/e721c6232c1ac280d3a1d6ac7a4c68dacfd97fc6/docs/zh-CN/api/minecraft-worlds.md) · Apache-2.0.
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/3ad1c7f30d1b6d7d12b7699c38907cfc680b500e/docs/zh-CN/api/minecraft-worlds.md) · Apache-2.0.
