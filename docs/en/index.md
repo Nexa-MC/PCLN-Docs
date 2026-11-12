@@ -2,12 +2,12 @@
 layout: home
 hero:
   name: "NexaCL Docs"
-  text: "Build toward a goal, with XSR"
-  tagline: "Detailed theme, Sidecar and NXML tutorials, references and executable examples for Alpha 14."
+  text: "Build extensions with clear contracts"
+  tagline: "Step-by-step plugin tutorials, task guides and API reference. Versioned theme, Sidecar and NXML examples."
   actions:
     - theme: brand
-      text: "Start with your goal"
-      link: /en/development/
+      text: "Build your first plugin"
+      link: /en/plugin-sdk/quickstart
     - theme: alt
       text: "Create a theme"
       link: /en/theme-packs/
@@ -22,6 +22,9 @@ hero:
     dark: /icons/neon-n-dark-transparent.svg
     alt: NexaCL
 features:
+  - title: "Plugin SDK · ABI 100"
+    details: "Executable tutorials, lifecycle, permissions, 346 operation contracts and explicit Host support."
+    link: /en/plugin-sdk/
   - title: "Goals and XSR"
     details: "Define outcomes, ownership, contracts and evidence."
     link: /en/development/

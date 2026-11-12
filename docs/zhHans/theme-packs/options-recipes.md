@@ -1,5 +1,9 @@
 # 设置控件与实时应用实战
 
+把参数编辑器连接到可见样式变化，并保留尚未完成的输入。编辑草稿与已经提交的合法值应明确区分。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标是让用户调节外观参数，而不是给主题执行自定义 UI 代码。Host 从声明生成编辑器，负责键盘、触屏、无障碍、草稿、授权与保存。主题只声明类型、兼容的 control 和消费者。
 
 ## 完整工作坊
@@ -110,3 +114,7 @@ File 通过 Host 选择器得到一个值和来源绑定的授权；Files 是路
 - [Nexa.Services.Themes.Contracts/ThemeOptionCondition.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes.Contracts/ThemeOptionCondition.cs)
 - [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
 - [Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs)
+
+## 检查结果
+
+拖动滑块、输入不完整值并取消编辑，确认最后有效外观保持可用。

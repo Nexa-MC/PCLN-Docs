@@ -1,5 +1,9 @@
 # 综合实验：状态、保留列表与完整构建
 
+使用固定启动器源码运行完整开发实验。它把清单准入、样式编译和 NXML 行为连接起来，便于区分每项检查证明的层次。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 验收目标：状态更新后文本变化；按钮只发语义意图；不可用时禁止激活；同一列表条目的输入草稿与选择区在更新/重排后保留；错误候选被拒绝，旧树仍有效。实验同时验证主题与受控函数扩展，展示 XSR 的边界如何协作。
 
 ## 完整项目与运行
@@ -245,3 +249,7 @@ out/lab/Authoring.Lab /absolute/path/to/PCLN-Docs
 
 - [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
 - [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
+
+## 检查结果
+
+运行托管及 NativeAOT 实验，保存输出，并标明仍需要真实设备验证的平台行为。

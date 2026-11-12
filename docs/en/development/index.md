@@ -1,46 +1,48 @@
-# Third-party development guide
+# Choose a development route
 
-Use this guide to add appearance, interaction, or independently owned behavior to NexaCL. The implementation baseline is **Firefly Alpha 14, `v2.0.0.alpha.14`**. Examples refer to that tag; architectural roadmap items are not presented as available APIs.
+Start with what the user should be able to do. NexaCL offers several extension
+boundaries, each with a different owner, package format and compatibility contract.
+Choosing the right boundary avoids building a feature on an API that cannot provide it.
 
-You should be able to read C#, JSON, XML, and shell commands. We skip general variables, loops, classes, and JSON syntax. **NTP, NSS, NXML, and Sidecar-specific syntax and semantics are taught explicitly.** Each route includes complete files, steps, expected outcomes, failure handling, and verification.
+## Choose by outcome
 
-## Choose an extension by the outcome
+| Goal | Start here | Owner and boundary |
+| --- | --- | --- |
+| Build an installable plugin with pages, actions and application calls | [Plugin SDK](../plugin-sdk/) | Wasm executed by PluginSidecar; Host-granted ABI 100 capabilities |
+| Change colors, spacing, fonts and theme options | [NTP/1 themes](../theme-packs/) | Declarative styles and admitted resources; no new executable behavior |
+| Implement a separately supervised native endpoint | [Sidecar](../sidecar/) | Binary protocol, authenticated process lifecycle and publisher admission |
+| Contribute Host pages or understand retained UI behavior | [NXML](../nxml/) | Host rendering, stable identities and explicit state/input contracts |
+| Maintain a historical PXML application | [PXML compatibility reference](../pxml-compiler/) | Matching legacy compiler and runtime; separate from current plugin NXML |
 
-| User outcome | Route | Available work | Boundary |
-| --- | --- | --- | --- |
-| Change colors, spacing, fonts, runtime icons, or motion | NTP/1 theme | NSS, generated option controls, packaged resources, authorized media | No commands, NXML replacement, or executable code |
-| Own new behavior/state and expose a finite resource-page form | Sidecar | Commands, queries, state, events, streams, admitted UI modules | Separate process, publisher trust, and explicit Host grants |
-| Learn or contribute Host pages, layout, bindings, or dynamic lists | NXML | Host components, owned fragments, state projection, input semantics | Shared by Host and negotiated schema-3 Sidecars; not theme page injection |
-| Change an admitted caption or observe exposed search signals | Sidecar extensions | Caption patch, Event/Intent bindings, finite Function Patch | Exact Host targets and ABIs, not arbitrary method interception |
-| Develop a legacy `.pnp` plugin | Legacy SDK documentation | The corresponding legacy product contracts | Separate from `.nsc`, NXML, and NTP/1 |
+For example, changing a heading color belongs to a theme. A page that reads
+instances and runs a confirmed action belongs to a plugin with those capabilities.
+An independent native service may need the Sidecar protocol. A visual mockup alone
+does not decide who owns the underlying data or operation.
 
-“A nice status panel” is not yet a technical decision. Ask whether you only change appearance or own new state, who executes the action, and whether the Host exposes the required slot. Those answers select the implementation.
+## Use the correct version baseline
 
-## Reading route
+The Plugin SDK chapters describe standalone SDK 0.2.0-alpha.10 and a recorded Host
+implementation snapshot. They explicitly mark unmapped operations. The theme,
+native Sidecar and Host NXML examples remain pinned to `v2.0.0.alpha.14` so their
+source-level commands are reproducible. PXML is a historical compatibility section.
+Do not combine instructions from these baselines without checking their contracts.
 
-1. [Develop toward an observable goal](./goal-first): write acceptance outcomes first.
-2. [XSR architecture and author responsibilities](./xsr-architecture): distinguish messages, state, and process ownership.
-3. Follow [themes](../theme-packs/), [Sidecar](../sidecar/), or [NXML](../nxml/) for your actual goal.
-4. Use the [worked design](./walkthrough) to include failure, cancellation, and retirement in the first implementation.
-5. Build the sample, verify on the target OS, then publish the package, compatibility range, and evidence.
+## Follow one working path
 
-You do not need the complete frame protocol to change a theme. A visible form, however, does not establish correct state ownership or lifecycle behavior.
+1. Read [goal-first development](goal-first) and name a visible success and failure.
+2. Read [ownership and XSR](xsr-architecture) if the feature crosses component boundaries.
+3. Build the complete example for the chosen route before changing its contracts.
+4. Add one behavior, verify its result, then test denial, cancellation and owner retirement.
+5. Distribute the tested artifact with its version requirements and known limits.
 
-## What is available now
+The [resource-note design](walkthrough) demonstrates how to reason about persistence
+and input ownership. It is labelled as a design, not presented as a shipped feature.
+The [platform guide](platform-and-runtime) explains why an unavailable measurement
+must not be interpreted as a real zero.
 
-This repository provides the Host, portable `Nexa.Sidecar.Protocol` / `Nexa.Sidecar.Transport`, and finite UI contracts. The independent Plugin SDK, executor, and package/UI-IR freeze belong to another project. Project-reference examples here teach **source-level protocol integration**; they do not invent a ready-to-install general SDK NuGet package.
+## Read examples as evidence
 
-The production launcher requires a trusted publisher signature. Local protocol tests do not need production keys, but are not production installation authorization. Non-executable themes use separate format and resource admission.
-
-## Working with examples
-
-The [examples directory](https://github.com/Nexa-MC/PCLN-Docs/tree/main/examples) contains complete buildable files. Partial snippets identify their insertion context. Run a complete example first, then change one contract at a time. Record “input → expected output → command → actual result.”
-
-A successful test, production installation, and authorization for an extension target are different claims. State them separately. A local screenshot does not replace platform, cancellation, or lifecycle evidence.
-
-
-## Implementation references
-
-- [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
-- [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
-- [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+Complete examples are in the [website repository](https://github.com/Nexa-MC/PCLN-Docs/tree/main/examples)
+and the [SDK repository](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/tree/main/samples).
+A compile checks syntax and linkage; an integration test checks actual Host behavior;
+production admission checks publisher and package authority. Keep those claims separate.

@@ -1,5 +1,9 @@
 # Current state, events, credit-based streams
 
+Choose State for the latest authoritative value, Event for an occurrence, and a bounded stream for ordered transfer. Their recovery and backpressure rules differ; using one as another hides data loss.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 State provides current truth, Event an occurrence, and Stream continuous output at consumer pace. They are different contracts.
 
 ## Snapshot before deltas
@@ -87,3 +91,7 @@ Inspect normal End, remote rejection, cancellation, timeout, session loss. Early
 - [Nexa.Sidecar.Protocol/SidecarDataMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarDataMessages.cs)
 - [Nexa.Sidecar.Protocol/SidecarStreamMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarStreamMessages.cs)
 - [Nexa.Xsr.Runtime/Sidecar/SidecarHostSession.Streams.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarHostSession.Streams.cs)
+
+## Check your result
+
+Force a slow consumer, a sequence gap and cancellation. Confirm that bounded queues stay bounded and that the consumer requests resynchronization instead of displaying incomplete state as current.

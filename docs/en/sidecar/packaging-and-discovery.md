@@ -1,5 +1,9 @@
 # Native packaging, discovery, trust, supervision
 
+Package the native executable for a specific operating system and architecture, then understand how discovery, publisher trust and supervision admit it. A protocol self-test is separate from installation trust.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Deliver a verified capability to its intended Host with explicit installation prerequisites. This describes A14 native .nsc, not the independent SDK package format.
 
 ## Native .nsc
@@ -58,3 +62,7 @@ For each RID provide image/signature/version/architecture/features/targets/licen
 - [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nsc-and-regional-policy.md)
 - [Nexa.Sidecar.Transport/SidecarExecutable.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Transport/SidecarExecutable.cs)
 - [Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs)
+
+## Check your result
+
+Verify the target binary, signature requirements and executable permissions. Test a missing or invalid signature and confirm that process restart does not silently bypass admission.

@@ -1,5 +1,9 @@
 # Manifest reference: identity, values, versions
 
+Define identity, capabilities and typed options in the manifest. The value kind controls validation and persistence; the selected editor controls presentation.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 The manifest is an input contract. Field names are case-sensitive. Unknown/duplicate fields, mismatched JSON types, and invalid defaults reject admission; behavior fields are not silently ignored.
 
 ## Every root field
@@ -93,3 +97,7 @@ Options are keyed by source identity and schema. Another package with the same t
 - [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
 - [Nexa.Services.Themes.Contracts/ThemeContracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes.Contracts/ThemeContracts.cs)
 - [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
+
+## Check your result
+
+Check defaults, bounds and type mismatches, then reopen the theme to verify committed values.

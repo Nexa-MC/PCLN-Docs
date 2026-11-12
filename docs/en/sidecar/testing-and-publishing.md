@@ -1,5 +1,9 @@
 # Acceptance, testing, distribution
 
+Collect evidence for the actual artifact you distribute. Cover process bootstrap, contract failures, cancellation, retirement and platform behavior before writing compatibility claims.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Return to the [goal](/en/development/goal-first): user action, current fact, success/failure, teardown. Test outcomes rather than private call counts.
 
 ## Four evidence layers
@@ -75,3 +79,7 @@ Claim only verified outcomes. Develop later capabilities as new bounded slices, 
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
 - [docs/xsr/sidecar-protocol.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-protocol.md)
 - [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nsc-and-regional-policy.md)
+
+## Check your result
+
+Run the documented managed and NativeAOT checks and retain their logs with the source revision. Label untested platforms and distinguish local protocol acceptance from production installation.

@@ -1,5 +1,9 @@
 # Conditions, lists, and virtualization
 
+Use structural directives to create and remove subtrees, and stable item identity to retain list state. Visibility changes and structural removal have different lifetimes.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 Structural directives instantiate or remove blueprint subtrees; they are not opacity switches.
 
 ## If and Switch
@@ -47,3 +51,7 @@ Only viewport + overscan items receive slots. Scrolling preserves slots that rem
 Use runtime If/feature for observable state and `x:IfBuild` for compile-time platform/edition branches.
 
 Next: [Components, templates, and slots](./Components-and-Templates).
+
+## Check your result
+
+Insert, remove and reorder items while a row is focused, then test a list large enough to use virtualization.

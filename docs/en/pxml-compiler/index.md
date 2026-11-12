@@ -1,6 +1,6 @@
-> Compatibility reference: this section describes the separate legacy SDK/PXML, not NexaCL Alpha 14 Sidecar or shared NXML APIs. Start current work from [Goals and XSR](../development/).
-
 # PXML
+
+This is the historical PXML 1.0 toolchain. Use the matching compiler/runtime; current plugin pages use [NXML through ABI 100](../plugin-sdk/).
 
 This section brings together the PXML UI tutorials and the official compiler documentation.
 
@@ -25,3 +25,11 @@ Every release archive contains four programs, five static libraries, public head
 The implementation uses bump arenas, interned 32-bit IDs, contiguous PXIR, linear optimizer passes, open-addressed tables, and exact binary layout. Hot scanning primitives dispatch to AVX2 on supported x86-64 Clang builds; ARM64 uses NEON.
 
 The parser rejects DTDs, external entities, and arbitrary processing instructions. PXIR/PXB readers validate structure and fingerprints. The current fingerprint detects corruption and nondeterminism; it is not a release signature.
+
+## Start or maintain a project
+
+New NexaCL plugin authors should use the [plugin template](../plugin-sdk/quickstart).
+For an existing PXML application, begin with the [first-page tutorial](ui-tutorial/First-Page),
+then follow syntax, layout, bindings and components. Preserve the matching runtime
+version alongside the compiler. The compiler emits a blueprint; it does not open
+a test window or implement application commands.

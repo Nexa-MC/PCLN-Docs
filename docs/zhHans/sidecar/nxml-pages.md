@@ -1,5 +1,9 @@
 # 共享 NXML、独立页面与引导
 
+把协商后的 Sidecar UI 契约连接到宿主渲染的 NXML。区分页面资源、模型投影和输入意图，避免可见控件成为未声明的权限入口。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标：声明一个属于当前 Sidecar 会话的页面，从导航入口打开，输入后发出命令，退役后恢复宿主页面。Alpha 14 使用共享 NXML schema 3；不是把 XML 塞进旧 schema 2，也不发送内部 IR。
 
 ## 协商与所有权
@@ -77,3 +81,7 @@ OnboardingPage 的继续按钮使用 `ui.sidecar.onboarding.continue`。继续�
 验收至少包括：缺少 feature 被拒绝、hash 错误、超预算、错误状态引用、实际点击与参数值、动态重载保留草稿、切换页面、停用取消、崩溃移除和旧 exposure 拒绝。仅 Encode/Decode 通过不能宣称真实 UI 交互已通过。
 
 依据：[SidecarNxmlDocument](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarNxmlDocument.cs)、[运行时](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/XsrNxmlModuleRuntime.cs)、[真实页面测试](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/tests/Nexa.Desktop.Tests/SidecarNxmlPresentationTests.cs)。
+
+## 检查结果
+
+加载合法页面，拒绝无效资源或 schema，再停用所有者。界面贡献应退出，不能留下仍可触发的输入路径。

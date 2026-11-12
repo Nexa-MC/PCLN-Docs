@@ -1,14 +1,15 @@
 {
   "name": "pcln-docs",
   "version": "1.1.0",
-  "description": "PCL N 用户与插件开发文档",
+  "description": "NexaCL developer tutorials, task guides and versioned API reference",
   "main": "index.js",
   "scripts": {
     "docs:sync": "node scripts/sync-plugin-sdk-docs.mjs",
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "deploy:cf": "pnpm docs:build && pnpm dlx wrangler@4 pages deploy .vitepress/dist --project-name=pcln-docs"
+    "deploy:cf": "pnpm docs:build && pnpm dlx wrangler@4 pages deploy .vitepress/dist --project-name=pcln-docs",
+    "docs:check": "node scripts/verify-docs.mjs"
   },
   "keywords": [
     "Minecraft"

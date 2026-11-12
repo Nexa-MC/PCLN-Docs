@@ -1,5 +1,9 @@
 # State bindings, drafts, intent
 
+Project authoritative state into the view and send input as intent. Preserve editing drafts until they can be validated and committed.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Local facts drive presentation; UI requests effects. Renderer performs no Sidecar/HTTP/service calls. Host composition owns asynchronous work.
 
 ## Declare typed ownership first
@@ -95,3 +99,7 @@ Continue with [owned dynamic content](./dynamic-and-reload).
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
 - [Nexa.Xsr.Renderer/XsrUiStateBridge.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer/XsrUiStateBridge.cs)
 - [Nexa.Xsr.Renderer/XsrUiTextInput.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer/XsrUiTextInput.cs)
+
+## Check your result
+
+Update background state while a field is being edited and confirm the gesture or draft is not silently lost.

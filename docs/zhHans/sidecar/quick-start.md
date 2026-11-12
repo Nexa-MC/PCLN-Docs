@@ -1,5 +1,9 @@
 # 从可工作的 Sidecar 开始
 
+构建一个能够认证、注册整数查询、返回结果并正常退出的最小端点。先跑通进程生命周期，后续章节都依赖这个基础。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标：构建一个独立原生端点，完成真实进程启动、认证、注册、Int32 查询、健康检查与清理。先读[目标与 XSR](../development/)，再建立这个闭环并添加业务；不要先画 UI 再用硬编码模拟远程完成。
 
 ## 1. 获取明确的版本
@@ -87,3 +91,7 @@ out/sidecar/Example.Sidecar --recipes
 - [Nexa.Sidecar.Transport/SidecarBootstrap.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Transport/SidecarBootstrap.cs)
 - [Nexa.Sidecar.Protocol/SidecarHandshake.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarHandshake.cs)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## 检查结果
+
+分别运行真实进程自测和编解码示例，记录实际结果，再使用目标平台的 NativeAOT 产物重复进程测试。

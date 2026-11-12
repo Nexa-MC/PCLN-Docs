@@ -1,5 +1,9 @@
 # Sidecar authoring: independently owned capabilities
 
+Choose this route when you are implementing a separately supervised native Sidecar using the launcher’s binary protocol. For an installable Wasm plugin hosted by PluginSidecar, start with the Plugin SDK tutorial instead.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 A Sidecar executes independently. Host owns trust, sessions, registries, mirrors, permissions, and finite presentation; the peer owns business code, private state, and dependencies. The model is “register once → execute numeric contracts → observe state → render locally.”
 
 ## Decide whether a process is needed
@@ -49,3 +53,7 @@ Codec success is not a target grant; local IPC is not production installation; L
 
 
 New: [shared NXML/pages](nxml-pages), [automatic NFP3 functions](automatic-functions), [platform/runtime](../development/platform-and-runtime).
+
+## Check your result
+
+Build the first Sidecar and run its real-process self-test before adding UI or business contracts. Passing this test establishes protocol behavior, not production publisher approval.

@@ -1,5 +1,9 @@
 # Signals, captions, finite Function Patch
 
+Observe exposed signals or apply a permitted patch without taking ownership of the Host’s private methods. Match the target, signal kind and payload contract before registering the extension.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Choose by outcome: observing search completion, changing a caption, and transforming a displayed result use distinct contracts. Publisher trust is not arbitrary method authority.
 
 ## Exact product targets
@@ -108,3 +112,7 @@ Retirement/cancellation is checked between instructions and before commit. It pr
 
 
 Alpha 14 automatic targets are not limited to the two explicit sites used by these legacy recipes. See [NFP3 and compiled catalogs](automatic-functions).
+
+## Check your result
+
+Trigger one matching signal and one nonmatching target. Then remove the owner and confirm that its observation or patch no longer affects Host behavior.

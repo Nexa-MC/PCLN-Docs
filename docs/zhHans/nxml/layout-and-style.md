@@ -1,5 +1,9 @@
 # 布局、滚动与两套 NSS
 
+调整页面前，先区分布局约束、滚动所有者和样式方言。内容与视口变化后，保留布局仍应有效。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标：把内容放在清晰、可缩放的位置，输入命中与视觉一致，并避免宽泛样式破坏虚拟列表。先用 NXML 表达结构，再选择适合的外观语言。
 
 ## 容器与尺寸
@@ -94,3 +98,7 @@ ProgressRing 是 Progress + Ring/Indeterminate 的包装，正常加载页由 Ho
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssStyleSheet.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssStyleSheet.cs)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs)
 - [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+
+## 检查结果
+
+使用长文本和溢出列表调整窗口，确认预期容器负责滚动。

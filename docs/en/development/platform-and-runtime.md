@@ -1,5 +1,9 @@
 # Platform capabilities and runtime data
 
+Interpret platform capabilities and runtime measurements without turning missing data into false facts. These are versioned product behaviors; they do not automatically create a Sidecar or plugin permission.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Alpha 14 features must be consumed according to observed platform availability. A field's existence does not prove a measurement exists on this device. Product features below do not automatically create new Sidecar permissions or Host APIs.
 
 ## Resource governance
@@ -25,3 +29,7 @@ Configured heap_mib is not measured heap; private bytes is neither native nor co
 Per-run retention is30 days, daily aggregates/error groups90 days, explicitly submitted questionnaires180 days. Necessary/diagnostic tiers, prerelease diagnostic policy and stable revocation remain. Every30th primary UI start invites a dismissible questionnaire; announcements are plain text. Dismissing a survey does not authorize submission.
 
 See the source repository's [platform guide](https://github.com/Nexa-MC/NexaCL/blob/main/docs/platform-integration.md) and [runtime diagnostics](https://github.com/Nexa-MC/NexaCL/blob/main/docs/runtime-diagnostics.md). LAN handoff/streaming, AI backends and later display adaptations remain deferred.
+
+## Check your result
+
+Test unavailable measurements as well as actual zero values. Confirm that unsupported platform actions remain unavailable and that background work respects deactivation and recovery.

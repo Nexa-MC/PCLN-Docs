@@ -1,5 +1,9 @@
 # NFP3 与自动函数目录
 
+自动函数目录只用于宿主公开的目标和参数契约。NFP3 是经过协商的有限函数补丁格式，不能被解释为任意方法拦截。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 Alpha 14 不再只有少数手工注册的函数站点。产品程序集在 C# lowering 后、裁剪／NativeAOT 前插桩，生成对应程序集的 `.nfp` 目录。Sidecar 仍提交有限程序，不加载 CLR 程序集、不改写运行时 IL、不在函数执行中同步 IPC。
 
 ## 从目标倒推操作
@@ -57,3 +61,7 @@ opaque 托管值只在 Host 内以完全相同类型转发，不跨 IPC。byref-
 验证必须包含目标目录一致性、正确／错误 shape、异常、取消、停用竞争、无程序分配成本和真实 NativeAOT。不能仅凭一个字节编码示例宣称能改变任意业务。
 
 完整源码契约：[automatic-function-instrumentation.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/automatic-function-instrumentation.md)。
+
+## 检查结果
+
+核对目标发现、参数与结果类型、冲突拒绝。未知目标或版本不兼容必须在替换发生前失败。

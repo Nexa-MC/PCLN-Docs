@@ -1,5 +1,9 @@
 # NSS/1 语言：从规则到计算样式
 
+使用支持的选择器、令牌和条件编写 NSS/1。它是有限主题语言，熟悉 CSS 不代表所有 CSS 属性都可使用。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 NSS/1 是有限、类型化、无脚本的主题样式语言，不能按浏览器 CSS 的全部功能理解。本文片段用于 `theme.json.styles` 中的文件，由 `NssThemeCompiler` 编译；宿主基础 `NssStyleSheet` 的较小语法见[NXML 样式](../nxml/layout-and-style)。
 
 ## 一个最小程序
@@ -100,3 +104,7 @@ NSS 总量 1 MiB、最多 64 文件、4096 规则、512 token、128 组关键帧
 - [docs/xsr/nss-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nss-v1.md)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeSelectors.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeSelectors.cs)
+
+## 检查结果
+
+编译合法规则，验证未知属性被拒绝，并在明暗模式检查规则顺序。

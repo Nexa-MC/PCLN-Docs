@@ -1,5 +1,9 @@
 # Sidecar 编写：以独立能力完成目标
 
+需要直接实现受监督的独立原生 Sidecar、使用启动器二进制协议时，阅读本路线。若要编写由 PluginSidecar 执行的 Wasm 插件，应从插件 SDK 教程开始。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 Sidecar 是独立执行进程。Host 负责信任、会话、注册表、本地状态镜像、权限与有限展示；Sidecar 负责自己的业务代码、私有状态与依赖。设计目标是“注册一次 → 按数字契约执行 → 通过状态观察 → 在 Host 本地渲染”。
 
 ## 先判断是否需要 Sidecar
@@ -49,3 +53,7 @@ Sidecar 是独立执行进程。Host 负责信任、会话、注册表、本地�
 
 
 新增：[共享 NXML 与页面](nxml-pages)、[NFP3 自动函数](automatic-functions)、[平台与运行数据](../development/platform-and-runtime)。
+
+## 检查结果
+
+添加界面或业务契约前，先构建首个 Sidecar 并运行真实进程自测。该测试证明协议行为，不代表取得生产发布者准入。

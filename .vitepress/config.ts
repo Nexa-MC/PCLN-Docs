@@ -65,85 +65,50 @@ function authorSidebar(kind: AuthorArea, english = false) {
   return sections;
 }
 
-const pluginSdkSidebar = [
-  {
-    text: '入门',
-    collapsed: false,
-    items: [
-      { text: 'SDK 概览', link: '/plugin-sdk/' },
-      { text: '学习路线', link: '/plugin-sdk/Learning-Path' },
-      { text: '快速开始', link: '/plugin-sdk/Getting-Started' },
-      { text: '从零完成第一个插件', link: '/plugin-sdk/Tutorial-First-Plugin' },
-      { text: '桌面端安装与调试', link: '/plugin-sdk/Desktop-Installation-and-Debugging' },
-    ],
-  },
-  {
-    text: '核心概念',
-    collapsed: true,
-    items: [
-      { text: '架构与边界', link: '/plugin-sdk/Architecture-and-Boundaries' },
-      { text: 'NuGet 包', link: '/plugin-sdk/NuGet-Packages' },
-      { text: '插件身份与版本', link: '/plugin-sdk/Plugin-Identity-and-Versioning' },
-      { text: '生命周期与注册项', link: '/plugin-sdk/Lifecycle-and-Registrations' },
-      { text: '注册表与运行时注入', link: '/plugin-sdk/Registry-and-Runtime-Patches' },
-      { text: '兼容与废弃', link: '/plugin-sdk/Compatibility-and-Deprecation' },
-    ],
-  },
-  {
-    text: '功能实战',
-    collapsed: false,
-    items: [
-      { text: '服务、设置与后台任务实战', link: '/plugin-sdk/Tutorial-Services-and-Settings' },
-      { text: '服务参考', link: '/plugin-sdk/Services' },
-      { text: '实战案例集', link: '/plugin-sdk/Examples-Cookbook' },
-    ],
-  },
-  {
-    text: 'UI 扩展',
-    collapsed: false,
-    items: [
-      { text: 'UI 扩展实战', link: '/plugin-sdk/Tutorial-UI-Extension' },
-      { text: 'UI Surface 与 Slot', link: '/plugin-sdk/UI-Surfaces-and-Slots' },
-      { text: 'UI Patch 与冲突', link: '/plugin-sdk/UI-Patches-and-Conflicts' },
-    ],
-  },
-  {
-    text: 'Manifest 与安全',
-    collapsed: true,
-    items: [
-      { text: 'Plugin Manifest', link: '/plugin-sdk/Plugin-Manifest' },
-      { text: '依赖与兼容声明', link: '/plugin-sdk/Dependencies-and-Compatibility' },
-      { text: '权限与安全', link: '/plugin-sdk/Permissions-and-Security' },
-      { text: 'Analyzer 参考', link: '/plugin-sdk/Analyzer-Reference' },
-    ],
-  },
-  {
-    text: '构建、测试与发布',
-    collapsed: false,
-    items: [
-      { text: '依赖与打包实战', link: '/plugin-sdk/Tutorial-Dependencies-and-Packaging' },
-      { text: '构建 .pnp', link: '/plugin-sdk/Building-PNP-Packages' },
-      { text: '测试插件', link: '/plugin-sdk/Testing-Plugins' },
-      { text: '测试、调试与发布实战', link: '/plugin-sdk/Tutorial-Test-Debug-Release' },
-      { text: 'OpenPGP 签名', link: '/plugin-sdk/OpenPGP-Signing' },
-      { text: '发布插件', link: '/plugin-sdk/Publishing-a-Plugin' },
-    ],
-  },
-  {
-    text: '排错与参考',
-    collapsed: true,
-    items: [
-      { text: '故障排查', link: '/plugin-sdk/Troubleshooting' },
-      { text: 'FAQ', link: '/plugin-sdk/FAQ' },
-    ],
-  },
+const pluginSections: [string, string, [string, string, string][]][] = [
+  ['连续教程', 'Tutorials', [
+    ['', '开发文档概览', 'Start here'],
+    ['quickstart', '1. 构建与加载', '1. Build and load'],
+    ['tutorials/page-and-action', '2. 页面与确认动作', '2. Page and action'],
+    ['tutorials/state-and-storage', '3. 状态与存储', '3. State and storage'],
+    ['tutorials/workflows', '4. 后台工作流', '4. Workflows'],
+    ['tutorials/test-and-release', '5. 测试与发布', '5. Test and release'],
+  ]],
+  ['概念与行为', 'Concepts and behavior', [
+    ['architecture', '架构与职责', 'Architecture'],
+    ['loading-contract', '加载、激活与退出', 'Loading and retirement'],
+    ['permissions', '权限与归属', 'Permissions and ownership'],
+    ['guides/asynchronous-calls', '异步、预算与结果', 'Async calls and outcomes'],
+    ['guides/offline', '离线使用', 'Offline use'],
+    ['runtime-services', '运行时详细语义（英文）', 'Runtime semantics'],
+  ]],
+  ['任务指南', 'Task guides', [
+    ['how-to/read-instances', '读取实例列表', 'Read instances'],
+    ['how-to/mutations', '预览与执行修改', 'Prepare mutations'],
+    ['how-to/files', '访问文件与资源', 'Access files and assets'],
+    ['business-providers', '实现业务 Provider', 'Implement providers'],
+    ['errors', '排查错误', 'Troubleshoot errors'],
+    ['migration', '迁移旧插件', 'Migrate old plugins'],
+  ]],
+  ['参考', 'Reference', [
+    ['api/', '全部 API（英文）', 'All API operations'],
+    ['api/models', '模型与枚举（英文）', 'Models and enums'],
+    ['host-support', '宿主支持范围', 'Host support'],
+    ['packaging', '打包与分发', 'Packaging'],
+    ['wasm-sdk', 'Wasm 执行与编码（英文）', 'Wasm execution and codec'],
+    ['documentation', '文档约定（英文）', 'Documentation conventions'],
+  ]],
 ];
-
-const englishPluginSdkSidebar = pluginSdkSidebar.map(section => ({
-  ...section,
-  text: section.text,
-  items: section.items.map(item => ({ ...item, link: `/en${item.link}` }))
-}));
+function sdkSidebar(english = false) {
+  return pluginSections.map(([zh, en, pages]) => ({
+    text: english ? en : zh, collapsed: false,
+    items: pages.map(([route, titleZh, titleEn]) => ({
+      text: english ? titleEn : titleZh, link: `${english ? '/en' : ''}/plugin-sdk/${route}`,
+    })),
+  }));
+}
+const pluginSdkSidebar = sdkSidebar();
+const englishPluginSdkSidebar = sdkSidebar(true);
 
 const pxmlCompilerSidebar = [
   {
@@ -211,7 +176,7 @@ const vitepressConfig: UserConfig = {
   srcDir: "docs",
   
   title: "NexaCL Docs",
-  description: "NexaCL 使用、NTP/1 主题包与 Sidecar 开发文档",
+  description: "NexaCL 插件、主题、Sidecar 与 NXML 开发教程和参考",
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', href: '/icons/nexacl-32.png' }],
@@ -245,12 +210,12 @@ const vitepressConfig: UserConfig = {
       '/en/pxml-compiler/': englishPxmlCompilerSidebar,
       '/en/': [
         {
-          text: 'PCL N',
+          text: 'NexaCL',
           items: [
             { text: 'Home', link: '/en/' },
             { text: 'Projects', link: '/en/projects' },
             { text: 'PXML', link: '/en/pxml-compiler/' },
-            { text: 'Plugin SDK 0.2.5', link: '/en/plugin-sdk/' },
+            { text: 'Plugin SDK · ABI 100', link: '/en/plugin-sdk/' },
           ],
         },
       ],
@@ -261,7 +226,7 @@ const vitepressConfig: UserConfig = {
     ],
 
     footer: {
-      message: 'Documentation released under CC BY-SA 4.0.',
+      message: 'Site documentation: CC BY-SA 4.0. Imported SDK documents: Apache-2.0 as marked.',
       copyright: 'Copyright © 2026 <a href="https://github.com/MuXue1230-owo">PCL N contributors</a>'
     },
     editLink: {
@@ -278,11 +243,11 @@ const i18nConfig: VitePressI18nOptions = {
     en: {
       nav: [
         { text: 'Developer guide', link: '/en/development/' },
+        { text: 'Plugin SDK', link: '/en/plugin-sdk/' },
         { text: 'Themes', link: '/en/theme-packs/' },
         { text: 'Sidecar', link: '/en/sidecar/' },
         { text: 'NXML', link: '/en/nxml/' },
         { text: 'References', items: [
-          { text: 'Legacy Plugin SDK', link: '/en/plugin-sdk/' },
           { text: 'Legacy PXML', link: '/en/pxml-compiler/' },
           { text: 'Projects', link: '/en/projects' },
         ] },
@@ -292,11 +257,11 @@ const i18nConfig: VitePressI18nOptions = {
     zhHans: {
       nav: [
         { text: '开发指南', link: '/development/' },
+        { text: '插件 SDK', link: '/plugin-sdk/' },
         { text: '主题包', link: '/theme-packs/' },
         { text: 'Sidecar', link: '/sidecar/' },
         { text: 'NXML', link: '/nxml/' },
         { text: '参考文档', items: [
-          { text: '旧版插件 SDK', link: '/plugin-sdk/' },
           { text: '旧版 PXML', link: '/pxml-compiler/' },
           { text: '项目列表', link: '/projects' },
         ] },

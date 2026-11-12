@@ -1,5 +1,9 @@
 # Binding、Command 与事件
 
+把计算状态的读取与业务动作分开。绑定投影数据，命令表达意图，并由匹配的运行时契约提供。
+
+**适用版本：**历史 PXML 1.0 及其匹配运行时。当前插件请使用 [ABI 100](/plugin-sdk/)。
+
 PXML 把“读取状态”和“产生副作用”分开：Binding 是纯读取/计算，Command 是业务动作，Event 只进入底层 UI 行为层。
 
 ## 读取状态
@@ -69,3 +73,7 @@ TextChanged → validate Entity/Scope → StatePatch → binding evaluation
 - 列表项读错数据：在 Template 中使用 `item`/声明的 `As` local，不要引用外层临时索引。
 
 下一章：[条件、列表与虚拟化](./Structure-and-Lists)。
+
+## 检查结果
+
+分别验证绑定更新和命令调用；命令未解析不能当作成功空操作。

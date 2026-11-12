@@ -1,5 +1,9 @@
 # 命令、查询、值编码与错误处理
 
+定义另一进程能够验证的二进制请求与响应。区分查询和副作用，保留关联关系，并在加入并发前确定失败和取消行为。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 本章从“提交便签”和“回显一个整数”两个目标解释数据面。示例使用 `Nexa.Sidecar.Protocol`；Host 组合侧调用方式在[Host API](./host-api)，独立 peer 不引用 Desktop 或服务实现。
 
 ## 选择 Command 还是 Query
@@ -111,3 +115,7 @@ correlation 关联一次交换，不去重副作用。写文件或重复提交�
 - [Nexa.Sidecar.Protocol/SidecarDataMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarDataMessages.cs)
 - [Nexa.Sidecar.Protocol/SidecarControlMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarControlMessages.cs)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## 检查结果
+
+往返验证合法数据，并拒绝截断、超大和类型不符的数据。同时执行两个调用，确认响应只完成对应的关联请求。

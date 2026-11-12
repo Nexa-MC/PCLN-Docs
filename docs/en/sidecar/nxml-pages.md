@@ -1,5 +1,9 @@
 # Shared NXML, standalone pages and onboarding
 
+Connect a negotiated Sidecar UI contract to Host-rendered NXML. Keep page assets, model projection and input intent distinct so a visible control cannot become an undeclared authority path.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Goal: register a session-owned page, open it from navigation, submit input and restore product navigation when the activation retires. Alpha 14 uses shared NXML schema 3, not XML inside schema 2 or serialized internal IR.
 
 ## Negotiation and ownership
@@ -77,3 +81,7 @@ Stop, failure, unload and critical-memory cooperative DEACTIVATE retire activati
 Test missing feature/hash/budget/binding rejection, actual command values, retained drafts, navigation, cancellation, crash cleanup and stale exposure rejection. Codec round trips alone are not UI acceptance.
 
 Sources: [document codec](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarNxmlDocument.cs), [runtime](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/XsrNxmlModuleRuntime.cs), [page tests](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/tests/Nexa.Desktop.Tests/SidecarNxmlPresentationTests.cs).
+
+## Check your result
+
+Load a valid page, reject an invalid asset or schema, then deactivate the owner. Its UI contribution must retire without retaining a live input route.

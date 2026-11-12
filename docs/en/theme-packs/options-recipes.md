@@ -1,5 +1,9 @@
 # Option controls and live application
 
+Connect option editors to visible style changes while preserving incomplete input. A draft being edited and a valid committed value must remain separate.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 The goal is user-adjustable presentation, not executable editor code. Host owns keyboard/touch/accessibility, drafts, picker authority, and persistence; themes declare types, compatible controls, and consumers.
 
 ## Complete workshop
@@ -108,3 +112,7 @@ Use mouse, keyboard, and touch. Test long labels, zero volume, final legal numer
 - [Nexa.Services.Themes.Contracts/ThemeOptionCondition.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes.Contracts/ThemeOptionCondition.cs)
 - [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
 - [Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs)
+
+## Check your result
+
+Drag a slider, type an incomplete value and cancel an edit; verify the last valid appearance remains usable.

@@ -1,12 +1,14 @@
----
-exclude: true
----
+# 项目与源码归属
 
-# PCL N 项目
+以下仓库用于查找文档对应的实现。仓库存在不代表功能已经发布，也不代表当前安装的启动器实现了全部接口。
 
-- [PCL N](https://github.com/MuXue1230-owo/PCL-N) — 跨平台 Minecraft 启动器。
-- [PCL N Plugin SDK](https://github.com/MuXue1230-owo/PCL-N-Plugin-SDK) — 第三方插件公开契约、工具、Analyzer 和测试宿主。
-- [PXML Compiler](https://github.com/PCL-N-Edition/PXML-Compiler) — PXML 1.0 官方 C 编译器、PXB 工具链与全平台发行版。
-- [PCL N 插件商店](https://pcln.top/) — 浏览、购买和发布插件。
-- [插件中心前端](https://github.com/MuXue1230-owo/PCL-N-Plugin-Center-Web) — 商店与发布者工作台。
-- [插件中心服务端](https://github.com/MuXue1230-owo/PCL-N-Plugin-Center-Server) — 市场 API、发布审核与安全扫描。
+| 项目 | 职责 |
+| --- | --- |
+| [NexaCL](https://github.com/Nexa-MC/NexaCL) | 启动器、业务服务及宿主接入 |
+| [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK) | 公开 Bootstrap／ABI 契约、头文件、示例与 SDK 文档 |
+| [NexaCL-Plugin-Template](https://github.com/Nexa-MC/NexaCL-Plugin-Template) | 固定 SDK 的可运行 Wasm 插件模板与 CI |
+| [PCLN-Docs](https://github.com/Nexa-MC/PCLN-Docs) | 本文档站和版本化开发示例 |
+| [PXML Compiler](https://github.com/PCL-N-Edition/PXML-Compiler) | 历史 PXML／PXB 编译器和对应格式参考 |
+| [NexaCL 网站](https://pcln.top/) | 产品与 Market 网站 |
+
+新插件从模板和[SDK 教程](plugin-sdk/quickstart)开始。旧 PCL SDK 项目请先阅读[迁移说明](plugin-sdk/migration)，不要只替换依赖名。

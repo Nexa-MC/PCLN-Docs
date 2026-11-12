@@ -1,5 +1,9 @@
 # 动效、交互与无障碍
 
+使用运行时的有限数据契约描述交互与动效，设计视觉过渡时一并考虑键盘与减少动效模式。
+
+**适用版本：**历史 PXML 1.0 及其匹配运行时。当前插件请使用 [ABI 100](/plugin-sdk/)。
+
 动效和交互状态属于 Runtime component data，而不是任意 callback 或对象集合。
 
 ## 属性 Transition
@@ -68,3 +72,7 @@ Semantic Tree 独立于 Render Tree。AccessibleName/Value binding 进入 depend
 - Reduced Motion 路径仍完成导航、Popup 和 Modal 生命周期。
 
 下一章：[弹层、导航与 NativeHost](./Overlays-Navigation-and-NativeHost)。
+
+## 检查结果
+
+测试焦点导航、减少动效和进行中过渡被打断。

@@ -1,5 +1,9 @@
 # 清单完整参考：身份、参数与版本
 
+在清单中定义身份、能力和类型化参数。值类型决定验证与持久化，编辑器类型决定显示方式。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 清单是 Host 的输入契约。字段名区分大小写；未知字段、重复字段、类型不匹配和无效默认值都导致准入失败。不能依赖“Host 忽略我不认识的行为字段”。
 
 ## 根对象的每个字段
@@ -93,3 +97,7 @@ Range/数值 Slider 要求 `min < max`、正 step、step 不大于跨度、边�
 - [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
 - [Nexa.Services.Themes.Contracts/ThemeContracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes.Contracts/ThemeContracts.cs)
 - [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
+
+## 检查结果
+
+检查默认值、边界和类型不符，再重新打开主题验证已提交值。

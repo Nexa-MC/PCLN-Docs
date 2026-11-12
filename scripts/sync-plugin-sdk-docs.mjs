@@ -1,38 +1,76 @@
-import { copyFile, mkdir, readdir, rm } from "node:fs/promises";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const sourceDirectory = path.resolve(
-  process.env.PCLN_PLUGIN_SDK_WIKI || path.join(repositoryRoot, "..", "PCL-N-Plugin-SDK", "wiki")
-);
-const englishSourceDirectory = path.resolve(
-  process.env.PCLN_PLUGIN_SDK_WIKI_EN || path.join(repositoryRoot, "..", "PCL-N-Plugin-SDK", "wiki-en")
-);
-const targets = [
-  { source: sourceDirectory, target: path.join(repositoryRoot, "docs", "zhHans", "plugin-sdk") },
-  { source: englishSourceDirectory, target: path.join(repositoryRoot, "docs", "en", "plugin-sdk") }
-];
-
-for (const { source, target } of targets) {
-  const sourceEntries = (await readdir(source, { withFileTypes: true }))
-    .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
-    .sort((left, right) => left.name.localeCompare(right.name));
-
-  if (!sourceEntries.some((entry) => entry.name === "Home.md")) {
-    throw new Error(`SDK Wiki home page was not found: ${source}`);
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const sdk = path.resolve(process.env.NEXA_PLUGIN_SDK_SOURCE || path.join(root, '..', 'NexaCL-Plugin-SDK'));
+const verify = process.argv.includes('--verify');
+const sha = execFileSync('git', ['-C', sdk, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+const legacy = {
+  'Getting-Started': 'quickstart', 'Tutorial-First-Plugin': 'quickstart',
+  'Learning-Path': '', 'Architecture-and-Boundaries': 'architecture',
+  'Tutorial-UI-Extension': 'tutorials/page-and-action',
+  'Tutorial-Services-and-Settings': 'tutorials/state-and-storage',
+  'Tutorial-Dependencies-and-Packaging': 'packaging',
+  'Tutorial-Test-Debug-Release': 'tutorials/test-and-release',
+  'Lifecycle-and-Registrations': 'loading-contract',
+  'Permissions-and-Security': 'permissions',
+  'Plugin-Manifest': 'packaging', 'Building-PNP-Packages': 'migration',
+  'NuGet-Packages': 'packaging', 'Compatibility-and-Deprecation': 'migration',
+  'Dependencies-and-Compatibility': 'loading-contract',
+  'Desktop-Installation-and-Debugging': 'quickstart',
+  'Examples-Cookbook': '', 'FAQ': 'errors', 'Troubleshooting': 'errors',
+  'Testing-Plugins': 'tutorials/test-and-release', 'Publishing-a-Plugin': 'tutorials/test-and-release',
+  'OpenPGP-Signing': 'packaging', 'Plugin-Identity-and-Versioning': 'architecture',
+  'Registry-and-Runtime-Patches': 'migration', 'Services': 'runtime-services',
+  'UI-Patches-and-Conflicts': 'migration', 'UI-Surfaces-and-Slots': 'tutorials/page-and-action',
+  'Analyzer-Reference': 'migration',
+};
+async function walk(folder, relative = '') {
+  const result = [];
+  for (const entry of await readdir(path.join(folder, relative), { withFileTypes: true })) {
+    if (entry.name === 'zh-CN') continue;
+    const name = path.join(relative, entry.name);
+    if (entry.isDirectory()) result.push(...await walk(folder, name));
+    else if (entry.name.endsWith('.md')) result.push(name);
   }
-
-  await mkdir(target, { recursive: true });
-  for (const entry of await readdir(target, { withFileTypes: true })) {
-    if (entry.isFile() && entry.name.endsWith(".md"))
-      await rm(path.join(target, entry.name));
-  }
-
-  for (const entry of sourceEntries) {
-    const targetName = entry.name === "Home.md" ? "index.md" : entry.name;
-    await copyFile(path.join(source, entry.name), path.join(target, targetName));
-  }
-
-  console.log(`Synced ${sourceEntries.length} SDK Wiki pages to ${target}`);
+  return result.sort();
 }
+for (const [locale, source] of [['en', path.join(sdk, 'docs')], ['zhHans', path.join(sdk, 'docs/zh-CN')]]) {
+  const target = path.join(root, 'docs', locale, 'plugin-sdk');
+  const expected = new Map();
+  for (const name of await walk(source)) {
+    let content = await readFile(path.join(source, name), 'utf8');
+    const sourcePath = `${locale === 'en' ? 'docs' : 'docs/zh-CN'}/${name.split(path.sep).join('/')}`;
+    // Historical proposals contain raw template syntax; publish them as literal source.
+    if (name.startsWith('specifications/')) content = '# Historical design proposal\n\nThis is design history, not the current implementation reference.\n\n````text\n' + content + '\n````\n';
+    content += `\n---\n\n${locale === 'en' ? 'Source' : '来源'}: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/${sha}/${sourcePath}) · Apache-2.0.\n`;
+    expected.set(name, content);
+  }
+  for (const [old, destination] of Object.entries(legacy)) {
+    const url = `/${locale === 'en' ? 'en/' : ''}plugin-sdk/${destination}`;
+    expected.set(old + '.md', locale === 'en'
+      ? `# This SDK page has moved\n\nThis URL belonged to the retired PCL SDK. New plugins use Bootstrap V1 and ABI 100.\nContinue with [the current guide](${url}) and review [migration](migration.md) before porting an old plugin.\n`
+      : `# 此文档已迁移\n\n此地址原属旧 PCL SDK。新插件使用 Bootstrap V1 与 ABI 100。\n请阅读[当前指南](${url})，移植旧插件前先查看[迁移说明](migration.md)。\n`);
+  }
+  if (verify) {
+    for (const [name, content] of expected) {
+      if (await readFile(path.join(target, name), 'utf8').catch(() => null) !== content)
+        throw new Error(`Stale SDK copy: ${locale}/${name}`);
+    }
+    const actual = await walk(target);
+    if (actual.length !== expected.size) throw new Error(`Unexpected SDK pages in ${target}`);
+  } else {
+    await rm(target, { recursive: true, force: true });
+    for (const [name, content] of expected) {
+      await mkdir(path.dirname(path.join(target, name)), { recursive: true });
+      await writeFile(path.join(target, name), content);
+    }
+  }
+  console.log(`${verify ? 'Verified' : 'Synced'} ${expected.size} SDK pages: ${locale}`);
+}
+if (!verify) await writeFile(path.join(root, 'sdk-docs-source.json'), JSON.stringify({
+  repository: 'Nexa-MC/NexaCL-Plugin-SDK', commit: sha,
+  version: '0.2.0-alpha.10', command: 'pnpm docs:sync',
+}, null, 2) + '\n');

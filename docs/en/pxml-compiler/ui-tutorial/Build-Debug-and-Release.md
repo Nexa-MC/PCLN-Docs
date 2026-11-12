@@ -1,5 +1,9 @@
 # Build, debug, and release
 
+Keep validation, debug artifacts and release artifacts distinct. Use source maps for diagnosis and inspect the binary you actually distribute.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 ## Project layout
 
 ```text
@@ -47,3 +51,7 @@ CI should run strict warnings-as-errors, build twice and compare bytes, and keep
 Troubleshoot in order: format, strict check, expanded PXML, PXB dump, then Runtime Binding/Layout/Motion/Scope traces.
 
 Finish with the [complete page example](./Complete-Example).
+
+## Check your result
+
+Build both debug and release outputs and verify their expected source-map differences.

@@ -1,5 +1,9 @@
 # Host appearance and platform capabilities
 
+Look up appearance fields and capability requirements before adding them to a manifest. A recognized field can still require a capability unavailable on the target Host.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 NSS styles nodes; appearance declares finite Host resources/policy. Neither controls window lifetime, account/update trust, password semantics, or system authority.
 
 ## Root fields
@@ -88,3 +92,7 @@ Make solid appearance readable first. Test light/dark, transparency disabled, re
 - [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
 - [docs/xsr/theme-capabilities.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-capabilities.md)
 - [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-package-architecture.md)
+
+## Check your result
+
+Test the minimum capability set and confirm an unsupported required capability rejects the candidate explicitly.

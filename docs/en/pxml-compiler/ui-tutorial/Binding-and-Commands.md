@@ -1,5 +1,9 @@
 # Bindings, commands, and events
 
+Keep computed state reads separate from business actions. Bindings project data; commands express intent and must be supplied by the matching runtime contract.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 PXML separates state reads from side effects: bindings are pure reads/computation, commands represent business actions, and events enter only the low-level UI behavior layer.
 
 ## Bindings
@@ -41,3 +45,7 @@ NativeHost writes follow `platform event → generation validation → command/s
 Troubleshoot stale bindings by checking dependency publication, command registration, effective Disabled/Visible state, overlay barriers, and template locals.
 
 Next: [Conditions, lists, and virtualization](./Structure-and-Lists).
+
+## Check your result
+
+Verify a binding update and a command invocation separately; an unresolved command is not a successful no-op.

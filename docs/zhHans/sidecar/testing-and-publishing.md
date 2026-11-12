@@ -1,5 +1,9 @@
 # 从目标验收到测试与发布
 
+为实际分发的产物收集证据。在声明兼容性前，验证启动认证、契约失败、取消、退出和平台行为。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 首先回到[验收目标](/development/goal-first)：用户动作、当前事实、成功/失败和退出行为是什么？测试围绕这些结果，不只断言某个私有方法被调用。
 
 ## 四种不同的证据
@@ -77,3 +81,7 @@ out/lab/Authoring.Lab /absolute/path/to/PCLN-Docs
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
 - [docs/xsr/sidecar-protocol.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-protocol.md)
 - [docs/xsr/nsc-and-regional-policy.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nsc-and-regional-policy.md)
+
+## 检查结果
+
+运行文中托管及 NativeAOT 检查，记录日志和源码版本。明确未测试的平台，区分本地协议验收与生产安装准入。

@@ -1,5 +1,9 @@
 # 旧 UI schema 1/2：兼容表单与图片
 
+按有限控件和扩展契约维护已有 schema 1/2 接入。新的共享页面开发请阅读 schema 3 NXML 指南，不要混用格式。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 本文只描述仍兼容的 schema 1/2 和旧资源卡片槽；新开发优先阅读 [NXML schema 3 与页面](nxml-pages)。新接口共享宿主编译器，不受本页有限控件枚举和槽位约束。
 
 ## 从声明到显示的全部前提
@@ -109,3 +113,7 @@ var resource = new SidecarRegistrationItem(SidecarRegistrationKind.Resource,
 - [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
 - [Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs)
 - [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-modules.md)
+
+## 检查结果
+
+验证协商版本和每个控件绑定，测试畸形数据与所有者移除；schema 1 会话不能直接使用 schema 3 能力。

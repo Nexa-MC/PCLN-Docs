@@ -1,5 +1,9 @@
 # Worked design: a resource-page note extension
 
+Design a resource-note feature from its visible behavior through persistence, UI and retirement. This is a worked design: it distinguishes decisions and integration requirements from an already shipped extension.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 The goal is to submit a note on the resource page, show the last valid value, invalidate old operations after navigation, and restore current facts after activation. Resource search, downloads, and account policy stay outside this feature.
 
 ## 1. Write acceptance scenarios
@@ -94,3 +98,7 @@ The same design scales to a task panel: Command starts work, State owns progress
 - [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-modules.md)
 - [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## Check your result
+
+Check the proposed flow for edits during refresh, failed persistence, owner shutdown and a missing extension target. Keep unresolved Host capabilities explicit instead of presenting a diagram as implemented code.

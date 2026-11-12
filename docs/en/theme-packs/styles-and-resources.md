@@ -1,5 +1,9 @@
 # Resources: assets, authority, lifetime
 
+Package resources and reference them through their admitted identities. Resource loading, authorization and lifetime are part of the theme contract.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Every reference needs type, location, authority, lifetime, and failure behavior. A file existing on disk does not make it an admitted current-theme resource.
 
 ## Complete packaged-asset flow
@@ -80,3 +84,7 @@ Imported options on another machine require new picker grants. Renaming IDs or c
 - [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-resource-security.md)
 - [Nexa.Services.Themes/ThemePackageService.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemePackageService.Resources.cs)
 - [Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs)
+
+## Check your result
+
+Test a missing asset, a rejected resource and a theme switch while resources are in use.

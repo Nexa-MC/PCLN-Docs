@@ -1,5 +1,9 @@
 # 布局、绘制与动效参考
 
+只通过主题契约允许的属性调整布局、绘制和动效，保留宿主对测量及交互的所有权。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标是让外观更清晰，同时保持输入、滚动和无障碍的几何一致。这里的属性属于 NSS/1；NXML 结构、业务状态与生命周期不由它们决定。
 
 ## 全部属性组与数值边界
@@ -97,3 +101,7 @@ Renderer 推进动画，不每帧重新解析 NSS。相同关键帧在亮暗切�
 - [docs/xsr/nss-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nss-v1.md)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeProgram.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeProgram.cs)
 - [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
+
+## 检查结果
+
+调整窗口、测试减少动效，并在允许尺寸的两端检查控件可用性。

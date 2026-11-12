@@ -1,5 +1,9 @@
 # Complete Host API reference
 
+Look up the Host-facing operations available to the versioned Sidecar protocol. Check admission, scope and result semantics for the specific operation rather than inferring authority from a method name.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 SidecarHostApi is a **Host composition** surface invoking admitted peers, not child-to-Host account/file/install RPC. Renderers do not own it; independent peers reference Protocol/Transport only.
 
 Complete compilable code below covers all 14 routes. api is composed by Host; package is the discovered filename without .nsc, not a path/display name.
@@ -176,3 +180,7 @@ Connection owns the stream with Send/Receive/Close/Dispose/State/FailureReason. 
 - [Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.Contracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.Contracts.cs)
 - [Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.cs)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## Check your result
+
+For every operation you use, identify the exact request type, successful result, denied case and lifetime of returned resources. A codec round-trip alone does not prove the Host grants the operation.

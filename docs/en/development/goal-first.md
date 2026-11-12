@@ -1,5 +1,9 @@
 # Develop toward an observable goal
 
+Turn a feature request into an observable result before choosing an extension mechanism. Use a real user action, the component that owns the data, and one expected failure to define the first implementation.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Start from user behavior rather than an attractive hook. This chapter applies “goal → contract → implementation → evidence” to XSR so an extension remains usable beyond its demo.
 
 ## Define an outcome that can pass or fail
@@ -71,3 +75,7 @@ Continue with [XSR responsibilities](./xsr-architecture), then fill the contract
 - [docs/xsr/service-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/service-model.md)
 - [docs/xsr/state-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/state-model.md)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## Check your result
+
+Write one successful scenario and one denied or cancelled scenario. If neither can be checked without naming internal classes, restate the outcome in terms the user can observe.

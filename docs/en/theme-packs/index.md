@@ -1,5 +1,9 @@
 # NTP/1 theme development
 
+Choose a theme when the goal is appearance rather than new behavior. Learn the manifest, style language and option model before distributing an NTP/1 package.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 The goal is adjustable, recoverable appearance across light/dark modes without changing launcher behavior. NTP/1 combines a manifest, NSS/1, resources, and options in a `.ntp` ZIP or explicitly imported development directory.
 
 ## Select capabilities by outcome
@@ -41,3 +45,7 @@ This guide targets A14 style API 1. Theme versions are independent of `2.0.0.alp
 
 - [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
 - [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-package-architecture.md)
+
+## Check your result
+
+Follow the first-theme tutorial and verify one option survives restart.

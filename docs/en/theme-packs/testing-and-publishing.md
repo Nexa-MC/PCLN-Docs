@@ -1,5 +1,9 @@
 # Development, validation, recovery, publication
 
+Release a theme only after checking persistence, rejection recovery, platform rendering and the actual packaged bytes. A source preview is not evidence about an old imported ZIP.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Deliver a verified appearance outcome, not just a compressible folder. Use the [goal-first workflow](/en/development/goal-first) to bound changes and evidence; do not rebuild unrelated systems for a theme.
 
 ## Directory versus package
@@ -68,3 +72,7 @@ Restore the previous theme or independent Host recovery entry. Safe mode bypasse
 - [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/eng/themes/pack.py)
 - [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-package-architecture.md)
 - [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-resource-security.md)
+
+## Check your result
+
+Rebuild, import the artifact and run the failure/recovery cases against that exact package.

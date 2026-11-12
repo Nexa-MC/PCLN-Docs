@@ -1,5 +1,9 @@
 # Legacy UI schemas 1/2: compatible forms and images
 
+Maintain an existing schema 1/2 integration using its finite control and extension contracts. Read the schema-3 NXML guide for new shared-page work; the formats are not interchangeable.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 This page describes compatible schemas 1/2 and the legacy resource-card slot only. New work should use [shared NXML schema 3 and pages](nxml-pages); its compiler and targeting are not limited by this legacy control enum or slot.
 
 ## Admission flow
@@ -103,3 +107,7 @@ Test drafts/IME, rejection, State changes, toggles, missing images, ancestor hid
 - [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
 - [Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/XsrUiModuleRuntime.cs)
 - [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-modules.md)
+
+## Check your result
+
+Verify the negotiated schema and each control binding. Test malformed payloads and removal of the owner, and do not treat a schema-3 feature as available in a schema-1 session.

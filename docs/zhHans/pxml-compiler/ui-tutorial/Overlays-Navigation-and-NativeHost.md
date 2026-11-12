@@ -1,5 +1,9 @@
 # 弹层、导航与 NativeHost
 
+通过明确输入所有权协调弹层、导航和原生控件。绘制在其他控件上方，不会自动建立模态行为。
+
+**适用版本：**历史 PXML 1.0 及其匹配运行时。当前插件请使用 [ABI 100](/plugin-sdk/)。
+
 Tooltip、Popup、Modal 和平台控件都涉及视觉层级与输入权限。不要仅靠 ZIndex 或 `IsHitTestVisible` 模拟这些 contract。
 
 ## Tooltip、Popup 与 Modal
@@ -66,3 +70,7 @@ PXML 只描述 platform host contract，Avalonia backend 创建实际控件。Na
 Overlay handle、NativeHost、Navigation page 和 routed handler 都属于 Scope。Scope 销毁后，旧 generation 的 timer、animation completion、platform event 或 command 不得重新激活已销毁页面。
 
 下一章：[构建、调试与发布](./Build-Debug-and-Release)。
+
+## 检查结果
+
+通过键盘开关弹层，验证焦点恢复和导航时原生控件清理。

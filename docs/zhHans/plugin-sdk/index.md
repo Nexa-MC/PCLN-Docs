@@ -1,87 +1,35 @@
-> 兼容参考：本节属于旧版独立 SDK/PXML 文档，不是 NexaCL Alpha 14 的 Sidecar 或共享 NXML API。当前开发请从[目标与 XSR](../development/)进入。
+# NexaCL 插件开发文档
 
-# PCL N Plugin SDK
+从一个可以安装、打开页面并响应按钮的插件开始，再逐步加入数据、后台任务和业务能力。
+插件运行在 PluginSidecar 中，通过明确的宿主契约访问 NexaCL；账户、实例、文件授权和界面确认由宿主管理。
 
-> Applies to PCL N Plugin SDK 0.2.5.
+本版文档对应 **SDK 0.2.0-alpha.10、Bootstrap V1、ABI 100**。三个版本号分别表示分发包、加载接口和协商后的 ABI，不能互相替换。SDK 声明了 346 个操作，记录的宿主源码快照接入了 297 个；具体 Alpha 是否支持某项能力，应以实际协商结果为准。
 
-> 适用于 SDK `0.2.5` 与 PCL.Plugin `v0.18.5`。当前仍是预发布版本，1.0 前公共 API 可能调整。
+## 跟着教程完成一个插件
 
-PCL N Plugin SDK 是 PCL N 第三方插件的公开开发入口。你可以用它创建 `.pnp` 插件、调用稳定宿主服务、向公开 UI Surface 添加界面，并在不启动 PCL N 的情况下完成自动化测试。
+1. [构建并加载第一个插件](quickstart.md)：准备工具、修改身份、生成 ZIP，再验证加载和卸载。
+2. [页面与确认动作](tutorials/page-and-action.md)：理解资源、页面、动作和回调如何连接。
+3. [状态与持久化存储](tutorials/state-and-storage.md)：区分当前视图和持久数据，正确处理版本冲突。
+4. [后台工作流](tutorials/workflows.md)：运行完整示例，观察任务并理解恢复边界。
+5. [测试与发布](tutorials/test-and-release.md)：验证权限拒绝、取消、重载和离线行为，再分发已核验的包。
 
-`PCL.Plugin` 是启动器内置的私有运行时，不是开发依赖。第三方插件只引用公开 NuGet 包，禁止引用 `PCL.Application`、`PCL.Desktop` 或 `PCL.Plugin`。
+## 理解运行规则
 
-## 我该从哪里开始？
+阅读[架构与职责](architecture.md)、[加载生命周期](loading-contract.md)和[权限](permissions.md)，再查阅[异步调用](guides/asynchronous-calls.md)与[离线使用](guides/offline.md)。这些规则解释了为什么“调用成功”“任务完成”和“外部副作用已确认”是不同的结果。
 
-| 目标 | 推荐入口 |
-|---|---|
-| 不确定学习顺序 | [学习路线](Learning-Path) |
-| 第一次创建插件 | [快速开始](Getting-Started) → [从零完成第一个插件](Tutorial-First-Plugin) |
-| 在 PCL N 中安装和调试 | [桌面端安装与调试](Desktop-Installation-and-Debugging) |
-| 直接查找可复制代码 | [实战案例集](Examples-Cookbook) |
-| 编写完整 `plugin.json` | [Plugin Manifest](Plugin-Manifest) |
-| 调用通知、设置、命令或后台任务 | [服务、设置与后台任务实战](Tutorial-Services-and-Settings) |
-| 添加设置页或启动页面板 | [UI 扩展实战](Tutorial-UI-Extension) |
-| 管理前置、DLL 和原生库 | [依赖与打包实战](Tutorial-Dependencies-and-Packaging) |
-| 编写测试并正式发布 | [测试、调试与发布实战](Tutorial-Test-Debug-Release) |
+## 按目标查找做法
 
-## 完整开发流程
+- [读取实例列表](how-to/read-instances.md)
+- [预览并执行修改](how-to/mutations.md)
+- [访问包内资源和用户文件](how-to/files.md)
+- [实现业务 Provider](business-providers.md)
+- [排查加载或调用失败](errors.md)
+- [从旧 SDK 迁移](migration.md)
 
-```text
-创建 net10.0 类库
-  → 安装 PCLN.Plugin.* NuGet 包
-  → 实现 IPclNPlugin
-  → 编写 plugin.json
-  → dotnet build -c Release
-  → 在 PCL N 桌面端安装并验证
-  → 使用 PCLN.Plugin.Testing 编写测试
-  → 使用 OpenPGP 正式签名
-  → 发布不可变的 SemVer 版本
-```
+[API 参考](api/index.md)提供准确的权限、阶段、输入输出及宿主支持状态。技术参考当前以英文源文为准，中文教程保留所有代码标识符和错误码。不要把历史提案中的规划当成已经发布的功能。
 
-## 文档导航
+[在线文档](https://docs.pcln.top/plugin-sdk/) · [模板仓库](https://github.com/Nexa-MC/NexaCL-Plugin-Template)
 
-### 入门教程
+---
 
-- [学习路线](Learning-Path)
-- [快速开始](Getting-Started)
-- [从零完成第一个插件](Tutorial-First-Plugin)
-- [服务、设置与后台任务实战](Tutorial-Services-and-Settings)
-- [UI 扩展实战](Tutorial-UI-Extension)
-- [依赖与打包实战](Tutorial-Dependencies-and-Packaging)
-- [测试、调试与发布实战](Tutorial-Test-Debug-Release)
-
-### 核心概念
-
-- [架构与边界](Architecture-and-Boundaries)（含 **Sidecar 进程外**运行时）
-- [NuGet 包](NuGet-Packages)
-- [身份与版本](Plugin-Identity-and-Versioning)
-- [生命周期与注册项](Lifecycle-and-Registrations)
-- [注册表与运行时注入](Registry-and-Runtime-Patches)
-- [兼容与废弃](Compatibility-and-Deprecation)
-
-### Manifest 与安全
-
-- [Plugin Manifest](Plugin-Manifest)
-- [依赖与兼容声明](Dependencies-and-Compatibility)
-- [权限与安全](Permissions-and-Security)
-- [Analyzer 参考](Analyzer-Reference)
-
-### UI
-
-- [UI Surface 与 Slot](UI-Surfaces-and-Slots)
-- [UI Patch 与冲突](UI-Patches-and-Conflicts)
-
-### 构建与发布
-
-- [构建 `.pnp`](Building-PNP-Packages)
-- [OpenPGP 签名](OpenPGP-Signing)
-- [发布插件](Publishing-a-Plugin)
-- [故障排查](Troubleshooting)
-- [FAQ](FAQ)
-
-## 官方资源
-
-- [SDK 源码与完整示例](https://github.com/MuXue1230-owo/PCL-N-Plugin-SDK)
-- [PCL N 插件商店](https://pcln.top/)
-- [NuGet 上的 PCLN.Plugin.Abstractions](https://www.nuget.org/packages/PCLN.Plugin.Abstractions)
-- [Manifest JSON Schema](https://github.com/MuXue1230-owo/PCL-N-Plugin-SDK/blob/main/schemas/plugin.schema.json)
+来源: [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK/blob/cd93011b3a34b230415d4a7f6d585e646074b78a/docs/zh-CN/index.md) · Apache-2.0.

@@ -1,5 +1,9 @@
 # Complete lab: state, retained lists, build
 
+Run the complete authoring lab against the pinned launcher source. The lab joins manifest admission, style compilation and NXML behavior so you can inspect which layer each check proves.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Acceptance: state-driven text, intent-only buttons, disabled admission, retained drafts/selection across reload/reorder, rejected invalid candidates preserving the tree. Theme and controlled patch exercises demonstrate cooperating XSR boundaries.
 
 ## Project and command
@@ -245,3 +249,7 @@ Change the goal and owned state/command first, then one template/action. Keep lo
 
 - [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
 - [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
+
+## Check your result
+
+Run the managed lab and NativeAOT variant, retain the output and label any platform behavior that still requires a real device.

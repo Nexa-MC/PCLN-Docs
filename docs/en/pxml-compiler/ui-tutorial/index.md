@@ -1,5 +1,9 @@
 # PXML UI tutorials
 
+Learn the historical PXML 1.0 authoring pipeline from source to PXB. Use the matching compiler and PCL.UI.Next runtime; this syntax is not the current plugin NXML format.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 These tutorials cover the complete PXML 1.0 UI authoring contract for developers building PCL.UI.Next interfaces. Every example keeps the build path visible and verifiable:
 
 ```text
@@ -29,3 +33,6 @@ PXML source → validation → expansion and optimization → PXB → PCL.UI.Nex
 
 Follow the chapters in order for a complete path, or use the sidebar and search as a reference.
 
+## Check your result
+
+Build the first page and inspect its output before continuing to bindings or reusable components.

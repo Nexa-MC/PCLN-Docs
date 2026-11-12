@@ -1,5 +1,9 @@
 # Components, templates, and slots
 
+Extract repeated authoring structure into typed compile-time components and slots. Expansion changes the blueprint; it does not add arbitrary runtime control classes.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 PXML components are compile-time macros with typed properties and content slots. They do not add runtime control objects.
 
 ## Define and use a component
@@ -48,3 +52,7 @@ pxmlc --full Page.pxml -o Page.pxb \
 `x:Import Source` resolves only to a file explicitly registered with `--import`; components use `--component`. `x:Const` and `x:IfBuild` disappear from release blueprints after folding.
 
 Next: [Styles, themes, and resources](./Styles-and-Resources).
+
+## Check your result
+
+Expand the same component with two property sets and inspect the resulting nodes and slot content.

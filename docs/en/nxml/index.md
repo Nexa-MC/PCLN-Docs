@@ -1,5 +1,9 @@
 # NXML Host UI tutorial
 
+Learn the Host-owned NXML interface language and the responsibilities of an author. Start with syntax and identity, then follow state, input and retained updates.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Learn NexaCL's authoring language from first principles for XSR presentation, Host contributions, and controlled composition tests. **NTP cannot replace pages. Sidecars negotiating Nxml/Pages can use shared NXML schema 3 for mounts, standalone pages and onboarding. See [Sidecar NXML](../sidecar/nxml-pages).**
 
 ## Goal and runtime model
@@ -42,3 +46,7 @@ Each chapter starts with an outcome and ownership. A working page includes corre
 - [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
 - [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs)
+
+## Check your result
+
+Run the complete authoring lab before treating a syntax example as integrated product UI.

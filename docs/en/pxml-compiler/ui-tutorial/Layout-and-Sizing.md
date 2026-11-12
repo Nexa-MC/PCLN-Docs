@@ -1,5 +1,9 @@
 # Layout and sizing
 
+Choose layout constraints that remain valid for long text, changing content and smaller windows. Measurement is owned by the matching runtime, not by the compiler.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 PCL.UI.Next Runtime computes PXML layout incrementally; it does not delegate its core Measure/Arrange contract to Avalonia.
 
 ## Row and Column
@@ -50,3 +54,7 @@ Grid track declarations are validated by the target UI profile's component schem
 Layout Measure passes the actual available content width to text shaping. Viewport shrink changes line count, desired height, and LayoutRect in the same layout convergence—never estimate height from character count.
 
 Next: [Bindings, commands, and events](./Binding-and-Commands).
+
+## Check your result
+
+Test minimum width, expanded text and overflow in the compatible runtime.

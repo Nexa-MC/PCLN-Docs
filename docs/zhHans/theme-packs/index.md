@@ -1,5 +1,9 @@
 # NTP/1 主题包开发
 
+主题适合改变外观。先理解清单、样式语言和参数模型，再分发 NTP/1 包；新增业务行为应选择相应扩展路线。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标：在不改变启动器业务行为的前提下，提供可调节、可恢复、跨亮暗模式的外观。NTP/1 将清单、NSS/1、资源和设置选项组成一个 `.ntp` ZIP，也允许显式导入开发目录。
 
 ## 从目标选择能力
@@ -41,3 +45,7 @@
 
 - [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
 - [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-package-architecture.md)
+
+## 检查结果
+
+完成首个主题教程，并确认一个参数值可以在重启后保留。

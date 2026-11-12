@@ -1,5 +1,9 @@
 # 状态绑定、输入草稿与意图
 
+将权威状态投影到界面，把输入作为意图提交。编辑草稿应保留到可以验证并提交时。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标是建立“本地事实驱动界面、界面请求动作”的闭环。Renderer 不直接访问 Sidecar、HTTP 或业务服务；对应异步调用由 Host 组合层执行。
 
 ## 1. 先声明状态所有者和类型
@@ -101,3 +105,7 @@ Progress 的 Value 可读 double State，是展示；Ring=true/Indeterminate=tru
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
 - [Nexa.Xsr.Renderer/XsrUiStateBridge.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer/XsrUiStateBridge.cs)
 - [Nexa.Xsr.Renderer/XsrUiTextInput.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer/XsrUiTextInput.cs)
+
+## 检查结果
+
+编辑字段期间更新后台状态，确认手势或草稿不会被静默覆盖。

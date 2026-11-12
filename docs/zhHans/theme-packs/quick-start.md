@@ -1,5 +1,9 @@
 # 制作第一个可调节主题
 
+构建包含颜色、字号滑块和布尔参数的可调节主题。从完整文件开始，逐项修改并观察宿主应用结果。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 动手前先读[按目标开发](../development/goal-first)与[XSR 职责](../development/xsr-architecture)。本例的验收目标是：标题颜色、字号与按钮圆角可在外观页调节；重新打开页面不丢值；坏样式不替换上一个有效主题。不增加业务行为，也不读取外部资源。
 
 ## 1. 准备工程与完整目录
@@ -146,3 +150,7 @@ dotnet run --project PCLN-Docs/examples/authoring-lab/Authoring.Lab.csproj -c Re
 - [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/eng/themes/pack.py)
 - [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
 - [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
+
+## 检查结果
+
+导入包，编辑三个参数并重启，再测试未输入完整的颜色值。

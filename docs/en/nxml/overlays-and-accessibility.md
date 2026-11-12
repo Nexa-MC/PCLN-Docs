@@ -1,5 +1,9 @@
 # Overlays, anchors, dismissal, accessibility
 
+Design overlays with explicit anchors, focus and accessibility behavior. Visual stacking does not establish keyboard or modal input ownership.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 An overlay needs one coherent drawing/input/keyboard/accessibility/lifetime contract. Paint alone does not create modality; themes cannot redefine ownership.
 
 ## Modal layer versus Dialog role
@@ -65,3 +69,7 @@ Test Tab/Shift-Tab/Enter/Space/Escape, mouse/touch, hidden ancestors, navigation
 - [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
 - [Nexa.Xsr.Renderer/XsrUiComponents.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer/XsrUiComponents.cs)
+
+## Check your result
+
+Test keyboard entry/exit, focus restoration, anchor removal and accessible labels.

@@ -1,5 +1,9 @@
 # 开发、验证、恢复与发布
 
+验证参数持久化、拒绝恢复、平台渲染及实际打包内容后再发布主题。源码预览不能证明旧导入 ZIP 已经更新。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 交付物是一个经过验证的外观目标，不只是能压缩的目录。按[目标开发流程](/development/goal-first)记录修改范围与证据；不要为了主题功能改写不相关下载或渲染架构。
 
 ## 开发目录与安装包是两种来源
@@ -68,3 +72,7 @@ dotnet run --project PCLN-Docs/examples/authoring-lab/Authoring.Lab.csproj -c Re
 - [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/eng/themes/pack.py)
 - [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-package-architecture.md)
 - [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-resource-security.md)
+
+## 检查结果
+
+重新构建并导入产物，对同一个包执行失败与恢复检查。

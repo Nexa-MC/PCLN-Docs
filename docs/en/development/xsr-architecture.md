@@ -1,5 +1,9 @@
 # XSR architecture and author responsibilities
 
+Use this explanation to decide which component owns a change. Follow intent, state and rendering through the system before adding a new message or sharing an object across a boundary.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 X is the execution/exchange runtime, S is business services, and R is semantic rendering. The current renderer is `Nexa.Xsr.Renderer`. UI.Next/PXML names in early design documents are historical context, not instructions to reference old assemblies from a current extension.
 
 ## Follow one action through the system
@@ -83,3 +87,7 @@ Next, apply the rules to a [resource-page note extension](./walkthrough).
 ## Alpha 14: shared NXML and new capabilities
 
 Sidecar NXML schema 3 shares product compilation, components, styles and intent routing; schemas 1/2 are compatibility paths. Negotiate Nxml=16, AutomaticFunctions=32 and Pages=64 separately. Composition compiles source; rendering performs neither source parsing nor IPC. See [NXML pages](../sidecar/nxml-pages), [automatic functions](../sidecar/automatic-functions) and [platform/runtime](platform-and-runtime).
+
+## Check your result
+
+Trace one user action from input to the authoritative state update and back to the view. Name who cancels outstanding work and who removes the contribution when its owner retires.

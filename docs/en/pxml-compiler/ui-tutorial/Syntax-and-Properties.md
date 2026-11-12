@@ -1,5 +1,9 @@
 # Syntax, nodes, and properties
 
+Write the PXML prolog, namespaces and typed properties consistently. Strict validation helps locate a misspelled or unsupported property before runtime.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 ## Prolog and namespaces
 
 Use PXML 1.0 strict mode for pages:
@@ -65,3 +69,7 @@ Use `x:Name` only when a node is referenced and use stable `Key`/`x:Key` values 
 Validate each increment with `pxmlc check Page.pxml --strict`. Strict mode rejects unknown properties, malformed literals, incompatible markup kinds, missing UI namespaces, invalid scopes, and unresolved components.
 
 Next: [Layout and sizing](./Layout-and-Sizing).
+
+## Check your result
+
+Compile in strict mode, deliberately misspell one property and verify the source diagnostic.

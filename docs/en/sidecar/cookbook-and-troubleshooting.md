@@ -1,5 +1,9 @@
 # Sidecar cookbook and troubleshooting
 
+Diagnose a Sidecar by the earliest failing boundary: bootstrap, negotiation, registration, activation, request handling or retirement. Preserve the initiating error when cleanup also fails.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 ## Private note form
 
 Follow the [worked design](../development/walkthrough): define validation, then set Command/current-enabled State/changed Event/finite module. Prove IPC first, codecs next, admitted UI last. Do not query per frame, read remote drafts, confuse registration with publisher approval, or claim persistence for an in-memory note.
@@ -42,3 +46,7 @@ Compare against a minimal working chain. Missing Host targets need an ownership/
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
 - [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-modules.md)
 - [Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs)
+
+## Check your result
+
+Reduce the problem to the unchanged self-test plus one added contract. Record phase and correlation, and verify a deliberate failure before restoring the full feature.

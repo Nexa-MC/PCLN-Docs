@@ -1,5 +1,9 @@
 # 当前状态、事件与有背压的流
 
+当前权威值使用 State，发生过的事实使用 Event，有序传输使用有界流。三者的恢复和背压规则不同，混用会掩盖数据丢失。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 State 让新观察者立即知道当前事实；Event 描述一次发生；Stream 按消费能力提供连续结果。不能把三者都当成随意发送的消息。
 
 ## State：完整快照先于增量
@@ -97,3 +101,7 @@ Completion 区分正常结束、远程拒绝、取消、超时和会话丢失。
 - [Nexa.Sidecar.Protocol/SidecarDataMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarDataMessages.cs)
 - [Nexa.Sidecar.Protocol/SidecarStreamMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarStreamMessages.cs)
 - [Nexa.Xsr.Runtime/Sidecar/SidecarHostSession.Streams.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarHostSession.Streams.cs)
+
+## 检查结果
+
+模拟慢消费者、序列缺口和取消，确认队列保持有界，消费者会请求重新同步，而不是把不完整状态展示为最新值。

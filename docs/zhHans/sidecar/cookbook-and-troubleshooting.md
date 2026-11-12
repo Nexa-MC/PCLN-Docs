@@ -1,5 +1,9 @@
 # Sidecar 综合案例与排错
 
+按最早失败的边界排查 Sidecar：启动认证、协商、注册、激活、请求处理或退出。清理也失败时，仍应保留最初错误。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 ## 案例一：私有便签表单
 
 按[综合设计](../development/walkthrough)定义业务长度与失败行为，再注册 Command set、State current/enabled、Event changed 和有限 UiModule。先通过 --self-test 建立 IPC，再用 --recipes 理解声明和文档，最后在获准 Host 验证输入、提交、状态变化与离页。
@@ -46,3 +50,7 @@ Command 启动任务，State 保存当前阶段/进度，Event 通知一次完�
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
 - [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-modules.md)
 - [Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarSupervisor.cs)
+
+## 检查结果
+
+把问题缩小到未修改自测加一个新增契约，记录阶段与关联 ID，验证一个可控失败后再恢复完整功能。

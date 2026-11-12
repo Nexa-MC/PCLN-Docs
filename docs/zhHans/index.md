@@ -2,12 +2,12 @@
 layout: home
 hero:
   name: "NexaCL Docs"
-  text: "从目标出发，按 XSR 架构开发"
-  tagline: "Alpha 14 开发教程、完整参考与可运行实例；详解主题、Sidecar 和 NXML。"
+  text: "从第一个插件开始，理解每一层契约"
+  tagline: "从可运行插件到任务指南与 API 参考；主题、Sidecar 和 NXML 提供明确版本的开发示例。"
   actions:
     - theme: brand
-      text: "从目标开始"
-      link: /development/
+      text: "编写第一个插件"
+      link: /plugin-sdk/quickstart
     - theme: alt
       text: "制作主题"
       link: /theme-packs/
@@ -22,6 +22,9 @@ hero:
     dark: /icons/neon-n-dark-transparent.svg
     alt: NexaCL
 features:
+  - title: "插件 SDK · ABI 100"
+    details: "可执行教程、生命周期、权限、346 项操作契约及明确的宿主支持范围。"
+    link: /plugin-sdk/
   - title: "开发方法与 XSR"
     details: "先明确用户目标与验收，再设计职责、契约、生命周期和验证。"
     link: /development/

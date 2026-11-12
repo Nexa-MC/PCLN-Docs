@@ -1,5 +1,9 @@
 # Complete NXML component/property reference
 
+Use this reference to check exact components, properties and resource budgets. Consult the surrounding behavior guide before combining features that share input or lifetime constraints.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 This inventory follows A14 external components/compiler. Names are not CLR types. Required fields come from definitions, and property support depends on recipe.
 
 ## Every built-in component
@@ -129,3 +133,7 @@ ParseException covers XML/namespace/DTD/text/binding grammar; CompileException c
 ## Shared Sidecar document additions
 
 `ArgumentFrom="Draft"` reads the current value from the local input keyed Draft; missing, cyclic or over-depth references reject. `{data example.state}` reads same-session scalar mirror data as literal values, distinct from Host `{state ...}` bindings. See [NXML schema 3](../sidecar/nxml-pages) for page and fragment lifetimes.
+
+## Check your result
+
+Reject a malformed property and exercise the documented budget boundary rather than testing only a small valid tree.

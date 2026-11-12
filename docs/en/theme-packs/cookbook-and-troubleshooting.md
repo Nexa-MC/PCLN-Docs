@@ -1,5 +1,9 @@
 # Theme cookbook and troubleshooting
 
+Locate a theme problem in manifest admission, option validation, rule matching or resource loading. Change one layer at a time so the observed result identifies the cause.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 ## Accessible heading recipe
 
 Goal: size 20–32, readable light/dark, keyboard-operable controls. Use Color/Range and finite title/focus styling; no Sidecar or page reconstruction is necessary.
@@ -54,3 +58,7 @@ Separate compilation, native execution, and installation evidence. Say “Linux 
 - [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
 - [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
 - [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-resource-security.md)
+
+## Check your result
+
+Start with the unchanged example, introduce one failing rule, then restore it and confirm recovery.

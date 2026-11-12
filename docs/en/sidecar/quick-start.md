@@ -1,5 +1,9 @@
 # Start with a working Sidecar
 
+Build a minimal endpoint that authenticates, registers an integer query, answers a request and retires cleanly. Keep the process lifecycle working before adding features; it is the foundation every later chapter assumes.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Build an independent endpoint with real process bootstrap, authentication, registration, Int32 query, health, and cleanup. Read [goal-first XSR design](../development/) and establish this slice before UI or new behavior.
 
 ## 1. Pin inputs
@@ -87,3 +91,7 @@ Continue with [lifecycle](./protocol-and-lifecycle) and the [note-extension desi
 - [Nexa.Sidecar.Transport/SidecarBootstrap.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Transport/SidecarBootstrap.cs)
 - [Nexa.Sidecar.Protocol/SidecarHandshake.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarHandshake.cs)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## Check your result
+
+Run both self-test and codec recipes. Record their actual results, then repeat the process test with the NativeAOT executable for the platform you intend to distribute.

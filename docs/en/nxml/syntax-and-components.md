@@ -1,5 +1,9 @@
 # NXML syntax, components, identity
 
+Build a valid NXML tree with stable keys and supported components. Identity affects retained state and interaction, not just source readability.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Learn NXML-specific authoring rules rather than general XML syntax.
 
 ## Root and namespace
@@ -86,3 +90,7 @@ The directory needs every referenced component, not just StatusCard without Stac
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
+
+## Check your result
+
+Parse the example, reject an unknown component and check duplicate or unstable keys.

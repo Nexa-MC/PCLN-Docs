@@ -1,5 +1,9 @@
 # 构建、调试与发布
 
+区分验证、调试产物和发布产物。使用源映射定位问题，并检查实际分发的二进制。
+
+**适用版本：**历史 PXML 1.0 及其匹配运行时。当前插件请使用 [ABI 100](/plugin-sdk/)。
+
 ## 推荐目录
 
 ```text
@@ -75,3 +79,7 @@ PCL.UI.Next **只接受编译后的 PXB**。运行时通过 `UiBlueprint.FromPxm
 5. Runtime DevTools 查看 Binding、Layout、Motion 和 Scope trace。
 
 最后阅读：[完整页面示例](./Complete-Example)。
+
+## 检查结果
+
+分别构建调试和发布输出，验证预期的源映射差异。

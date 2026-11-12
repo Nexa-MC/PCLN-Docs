@@ -1,5 +1,9 @@
 # Layout, paint, and motion reference
 
+Change layout, paint and motion only through properties the theme contract permits. Keep measurement and interaction ownership with the Host.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Improve appearance while keeping drawing, input, scrolling, and accessibility geometry consistent. NSS/1 does not own NXML structure, business facts, or lifetime.
 
 ## Property groups and bounds
@@ -95,3 +99,7 @@ Renderer advances clocks without reparsing each frame. Unchanged declarations re
 - [docs/xsr/nss-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nss-v1.md)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeProgram.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeProgram.cs)
 - [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
+
+## Check your result
+
+Resize the view, test reduced motion and verify controls remain usable at the allowed size extremes.

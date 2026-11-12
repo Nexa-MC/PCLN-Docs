@@ -1,5 +1,9 @@
 # NSS/1: from rules to computed presentation
 
+Write NSS/1 rules using the supported selectors, tokens and conditions. This is a finite theme language, so CSS familiarity does not imply every CSS property is accepted.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 NSS/1 is finite, typed, and script-free, not full browser CSS. These files are listed in `theme.json.styles` and compiled by `NssThemeCompiler`. The smaller Host `NssStyleSheet` dialect is explained in [NXML styling](../nxml/layout-and-style).
 
 ## Minimal program
@@ -100,3 +104,7 @@ Check syntax, IDs, typed bounds, resource admission, then selector identity/casc
 - [docs/xsr/nss-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nss-v1.md)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeSelectors.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeSelectors.cs)
+
+## Check your result
+
+Compile valid rules, reject an unknown property and test rule ordering in light and dark modes.

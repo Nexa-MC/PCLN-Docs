@@ -1,5 +1,9 @@
 # NXML 宿主界面开发教程
 
+学习宿主拥有的 NXML 界面语言及作者职责。从语法和身份开始，再理解状态、输入与保留更新。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 本路线详细讲 NexaCL 的专用标记语言，不要求你先了解它。适用于学习 XSR 呈现模型、参与 Host 页面开发或编写受控组合测试的作者。**NTP 不能携带替换页面；Sidecar 协商 Nxml/Pages 后可使用共享 NXML schema 3 挂载界面、独立页面和引导页。见[Sidecar NXML 实战](../sidecar/nxml-pages)。**
 
 ## 目标与运行模型
@@ -42,3 +46,7 @@ dotnet run --project examples/authoring-lab/Authoring.Lab.csproj -c Release -p:N
 - [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
 - [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.cs)
+
+## 检查结果
+
+先运行完整实验，再区分语法示例与已经接入产品的界面。

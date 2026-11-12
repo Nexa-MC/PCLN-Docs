@@ -1,5 +1,9 @@
 # Complete page example
 
+Read the complete download-page example as a composition of the preceding PXML chapters. Its commands and NativeHost integration still require the corresponding runtime services.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 This download page combines localization, commands, NativeHost, runtime structure, and virtualization.
 
 ```xml
@@ -49,3 +53,7 @@ pxmlc dump DownloadPage.pxb
 The host registers the typed Download state schema, command IDs, localization table, theme tokens, component schema, and VirtualList source adapter. These are build/Runtime integration contracts, never objects discovered by reflection from a page.
 
 You now have the complete path from source authoring and component reuse through reactive state, virtualization, and release PXB. Keep the [CLI reference](/en/pxml-compiler/CLI) and [pipeline guide](/en/pxml-compiler/Pipeline-and-PXB) nearby.
+
+## Check your result
+
+Compile the page, inspect the blueprint and verify each external binding against the matching runtime before claiming an interactive feature.

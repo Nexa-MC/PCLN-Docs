@@ -1,5 +1,9 @@
 # NXML 完整组件与属性参考
 
+在此核对准确组件、属性和资源预算。组合共享输入或寿命约束的功能前，先阅读对应行为指南。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 本表按 A14 的外部组件与编译器整理。组件名不是 CLR 类型，Required 由组件定义指定。值类型通过有限编译器检查；并非任意属性都可以写在任意原语上。
 
 ## 全部内置组件
@@ -133,3 +137,7 @@ NxmlParseException：语法、namespace、DTD、文本、binding 格式。NxmlCo
 ## Sidecar 共享文档的补充规则
 
 `ArgumentFrom="Draft"` 从同文档内 Key=Draft 的输入读取当前值，避免为每个表单增加专用控制器；缺失引用、循环与过深引用会拒绝。`{data example.state}` 来自同会话标量镜像，始终按字面数据处理。它不同于 Host `{state ...}` 绑定。独立页面和动态片段生命周期见 [NXML schema 3](../sidecar/nxml-pages)。
+
+## 检查结果
+
+除了小型合法树，还应测试畸形属性和文中预算边界。

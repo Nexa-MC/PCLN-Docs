@@ -1,5 +1,9 @@
 # 主题综合案例与排错
 
+从清单准入、参数验证、规则匹配或资源加载定位问题。每次只改变一个层次，让可见结果能够说明原因。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 ## 案例一：为弱视用户提高标题可读性
 
 目标为“字号 20–32 可调，亮暗均清楚，按钮仍能键盘操作”。实现仅使用 Color、Range、NSS 标题选择器和 focus-visible 边框；没有新增 Sidecar 或全局页面重建。
@@ -54,3 +58,7 @@ Button.capsule:focus-visible { Border: #315b92; BorderWidth: 2; }
 - [docs/xsr/ntp-v1.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/ntp-v1.md)
 - [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
 - [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-resource-security.md)
+
+## 检查结果
+
+从未修改示例开始，引入一条失败规则，再修复并确认恢复。

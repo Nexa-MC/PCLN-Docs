@@ -1,0 +1,6 @@
+{
+  "repository": "Nexa-MC/NexaCL-Plugin-SDK",
+  "commit": "cd93011b3a34b230415d4a7f6d585e646074b78a",
+  "version": "0.2.0-alpha.10",
+  "command": "pnpm docs:sync"
+}

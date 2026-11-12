@@ -1,5 +1,9 @@
 # Host API 完整参考
 
+查阅版本化 Sidecar 协议提供的宿主操作。逐项检查准入、范围和结果含义，不从方法名推断权限。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 SidecarHostApi 属于 **Host 组合层**：启动器调用已准入 Sidecar。它不是子进程任意调用 Host 账户、文件或安装服务的 RPC。Renderer 不持有此 API；独立 peer 只引用 Protocol/Transport。
 
 本页最后给出覆盖全部 14 条路由的完整可编译代码。例子中 api 由组合层提供，package 为已准入的文件名去掉 .nsc，不是任意路径或显示名称。
@@ -190,3 +194,7 @@ Connection 拥有 stream，公开 SendAsync、ReceiveAsync、Close、Dispose、S
 - [Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.Contracts.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.Contracts.cs)
 - [Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Runtime/Sidecar/SidecarHostApi.cs)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## 检查结果
+
+为实际使用的每个操作列出准确请求、成功结果、拒绝情形和返回资源寿命。编解码往返成功不代表宿主会授予该操作。

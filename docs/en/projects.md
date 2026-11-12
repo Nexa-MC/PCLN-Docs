@@ -1,12 +1,17 @@
----
-exclude: true
----
+# Projects and source ownership
 
-# Project List
+Use these repositories to find the source behind the documentation. A source
+repository identifies ownership; its existence does not imply a feature is shipped
+or that every API is available in the installed launcher.
 
-- [PCL N](https://github.com/MuXue1230-owo/PCL-N) - Cross-platform Minecraft launcher.
-- [PCL N Plugin SDK](https://github.com/MuXue1230-owo/PCL-N-Plugin-SDK) - Public plugin contracts, tools, analyzers, and testing host.
-- [PXML Compiler](https://github.com/PCL-N-Edition/PXML-Compiler) - Official C compiler, PXB toolchain, and native releases for PXML 1.0.
-- [Plugin Market](https://pcln.top/) - Browse, purchase, and publish plugins.
-- [Plugin Center Web](https://github.com/MuXue1230-owo/PCL-N-Plugin-Center-Web) - Storefront and publisher workspace.
-- [Plugin Center Server](https://github.com/MuXue1230-owo/PCL-N-Plugin-Center-Server) - Marketplace API, review, and security scanning.
+| Project | Purpose |
+| --- | --- |
+| [NexaCL](https://github.com/Nexa-MC/NexaCL) | Launcher, application services and Host integration |
+| [NexaCL-Plugin-SDK](https://github.com/Nexa-MC/NexaCL-Plugin-SDK) | Public Bootstrap/ABI contracts, headers, examples and SDK documentation |
+| [NexaCL-Plugin-Template](https://github.com/Nexa-MC/NexaCL-Plugin-Template) | Runnable Wasm plugin starter with pinned SDK and CI |
+| [PCLN-Docs](https://github.com/Nexa-MC/PCLN-Docs) | This website and versioned authoring examples |
+| [PXML Compiler](https://github.com/PCL-N-Edition/PXML-Compiler) | Historical PXML/PXB compiler and matching format reference |
+| [NexaCL website](https://pcln.top/) | Product and Market website |
+
+Start a new plugin with the template and [SDK tutorial](plugin-sdk/quickstart).
+For old PCL SDK projects, read [migration](plugin-sdk/migration) before changing dependencies.

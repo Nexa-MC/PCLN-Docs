@@ -1,5 +1,9 @@
 # Styles, themes, and resources
 
+Separate structure, styles, theme values, localization and binary assets so each can be validated at its own boundary. Similar-looking resource syntax does not imply identical ownership.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 PXML separates structure, visual rules, theme values, binary resources, and localization.
 
 ## Classes and PXSS
@@ -36,3 +40,7 @@ Theme names become `ThemeTokenId`, resources become `ResourceId`, and localizati
 Use semantic tokens for spacing, colors, and motion. Keep one-off local dimensions inline, and keep visible text plus accessible names consistently localized without exposing secrets in semantic output.
 
 Next: [Motion, interaction, and accessibility](./Motion-Interaction-and-A11y).
+
+## Check your result
+
+Check a missing resource and an alternate locale as well as the default style.

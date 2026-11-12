@@ -1,5 +1,9 @@
 # 创建第一个界面
 
+编译一个小型 PXML 页面并检查蓝图产物。编译器输出 PXB 文件，显示界面仍需要兼容运行时。
+
+**适用版本：**历史 PXML 1.0 及其匹配运行时。当前插件请使用 [ABI 100](/plugin-sdk/)。
+
 ## 1. 编写页面
 
 新建 `Hello.pxml`：
@@ -43,3 +47,6 @@ pxmlc dump Hello.pxb
 
 下一步可以阅读 [命令行参考](/pxml-compiler/CLI) 和 [编译阶段与 PXB](/pxml-compiler/Pipeline-and-PXB)。
 
+## 检查结果
+
+检查源码、构建二进制并查看区段，不把编译成功当作窗口已显示。

@@ -1,5 +1,9 @@
 # NXML 语法、组件与身份
 
+使用稳定 Key 和支持的组件构建合法 NXML 树。身份影响状态保留与交互，不只是源码可读性。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标：能独立写出一个合法页面和可复用组件，并理解解析失败、组件展开与参数替换。这里解释 NXML 的专门约定，不重复通用 XML 教程。
 
 ## 1. 文档根与命名空间
@@ -96,3 +100,7 @@ componentDirectory 里必须有完整需要的 .c.nxml；只放 StatusCard 而�
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlParser.cs)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlComponentLibrary.cs)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
+
+## 检查结果
+
+解析示例，拒绝未知组件，并检查重复或不稳定 Key。

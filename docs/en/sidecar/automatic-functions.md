@@ -1,5 +1,9 @@
 # NFP3 and automatic function catalogs
 
+Use the finite automatic-function catalog only for targets and argument contracts the Host exposes. NFP3 is a negotiated function-patch format, not arbitrary method interception.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Alpha 14 instruments owned product assemblies after C# lowering and before trimming/NativeAOT. Each assembly ships a matching .nfp catalog. Sidecars still submit bounded programs: no CLR loading, runtime IL rewriting or synchronous IPC during execution.
 
 ## Select a verified target
@@ -57,3 +61,7 @@ Activation publishes an atomic batch flag. Deactivation clears it first; in-flig
 Verify catalog consistency, positive/negative shape cases, exceptions, cancellation, retirement races, unpatched allocation costs and real NativeAOT execution. A byte-encoding sample alone proves none of those execution properties.
 
 Full contract: [automatic function instrumentation](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/automatic-function-instrumentation.md).
+
+## Check your result
+
+Check target discovery, exact argument/result types and conflict rejection. An unknown target or incompatible version must fail before any function is replaced.

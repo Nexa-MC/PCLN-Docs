@@ -1,5 +1,9 @@
 # Protocol, registration, complete lifecycle
 
+Understand which frames are legal at each point in a Sidecar session. Authentication, readiness and activation establish different conditions, so the receive loop must enforce the current state.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Define sender, validator, publication, and retirement for every phase. Versions, frame constants, and feature bits are compatibility contracts, not adjustable author settings.
 
 ## Bootstrap to activation
@@ -129,3 +133,7 @@ Cancellation before IO admission preserves an unused connection. Interrupted fra
 The registration codec splits large module payloads into 60 KiB chunks: field 5 first, then consecutive IDs starting at 1024. The per-TLV 65535-byte bound remains; it is not the entire NXML bundle limit. Hash the fully reassembled payload.
 
 Critical memory pressure may cooperatively DEACTIVATE a session, retiring activation leases, UI and exchanges while preserving registration. Recovery uses ACTIVATE in the same session; retain its numeric mapping. Manually stopped packages are not restarted. See [NXML pages](nxml-pages) and [NFP3](automatic-functions).
+
+## Check your result
+
+Exercise invalid invocation, failed authentication, deactivation/reactivation and shutdown with outstanding work. Check that stale correlations cannot complete a new session’s request.

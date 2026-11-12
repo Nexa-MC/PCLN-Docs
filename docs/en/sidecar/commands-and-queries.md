@@ -1,5 +1,9 @@
 # Commands, queries, codecs, errors
 
+Define a binary request and response contract that another process can validate. Separate queries from effects, preserve correlation, and decide failure and cancellation behavior before adding concurrency.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Use note submission and integer echo to understand the data plane. Snippets use Protocol; [Host API](./host-api) covers composition callers. Independent peers need no Desktop/service implementation reference.
 
 ## Command or Query
@@ -103,3 +107,7 @@ Repeated effects need operation IDs, deduplication, transactions, or explicit id
 - [Nexa.Sidecar.Protocol/SidecarDataMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarDataMessages.cs)
 - [Nexa.Sidecar.Protocol/SidecarControlMessages.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarControlMessages.cs)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## Check your result
+
+Round-trip a valid payload and reject truncated, oversized and wrong-type payloads. Run two concurrent calls and verify each response completes only its own correlation.

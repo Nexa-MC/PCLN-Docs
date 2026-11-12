@@ -1,5 +1,9 @@
 # 布局与尺寸
 
+选择能够适应长文本、动态内容和小窗口的布局约束。测量由匹配的运行时负责，不由编译器执行。
+
+**适用版本：**历史 PXML 1.0 及其匹配运行时。当前插件请使用 [ABI 100](/plugin-sdk/)。
+
 PXML 的布局由 PCL.UI.Next Runtime 增量计算，不委托 Avalonia 的 Measure/Arrange。作者只声明约束和布局关系。
 
 ## Row 与 Column
@@ -72,3 +76,7 @@ viewport 缩小时，父约束变化会触发文本重新 measure，行数、高
 5. 可滚动大集合：VirtualList，而不是 Scroll + 全量 child。
 
 下一章：[Binding、Command 与事件](./Binding-and-Commands)。
+
+## 检查结果
+
+在兼容运行时测试最小宽度、文本扩展和溢出。

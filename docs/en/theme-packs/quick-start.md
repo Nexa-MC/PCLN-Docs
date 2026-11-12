@@ -1,5 +1,9 @@
 # Build your first adjustable theme
 
+Build an adjustable theme with a color, a size slider and a Boolean option. Start from the complete files, then change one value and observe how the Host applies it.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Start with [goal-first development](../development/goal-first) and [XSR ownership](../development/xsr-architecture). Acceptance: heading color/size and button rounding are editable, committed values survive reopening, and malformed styles preserve the last valid theme. No new behavior or external reads are introduced.
 
 ## 1. Get the complete project
@@ -141,3 +145,7 @@ Continue with the [manifest reference](./manifest-and-options) and [control work
 - [eng/themes/pack.py](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/eng/themes/pack.py)
 - [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
 - [docs/xsr/theme-live-options.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-live-options.md)
+
+## Check your result
+
+Import the package, edit all three options, restart, and test an incomplete color value.

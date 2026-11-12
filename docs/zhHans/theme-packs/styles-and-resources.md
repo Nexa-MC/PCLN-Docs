@@ -1,5 +1,9 @@
 # 资源：包内文件、授权与生命周期
 
+把资源纳入包中，并通过获准的身份引用。加载、授权和资源寿命都属于主题契约的一部分。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 一个主题引用资源时要同时解决“资源是什么、在哪里、谁允许读、多久有效、失败怎么办”。看见磁盘上存在文件，并不意味着 Host 可以把它作为当前主题资源。
 
 ## 包内资源的完整流程
@@ -80,3 +84,7 @@ Audio/Video 使用稳定、Host 所有的资源 lease，经已有媒体消费者
 - [docs/xsr/theme-resource-security.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-resource-security.md)
 - [Nexa.Services.Themes/ThemePackageService.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemePackageService.Resources.cs)
 - [Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Desktop/Ui/DesktopThemeSession.Resources.cs)
+
+## 检查结果
+
+测试资源缺失、授权拒绝和使用过程中切换主题。

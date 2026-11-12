@@ -1,5 +1,9 @@
 # Motion, interaction, and accessibility
 
+Describe interaction and motion using the runtime’s finite data contract. Include keyboard and reduced-motion behavior when designing the visual transition.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 Motion and interaction state lower to Runtime component data, not arbitrary callback objects.
 
 ## Transitions and FLIP
@@ -42,3 +46,7 @@ Semantic Tree is independent of Render Tree. A modal removes out-of-scope semant
 Check that visual transforms and hit testing agree, icon buttons have localized names, Disabled blocks every activation path, focus order matches reading order, and Reduced Motion completes navigation/overlay lifecycles.
 
 Next: [Overlays, navigation, and NativeHost](./Overlays-Navigation-and-NativeHost).
+
+## Check your result
+
+Test focus navigation, reduced motion and interruption of an active transition.

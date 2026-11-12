@@ -1,5 +1,9 @@
 # 组件、模板与 Slot
 
+把重复结构提取为类型化的编译期组件和槽位。展开改变蓝图，不会引入任意运行时控件类。
+
+**适用版本：**历史 PXML 1.0 及其匹配运行时。当前插件请使用 [ABI 100](/plugin-sdk/)。
+
 PXML Component 是编译期宏：它提供强类型属性和内容插槽，但不会在 Runtime 创建一层 Component object。
 
 ## 定义 Component
@@ -89,3 +93,7 @@ pxmlc --full Page.pxml -o Page.pxb \
 `x:Const` 和 `x:IfBuild` 在 Release Blueprint 中消失。运行时功能开关应使用 `{feature ...}` 或运行时 `x:If`。
 
 下一章：[样式、主题与资源](./Styles-and-Resources)。
+
+## 检查结果
+
+用两组属性展开同一组件，检查生成节点和槽位内容。

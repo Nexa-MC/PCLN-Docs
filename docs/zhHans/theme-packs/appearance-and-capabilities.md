@@ -1,5 +1,9 @@
 # 宿主外观字段与平台能力
 
+把外观字段加入清单前，查明其含义及能力要求。字段能够解析，也可能因目标宿主缺少能力而无法使用。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 NSS 改具体元素；appearance 描述有限的宿主外观资源与策略。二者都不能改变窗口生命周期、正版/更新信任、输入密码语义或系统权限。
 
 ## appearance 根字段
@@ -88,3 +92,7 @@ resize 的 auto/immediate/instant 直接应用，deferred 等待约 120ms 静默
 - [Nexa.Services.Themes/ThemeManifestReader.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Services.Themes/ThemeManifestReader.cs)
 - [docs/xsr/theme-capabilities.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-capabilities.md)
 - [docs/xsr/theme-package-architecture.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/theme-package-architecture.md)
+
+## 检查结果
+
+测试最小能力集合，并确认不支持的必需能力会明确拒绝候选主题。

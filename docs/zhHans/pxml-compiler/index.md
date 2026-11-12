@@ -1,6 +1,6 @@
-> 兼容参考：本节属于旧版独立 SDK/PXML 文档，不是 NexaCL Alpha 14 的 Sidecar 或共享 NXML API。当前开发请从[目标与 XSR](../development/)进入。
-
 # PXML
+
+本章属于历史 PXML 1.0 工具链，需使用匹配的编译器和运行时；当前插件页面使用 [ABI 100 下的 NXML](../plugin-sdk/)。
 
 这里汇总 PXML UI 的教程与官方编译器文档。
 
@@ -38,3 +38,7 @@ PXML Compiler 是 PXML 1.0 的官方 C17 原生工具链。它在构建期把 au
 工具链使用 arena、interned `uint32` string/node IDs、连续 PXIR、线性 optimizer、开放寻址表和精确 binary layout。x86-64 Clang build 对热扫描 primitive 做运行时 AVX2 dispatch；ARM64 使用 NEON。
 
 解析器拒绝 DTD、外部实体和任意 processing instruction；PXIR/PXB reader 检查 magic、版本、长度、索引/拓扑、section 对齐/重叠和内容指纹。当前内容指纹用于确定性与损坏检测，不是发行签名。
+
+## 开始或维护项目
+
+新 NexaCL 插件使用[插件模板](../plugin-sdk/quickstart)。维护已有 PXML 应用时，从[首个页面](ui-tutorial/First-Page)开始，再学习语法、布局、绑定和组件。把匹配运行时版本与编译器一起记录。编译器输出蓝图，本身不会打开测试窗口或实现业务命令。

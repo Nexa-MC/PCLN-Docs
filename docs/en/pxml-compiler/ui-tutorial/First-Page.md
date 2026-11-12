@@ -1,5 +1,9 @@
 # Create your first UI
 
+Compile a small PXML page and inspect the resulting blueprint. The compiler produces a PXB file; a compatible runtime is still needed to display it.
+
+**Version scope:** historical PXML 1.0 and its matching runtime. For current plugins, use [ABI 100](/en/plugin-sdk/).
+
 ## 1. Write the page
 
 Create `Hello.pxml`:
@@ -43,3 +47,6 @@ pxmlc dump Hello.pxb
 
 Continue with the [CLI reference](/en/pxml-compiler/CLI) and [pipeline and PXB guide](/en/pxml-compiler/Pipeline-and-PXB).
 
+## Check your result
+
+Check the source, build the binary and inspect its sections; do not interpret successful compilation as a displayed window.

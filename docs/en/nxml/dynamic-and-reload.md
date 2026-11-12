@@ -1,5 +1,9 @@
 # Dynamic templates, stable items, retained updates
 
+Update owned fragments without recreating unrelated view state. Stable keys and ownership boundaries determine what survives a reload.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Update list content without resetting drafts, scrolling, or motion. Dynamic owns fragments; external business/state composition still owns facts.
 
 ## Empty slot
@@ -78,3 +82,7 @@ The lab edits/selects a draft, reloads title/placeholder, checks reference/value
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs)
 - [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
 - [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs)
+
+## Check your result
+
+Insert, remove and reorder keyed items during interaction, then unload the owning contribution.

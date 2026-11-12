@@ -1,0 +1,36 @@
+name: Verify documentation source
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  docs:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read pinned SDK source
+        id: source
+        run: |
+          python - <<'PY'
+          import json, os, re
+          source=json.load(open('sdk-docs-source.json'))
+          assert source['repository']=='Nexa-MC/NexaCL-Plugin-SDK'
+          assert re.fullmatch('[0-9a-f]{40}',source['commit'])
+          with open(os.environ['GITHUB_OUTPUT'],'a') as output:
+              output.write('commit='+source['commit']+'\n')
+          PY
+      - uses: actions/checkout@v4
+        with:
+          repository: Nexa-MC/NexaCL-Plugin-SDK
+          ref: ${{ steps.source.outputs.commit }}
+          path: sdk-source
+      - run: python sdk-source/eng/verify_docs.py
+      - run: node scripts/sync-plugin-sdk-docs.mjs --verify
+        env:
+          NEXA_PLUGIN_SDK_SOURCE: ${{ github.workspace }}/sdk-source
+      - run: node scripts/verify-docs.mjs

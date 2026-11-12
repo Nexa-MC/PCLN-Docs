@@ -1,5 +1,9 @@
 # 综合案例：资源页便签扩展
 
+以资源便签为例，把可见行为落实到持久化、界面和退出处理。本章是设计推演，会区分设计选择、接入前提与已经交付的功能。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 本章完成设计推导，再把每个决策落到后续章节的代码。目标是：用户在资源页输入一条便签并提交；卡片显示最后有效值；离开页面后旧操作失效；重新激活能恢复 Sidecar 当前事实。这里不修改资源搜索、下载或账户规则。
 
 ## 1. 写验收场景
@@ -94,3 +98,7 @@ byte[] bytes = document.Encode();
 - [docs/xsr/sidecar-ui-modules.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-ui-modules.md)
 - [Nexa.Sidecar.Protocol/SidecarUiDocument.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Sidecar.Protocol/SidecarUiDocument.cs)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## 检查结果
+
+逐项检查刷新期间编辑、保存失败、所有者退出和扩展目标缺失。尚未接入的宿主能力应明确列出，设计图不能代替可执行实现。

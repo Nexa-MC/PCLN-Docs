@@ -1,5 +1,9 @@
 # Layout, scroll, two NSS dialects
 
+Separate layout constraints, scroll ownership and style dialects before tuning a page. A retained layout must remain valid when content and viewport sizes change.
+
+**Version scope:** these source-level examples target `v2.0.0.alpha.14`. Use [the Plugin SDK](/en/plugin-sdk/) for current Wasm plugin authoring.
+
 Make clear, scalable layout with consistent input geometry. NXML owns structure; choose the correct presentation dialect.
 
 ## Containers and sizing
@@ -86,3 +90,7 @@ Continue with [state and intent](./state-and-input).
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssStyleSheet.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssStyleSheet.cs)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NssThemeCompiler.cs)
 - [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
+
+## Check your result
+
+Resize with long text and an overflowing list; verify the intended container owns scrolling.

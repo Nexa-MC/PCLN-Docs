@@ -1,5 +1,9 @@
 # 动态模板、列表身份与保留式更新
 
+更新自己拥有的片段，同时保留无关视图状态。稳定 Key 和所有权边界决定哪些内容能在重载后保留。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标：列表数据或文案变化时保留输入、滚动和动画，不把每次更新变成一次新的入场。Dynamic 提供有所有权的片段容器；业务仍由外部状态/组合层驱动。
 
 ## 1. 声明空槽
@@ -86,3 +90,7 @@ Authoring Lab 写入未提交草稿并选中一段文本，更新同一行的 ti
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlDynamicTemplate.cs)
 - [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlDynamicContent.cs)
 - [Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Runtime/NxmlUiLoader.Reload.cs)
+
+## 检查结果
+
+交互过程中插入、删除和重排带 Key 的项，再卸载其贡献所有者。

@@ -1,5 +1,9 @@
 # 按目标完成一个功能
 
+先把功能请求写成可观察的结果，再选择扩展方式。明确用户触发的动作、数据所有者，以及一种实际失败情形，让首个实现有清楚的边界。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 第三方开发的起点是用户行为，不是先选一个钩子。这里把“目标 → 契约 → 实现 → 证据”应用到 XSR，避免做出能演示却不能可靠使用的扩展。
 
 ## 第一步：写出能判断真假的目标
@@ -73,3 +77,7 @@
 - [docs/xsr/service-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/service-model.md)
 - [docs/xsr/state-model.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/state-model.md)
 - [docs/xsr/sidecar-host-api.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/sidecar-host-api.md)
+
+## 检查结果
+
+写出一次成功操作和一次拒绝或取消场景。如果验收只能列出内部类名，应改写为用户可以观察的行为。

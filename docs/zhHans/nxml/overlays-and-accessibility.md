@@ -1,5 +1,9 @@
 # 弹层、锚点、关闭与无障碍
 
+为弹层明确锚点、焦点和无障碍行为。视觉层叠顺序不能代替键盘或模态输入的所有权。
+
+**适用版本：**本章源码级示例固定于 `v2.0.0.alpha.14`。当前 Wasm 插件开发请阅读[插件 SDK](/plugin-sdk/)。
+
 目标：一个弹层出现时，绘制、指针、键盘、读屏与关闭行为都属于同一个明确寿命。主题只能改合法外观，不能改变遮罩归属或重新启用已被遮挡的输入。
 
 ## 模态层与对话框是两个事实
@@ -81,3 +85,7 @@ Localize=false 用于用户/文件名/已本地化句子。标题补丁或动态
 - [docs/xsr/nxml-renderer.md](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/docs/xsr/nxml-renderer.md)
 - [Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer.Nxml.Compiler/NxmlCompiler.cs)
 - [Nexa.Xsr.Renderer/XsrUiComponents.cs](https://github.com/Nexa-MC/NexaCL/blob/v2.0.0.alpha.14/Nexa.Xsr.Renderer/XsrUiComponents.cs)
+
+## 检查结果
+
+测试键盘进入与退出、焦点恢复、锚点移除和无障碍标签。
